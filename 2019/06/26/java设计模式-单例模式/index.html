@@ -15,17 +15,18 @@
 
 
 
-<meta name="description" content="学习总结　思考感悟　知识管理">
-<meta name="keywords" content="java 大数据　IT">
-<meta property="og:type" content="website">
-<meta property="og:title" content="The Something We Are Pursuing">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta name="description" content="设计模式之单例模式一.什么是单例模式​    确保类只有一个实例，不会出现多个 ###　二.单例模式解决了什么问题 ​    保证类在内存的对象唯一 三.单例模式的两种形式饿汉式public class Single{      private static static Single instance = new Single();      private Single(){      }">
+<meta name="keywords" content="java 设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java设计模式(单例模式)">
+<meta property="og:url" content="http://yoursite.com/2019/06/26/java设计模式-单例模式/index.html">
 <meta property="og:site_name" content="The Something We Are Pursuing">
-<meta property="og:description" content="学习总结　思考感悟　知识管理">
+<meta property="og:description" content="设计模式之单例模式一.什么是单例模式​    确保类只有一个实例，不会出现多个 ###　二.单例模式解决了什么问题 ​    保证类在内存的对象唯一 三.单例模式的两种形式饿汉式public class Single{      private static static Single instance = new Single();      private Single(){      }">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-26T13:55:39.971Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="The Something We Are Pursuing">
-<meta name="twitter:description" content="学习总结　思考感悟　知识管理">
+<meta name="twitter:title" content="java设计模式(单例模式)">
+<meta name="twitter:description" content="设计模式之单例模式一.什么是单例模式​    确保类只有一个实例，不会出现多个 ###　二.单例模式解决了什么问题 ​    保证类在内存的对象唯一 三.单例模式的两种形式饿汉式public class Single{      private static static Single instance = new Single();      private Single(){      }">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -57,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Archives | The Something We Are Pursuing</title>
+<title>java设计模式(单例模式) | The Something We Are Pursuing</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -67,8 +68,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
-        isArchive: true,
+        isPost: true,
+        isArchive: false,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -261,121 +262,183 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-java设计模式-单例模式" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
+    <div class="article-meta">
       
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              
-<a href="/2019/06/26/java设计模式-单例模式/" class="archive-article-date">
-      <time datetime="2019-06-26T12:17:01.000Z" itemprop="datePublished">06-26</time>
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2019/06/26/java设计模式-单例模式/" class="article-date">
+      <time datetime="2019-06-26T12:17:01.000Z" itemprop="datePublished">2019-06-26</time>
 </a>
 
 
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/26/java设计模式-单例模式/">java设计模式(单例模式)</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      java设计模式(单例模式)
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 
-          
+        
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java-设计模式/">java 设计模式</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="设计模式之单例模式"><a href="#设计模式之单例模式" class="headerlink" title="设计模式之单例模式"></a>设计模式之单例模式</h2><h3 id="一-什么是单例模式"><a href="#一-什么是单例模式" class="headerlink" title="一.什么是单例模式"></a>一.什么是单例模式</h3><p>​    确保类只有一个实例，不会出现多个</p>
+<p>###　二.单例模式解决了什么问题</p>
+<p>​    保证类在内存的对象唯一</p>
+<h3 id="三-单例模式的两种形式"><a href="#三-单例模式的两种形式" class="headerlink" title="三.单例模式的两种形式"></a>三.单例模式的两种形式</h3><h4 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h4><pre><code>public class Single{
+
+    private static static Single instance = new Single();
+
+    private Single(){
+
+    }
+
+    public static Single getInstance(){
+
+        return instance;
+
+    }
+
+}</code></pre><p><strong>１．为什么叫这种模式为饿汉式？</strong></p>
+<p>​    类在加载的时候就创建好了这个对象</p>
+<p><strong>２．为什么构造方法是私有的，方法是静态的，属性也是静态的？</strong></p>
+<p>​         首先单例模式只创建一个实例，是不能通过new去创建实例的，所以构造方法是私有的</p>
+<p>​        第二不能通过实例去调用方法，只能通过类名去访问，所以方法是静态的 由于静态方法只能访                    </p>
+<p>　　问静态的属性所以属性也是静态的。　    </p>
+<h4 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h4><pre><code>###### 线程不安全</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class Single｛</span><br><span class="line"></span><br><span class="line">		private static Single single = null;</span><br><span class="line"></span><br><span class="line">		public Single&#123;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public static Single getInstance()&#123;</span><br><span class="line"></span><br><span class="line">			if(single ==  null)&#123;</span><br><span class="line">				single = new Single();</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			return single;</span><br><span class="line">		&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>######　线程安全</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class Single&#123;</span><br><span class="line">    </span><br><span class="line">    private static Single single = null;</span><br><span class="line">    </span><br><span class="line">    public static Single getInstance()&#123;</span><br><span class="line">    </span><br><span class="line">        if(single == null)&#123;  //如果single已经实例化，则不在去获取锁，提高效率</span><br><span class="line">            synchronized(Single.class)&#123;</span><br><span class="line">                if(single == null)&#123;</span><br><span class="line">                    single = new Single();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        return single;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+
+      
+    </div>
+    
   </div>
+  
+    
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/06/26/My-New-Post/">
+                    My New Hexo
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              
-<a href="/2019/06/26/My-New-Post/" class="archive-article-date">
-      <time datetime="2019-06-26T02:36:49.000Z" itemprop="datePublished">06-26</time>
-</a>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#设计模式之单例模式"><span class="toc-number">1.</span> <span class="toc-text">设计模式之单例模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-什么是单例模式"><span class="toc-number">1.1.</span> <span class="toc-text">一.什么是单例模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-单例模式的两种形式"><span class="toc-number">1.2.</span> <span class="toc-text">三.单例模式的两种形式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#饿汉式"><span class="toc-number">1.2.1.</span> <span class="toc-text">饿汉式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#懒汉式"><span class="toc-number">1.2.2.</span> <span class="toc-text">懒汉式</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
 
 
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
         </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/26/My-New-Post/">My New Hexo</a>
-    </h1>
-  
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"java设计模式(单例模式)　| The Something We Are Pursuing　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
 
-        <div class="article-info info-on-archive">
-          
+    
+</div>
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/测试使用/">测试使用</a></li></ul>
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/06/26/My-New-Post/" title="下一篇: My New Hexo">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
     </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              
-<a href="/2019/06/26/hello-world/" class="archive-article-date">
-      <time datetime="2019-06-26T01:23:52.754Z" itemprop="datePublished">06-26</time>
-</a>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06/26/java设计模式-单例模式/">java设计模式(单例模式)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/26/My-New-Post/">My New Hexo</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/26/hello-world/">Hello World</a></li></ul>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/26/hello-world/">Hello World</a>
-    </h1>
-  
 
-        <div class="article-info info-on-archive">
-          
 
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
