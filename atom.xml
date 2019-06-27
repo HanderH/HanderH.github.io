@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>The Something We Are Pursuing</title>
+  <icon>https://www.gravatar.com/avatar/0b5d6648195c1648e8c43af28a2b4905</icon>
+  <subtitle>life and work</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2019-06-26T14:04:02.568Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>HanderH</name>
+    <email>husj0423@163.com</email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java设计模式(单例模式)</title>
+    <link href="http://yoursite.com/2019/06/26/java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2019/06/26/java设计模式-单例模式/</id>
+    <published>2019-06-26T12:17:01.000Z</published>
+    <updated>2019-06-26T14:04:02.568Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="设计模式之单例模式"><a href="#设计模式之单例模式" class="headerlink" title="设计模式之单例模式"></a>设计模式之单例模式</h2><h3 id="一-什么是单例模式"><a href="#一-什么是单例模式" class="headerlink" title="一.什么是单例模式"></a>一.什么是单例模式</h3><p>​    确保类只有一个实例，不会出现多个</p><h3 id="二-单例模式解决了什么问题"><a href="#二-单例模式解决了什么问题" class="headerlink" title="二.单例模式解决了什么问题"></a>二.单例模式解决了什么问题</h3><p>​    保证类在内存的对象唯一</p><h3 id="三-单例模式的两种形式"><a href="#三-单例模式的两种形式" class="headerlink" title="三.单例模式的两种形式"></a>三.单例模式的两种形式</h3><h4 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h4><pre><code>public class Single{    private static static Single instance = new Single();    private Single(){    }    public static Single getInstance(){        return instance;    }}</code></pre><p><strong>１．为什么叫这种模式为饿汉式？</strong></p><p>​    类在加载的时候就创建好了这个对象</p><p><strong>２．为什么构造方法是私有的，方法是静态的，属性也是静态的？</strong></p><p>​         首先单例模式只创建一个实例，是不能通过new去创建实例的，所以构造方法是私有的</p><p>​        第二不能通过实例去调用方法，只能通过类名去访问，所以方法是静态的 由于静态方法只能访                    </p><p>　　问静态的属性所以属性也是静态的。　    </p><h4 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h4><h5 id="线程不安全"><a href="#线程不安全" class="headerlink" title="线程不安全"></a>线程不安全</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class Single｛</span><br><span class="line"></span><br><span class="line">private static Single single = null;</span><br><span class="line"></span><br><span class="line">public Single&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static Single getInstance()&#123;</span><br><span class="line"></span><br><span class="line">if(single ==  null)&#123;</span><br><span class="line">single = new Single();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return single;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h5 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class Single&#123;</span><br><span class="line">    </span><br><span class="line">    private static Single single = null;</span><br><span class="line">    </span><br><span class="line">    public static Single getInstance()&#123;</span><br><span class="line">    </span><br><span class="line">        if(single == null)&#123;  //如果single已经实例化，则不在去获取锁，提高效率</span><br><span class="line">            synchronized(Single.class)&#123;</span><br><span class="line">                if(single == null)&#123;</span><br><span class="line">                    single = new Single();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        return single;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>​    </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;设计模式之单例模式&quot;&gt;&lt;a href=&quot;#设计模式之单例模式&quot; class=&quot;headerlink&quot; title=&quot;设计模式之单例模式&quot;&gt;&lt;/a&gt;设计模式之单例模式&lt;/h2&gt;&lt;h3 id=&quot;一-什么是单例模式&quot;&gt;&lt;a href=&quot;#一-什么是单例模式&quot; class
+      
+    
+    </summary>
+    
+    
+      <category term="java 设计模式" scheme="http://yoursite.com/tags/java-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>My New Hexo</title>
+    <link href="http://yoursite.com/2019/06/26/My-New-Post/"/>
+    <id>http://yoursite.com/2019/06/26/My-New-Post/</id>
+    <published>2019-06-26T02:36:49.000Z</published>
+    <updated>2019-06-26T15:18:41.041Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><p>​    </p><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><ul><li><p>列表一</p></li><li><p>列表二<br><a href="www.baidu.com">百度</a></p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;一级标题&quot;&gt;&lt;a href=&quot;#一级标题&quot; class=&quot;headerlink&quot; title=&quot;一级标题&quot;&gt;&lt;/a&gt;一级标题&lt;/h1&gt;&lt;p&gt;​    &lt;/p&gt;
+&lt;h2 id=&quot;二级标题&quot;&gt;&lt;a href=&quot;#二级标题&quot; class=&quot;headerlink&quot; tit
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+    
+      <category term="设计模式" scheme="http://yoursite.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="测试使用" scheme="http://yoursite.com/tags/%E6%B5%8B%E8%AF%95%E4%BD%BF%E7%94%A8/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="hadoop" scheme="http://yoursite.com/tags/hadoop/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2019/06/26/hello-world/"/>
+    <id>http://yoursite.com/2019/06/26/hello-world/</id>
+    <published>2019-06-26T01:23:52.754Z</published>
+    <updated>2019-06-26T01:23:52.754Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
