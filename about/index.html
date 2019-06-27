@@ -15,18 +15,20 @@
 
 
 
-<meta name="description" content="![](/img/handerh.jpg ​                            这就是我，不一样的我">
+<meta name="description" content="​                            这就是我，不一样的我">
 <meta name="keywords" content="java 大数据　IT">
 <meta property="og:type" content="website">
 <meta property="og:title" content="about">
 <meta property="og:url" content="http://yoursite.com/about/index.html">
 <meta property="og:site_name" content="The Something We Are Pursuing">
-<meta property="og:description" content="![](/img/handerh.jpg ​                            这就是我，不一样的我">
+<meta property="og:description" content="​                            这就是我，不一样的我">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-26T14:34:23.550Z">
+<meta property="og:image" content="http://yoursite.com/img/handerh.jpg">
+<meta property="og:updated_time" content="2019-06-27T04:42:13.817Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="about">
-<meta name="twitter:description" content="![](/img/handerh.jpg ​                            这就是我，不一样的我">
+<meta name="twitter:description" content="​                            这就是我，不一样的我">
+<meta name="twitter:image" content="http://yoursite.com/img/handerh.jpg">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -74,7 +76,7 @@
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
         scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
-        search: 
+        search: true
     }
 </script>
 
@@ -108,6 +110,13 @@
         <p class="header-subtitle">life and work</p>
         
 
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
         
 
 
@@ -323,7 +332,7 @@
 
 
           
-        <p>![](/img/handerh.jpg</p>
+        <p><img src="/img/handerh.jpg" alt></p>
 <p>​                            这就是我，不一样的我</p>
 
       
@@ -407,17 +416,9 @@
             </div>
         
     </div>
-
-        <!-- 不蒜子统计 -->
-        <span id="busuanzi_container_site_pv">
-                本站总访问量<span id="busuanzi_value_site_pv"></span>次
-        </span>
-        <span class="post-meta-divider">|</span>
-        <span id="busuanzi_container_site_uv" style='display:none'>
-                本站访客数<span id="busuanzi_value_site_uv"></span>人
-        </span>
-        <script async src="/busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
+<div>
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1277758848'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s5.cnzz.com/z_stat.php%3Fid%3D1277758848%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
 </footer>
     </div>
     

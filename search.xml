@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[java设计模式(单例模式)]]></title>
+    <url>%2F2019%2F06%2F26%2Fjava%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[设计模式之单例模式一.什么是单例模式​ 确保类只有一个实例，不会出现多个 二.单例模式解决了什么问题​ 保证类在内存的对象唯一 三.单例模式的两种形式饿汉式public class Single{ private static static Single instance = new Single(); private Single(){ } public static Single getInstance(){ return instance; } }１．为什么叫这种模式为饿汉式？ ​ 类在加载的时候就创建好了这个对象 ２．为什么构造方法是私有的，方法是静态的，属性也是静态的？ ​ 首先单例模式只创建一个实例，是不能通过new去创建实例的，所以构造方法是私有的 ​ 第二不能通过实例去调用方法，只能通过类名去访问，所以方法是静态的 由于静态方法只能访 问静态的属性所以属性也是静态的。 懒汉式线程不安全1234567891011121314151617public class Single｛ private static Single single = null; public Single&#123; &#125; public static Single getInstance()&#123; if(single == null)&#123; single = new Single(); &#125; return single; &#125; &#125; 线程安全1234567891011121314151617public class Single&#123; private static Single single = null; public static Single getInstance()&#123; if(single == null)&#123; //如果single已经实例化，则不在去获取锁，提高效率 synchronized(Single.class)&#123; if(single == null)&#123; single = new Single(); &#125; &#125; &#125; return single; &#125;&#125; ​]]></content>
+      <tags>
+        <tag>java 设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[My New Hexo]]></title>
+    <url>%2F2019%2F06%2F26%2FMy-New-Post%2F</url>
+    <content type="text"><![CDATA[一级标题​ 二级标题三级标题 列表一 列表二百度]]></content>
+      <categories>
+        <category>java</category>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>测试使用</tag>
+        <tag>java</tag>
+        <tag>hadoop</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2019%2F06%2F26%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+</search>
