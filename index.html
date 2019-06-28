@@ -210,7 +210,7 @@ var _hmt = _hmt || [];
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flume/">Flume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-设计模式/">java 设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/测试使用/">测试使用</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flume/">Flume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-设计模式/">java 设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/测试使用/">测试使用</a></li></ul>
                     </div>
                 </section>
                 
@@ -291,6 +291,67 @@ var _hmt = _hmt || [];
 </nav>
       <div class="body-wrap">
   
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      
+<a href="/2019/06/28/hello-world/" class="article-date">
+      <time datetime="2019-06-28T08:48:42.536Z" itemprop="datePublished">2019-06-28</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/28/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2019/06/28/hello-world/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Flume" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -321,7 +382,7 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="一-Flume是什么"><a href="#一-Flume是什么" class="headerlink" title="一.Flume是什么"></a>一.Flume是什么</h2><p>Flume是一个分布式的，可靠的，高可用的海量日志采集系统，以Event为单位进行传输</p>
+              <h2 id="一-Flume是什么"><a href="#一-Flume是什么" class="headerlink" title="一.Flume是什么"></a>一.Flume是什么</h2><p>Flume是一个分布式的，可靠的，高可用的海量日志采集系统，以Event为单位进行传输</p>
 <h2 id="二-Flume的三大组件"><a href="#二-Flume的三大组件" class="headerlink" title="二.Flume的三大组件"></a>二.Flume的三大组件</h2><h3 id="source数据输入端的常见类型"><a href="#source数据输入端的常见类型" class="headerlink" title="source数据输入端的常见类型"></a>source数据输入端的常见类型</h3><ul>
 <li>spooling directory :文件中的数据</li>
 <li>exec :执行linux的命令，监控文件数据</li>
@@ -329,84 +390,7 @@ var _hmt = _hmt || [];
 <li>avro:序列化框架</li>
 <li>netcat:监听端口</li>
 </ul>
-<h3 id="channel缓冲区"><a href="#channel缓冲区" class="headerlink" title="channel缓冲区"></a>channel缓冲区</h3><p>  位于Source和Sink,flume自带两种缓冲区Memory Channel,File Channel</p>
-<ul>
-<li>Memoey Channel :基于内存缓存，在不关心数据丢失的情况下使用</li>
-<li>File Channel : 持久化Channel,不易丢失数据</li>
-</ul>
-<h3 id="sink数据输出端"><a href="#sink数据输出端" class="headerlink" title="sink数据输出端"></a>sink数据输出端</h3><p>常见的目的地包括Hdfs,Kafka,logger,avro,file</p>
-<h2 id="三-Flume的操作"><a href="#三-Flume的操作" class="headerlink" title="三.Flume的操作"></a>三.Flume的操作</h2><h3 id="1-监控指定端口，并采集数据，输出到控制台"><a href="#1-监控指定端口，并采集数据，输出到控制台" class="headerlink" title="1.监控指定端口，并采集数据，输出到控制台"></a>1.监控指定端口，并采集数据，输出到控制台</h3><p>agent:</p>
-<p>source使用netcat,监控指定的端口</p>
-<p>先检测要监听的端口是否已经被占用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo netstat -tunlp | grep 44444</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo netstat -tunlp | grep 44444</span><br><span class="line">参数说明：</span><br><span class="line">	-t:tcp -u:udp -n:网络连接　-l:listener p:进程</span><br></pre></td></tr></table></figure>
-
-<p>channel使用memory</p>
-<p>sink使用logger</p>
-<p>创一个配置文件:vi netcat.flm</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># Name the components on this agent</span><br><span class="line">a1.sources = r1  // a1:agent的名称 r1:source的名称</span><br><span class="line">a1.sinks = k1	// k1:sink的名称</span><br><span class="line">a1.channels = c1　//c1:channel的名称</span><br><span class="line"></span><br><span class="line"># Describe/configure the source</span><br><span class="line">a1.sources.r1.type = netcat　</span><br><span class="line">a1.sources.r1.bind = localhost //绑定本机</span><br><span class="line">a1.sources.r1.port = 44444	//监听对应端口</span><br><span class="line"></span><br><span class="line"># Describe the sink</span><br><span class="line">a1.sinks.k1.type = logger</span><br><span class="line"></span><br><span class="line"># Use a channel which buffers events in memory</span><br><span class="line">a1.channels.c1.type = memory</span><br><span class="line"></span><br><span class="line"># Bind the source and sink to the channel</span><br><span class="line">a1.sources.r1.channels = c1　// source输出到指定channel</span><br><span class="line">a1.sinks.k1.channel = c1	//channel到指定的sink</span><br></pre></td></tr></table></figure>
-
-<p>执行命令，启动agent：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">flume-ng agent -c flume/conf/ -f netcat.flm -n a1 </span><br><span class="line">-Dflume.root.logger=INFO,console</span><br><span class="line">//-c:指定flume的配置文件　－f:指定要执行的配置文件　-n:agent的名字，要与配置中一致</span><br></pre></td></tr></table></figure>
-
-<p>使用telnet测试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telnet local host message</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-实时采集数据并输出到控制台"><a href="#2-实时采集数据并输出到控制台" class="headerlink" title="2.实时采集数据并输出到控制台"></a>2.实时采集数据并输出到控制台</h3><p>agent:</p>
-<p>​    source使用exec</p>
-<p>​    配置文件 vi exec.flm</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># Name the components on this agent</span><br><span class="line">a1.sources = r1</span><br><span class="line">a1.sinks = k1</span><br><span class="line">a1.channels = c1</span><br><span class="line"></span><br><span class="line"># Describe/configure the source</span><br><span class="line">a1.sources.r1.type = exec</span><br><span class="line">a1.sources.r1.command = tail -F /home/briup/log/test.log //要监控的文件</span><br><span class="line"># 命令从-c后的字符串读取</span><br><span class="line">a1.sources.r1.shell = /bin/sh -c</span><br><span class="line"></span><br><span class="line"># Describe the sink</span><br><span class="line">a1.sinks.k1.type = logger</span><br><span class="line"></span><br><span class="line"># Use a channel which buffers events in memory</span><br><span class="line">a1.channels.c1.type = memory</span><br><span class="line">a1.channels.c1.capacity = 1000</span><br><span class="line">a1.channels.c1.transactionCapacity = 100</span><br><span class="line"></span><br><span class="line"># Bind the source and sink to the channel</span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line">a1.sinks.k1.channel = c1</span><br></pre></td></tr></table></figure>
-
-<p>运行agent</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flume-ng agent -c flume/conf/ -f exec.flm -n a1 -Dflume.root.logger=INFO,console</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-Spool监测配置的目录下新增的文件"><a href="#3-Spool监测配置的目录下新增的文件" class="headerlink" title="3.Spool监测配置的目录下新增的文件"></a>3.Spool监测配置的目录下新增的文件</h3><p>agent: spooldir</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir spool //先创建一个目录，指定这个目录为要监听的目录</span><br></pre></td></tr></table></figure>
-
-<p>配置文件：vi  spool.flm</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">a1.sources = r1</span><br><span class="line">a1.sinks = k1</span><br><span class="line">a1.channels = c1</span><br><span class="line"></span><br><span class="line">a1.sources.r1.type = spooldir</span><br><span class="line">a1.sources.r1.spoolDir =/home/master/spool</span><br><span class="line">a1.sources.r1.fileHeader = true</span><br><span class="line"></span><br><span class="line">a1.sinks.k1.type = logger</span><br><span class="line"></span><br><span class="line">a1.channels.c1.type = memory</span><br><span class="line"></span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line">a1.sinks.k1.channel = c1</span><br></pre></td></tr></table></figure>
-
-<p>启动agent</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flume-ng agent -c flume/conf/ -f spool.flm -n a1 -Dflume.root.logger=INFO,console</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-Syslogtcp监听TCP的端口做为数据源"><a href="#4-Syslogtcp监听TCP的端口做为数据源" class="headerlink" title="4.Syslogtcp监听TCP的端口做为数据源"></a>4.Syslogtcp监听TCP的端口做为数据源</h3><p>agent:syslogtcp</p>
-<p>vi syslogtcp.flm //配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">sources = r1</span><br><span class="line">a1.sinks = k1</span><br><span class="line">a1.channels = c1</span><br><span class="line"></span><br><span class="line">a1.sources.r1.type = syslogtcp</span><br><span class="line">a1.sources.r1.port = 5140</span><br><span class="line">a1.sources.r1.host = localhost</span><br><span class="line"></span><br><span class="line">a1.sinks.k1.type = logger</span><br><span class="line"></span><br><span class="line">a1.channels.c1.type = memory</span><br><span class="line">a1.channels.c1.capacity = 1000</span><br><span class="line">a1.channels.c1.transactionCapacity = 100</span><br><span class="line"></span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line">a1.sinks.k1.channel = c1</span><br></pre></td></tr></table></figure>
-
-<p>启动agent</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flume-ng agent -c flume/conf/ -f syslogtcp.flm -n a1 -Dflume.root.logger=INFO,console</span><br></pre></td></tr></table></figure>
-
-<p>测试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;hello world&quot; | nc localhost 5140</span><br></pre></td></tr></table></figure>
-
-<h2 id="三-agent执行原理"><a href="#三-agent执行原理" class="headerlink" title="三.agent执行原理"></a>三.agent执行原理</h2><ol>
-<li>source接受事件</li>
-<li>channel处理器处理事件后，被拦截器拦截</li>
-<li>拦截器处理后，进入channel选择器，根据channel选择器的选择结果，将事件写入对应的channel</li>
-<li>Sink选择器选择其中一个Sink去获取Channel数据，并将数据写入到下一个阶段</li>
-</ol>
-<h4 id="channel选择器："><a href="#channel选择器：" class="headerlink" title="channel选择器："></a>channel选择器：</h4><pre><code>1. Replicating Channel Selector:将source发过来的events发往所有channel
-2. Multiplexing channel Selector:可以将事件配置发往哪些Channel</code></pre><h2 id="五-flume的高可用"><a href="#五-flume的高可用" class="headerlink" title="五.flume的高可用"></a>五.flume的高可用</h2><h3 id="1-故障转移"><a href="#1-故障转移" class="headerlink" title="1.故障转移"></a>1.故障转移</h3><p>利用备份agent，当原来的agent挂掉后，切换到备份agent,需要使用到一个前置agent，或者是一个java程序来读取原来的数据，通过sink组(processor)输出到不同的agent.</p>
-<p>配置实现</p>
-<p>首先配置前置的agent，vi pre_flm</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">a1.sources = r1</span><br><span class="line">a1.sinks = k1 k2</span><br><span class="line">a1.channels = c1 c2</span><br><span class="line">#这个是配置failover的关键，需要有一个sink group</span><br><span class="line">a1.sinkgroups = g1</span><br><span class="line">a1.sinkgroups.g1.sinks = k1 k2</span><br><span class="line">#处理的类型是failover</span><br><span class="line">a1.sinkgroups.g1.processor.type = failover</span><br><span class="line">#优先级，数字越大优先级越高，每个sink的优先级必须不相同</span><br><span class="line">a1.sinkgroups.g1.processor.priority.k1 = 5</span><br><span class="line">a1.sinkgroups.g1.processor.priority.k2 = 10</span><br><span class="line">#设置为10秒，当然可以根据你的实际状况更改成更快或者很慢</span><br><span class="line">a1.sinkgroups.g1.processor.maxpenalty = 10000</span><br><span class="line">  </span><br><span class="line"># Describe/configure the source</span><br><span class="line">a1.sources.r1.type = syslogtcp</span><br><span class="line">a1.sources.r1.port = 5140</span><br><span class="line">a1.sources.r1.channels = c1 c2</span><br><span class="line">a1.sources.r1.selector.type = replicating</span><br><span class="line"></span><br><span class="line"># Describe the sink</span><br><span class="line">a1.sinks.k1.type = avro</span><br><span class="line">a1.sinks.k1.channel = c1</span><br><span class="line">a1.sinks.k1.hostname = localhost</span><br><span class="line">a1.sinks.k1.port = 5555</span><br><span class="line"> </span><br><span class="line">a1.sinks.k2.type = avro</span><br><span class="line">a1.sinks.k2.channel = c2</span><br><span class="line">a1.sinks.k2.hostname = localhost</span><br><span class="line">a1.sinks.k2.port = 6666</span><br><span class="line">  </span><br><span class="line"># Use a channel which buffers events in memory</span><br><span class="line">a1.channels.c1.type = memory</span><br><span class="line">a1.channels.c1.capacity = 1000</span><br><span class="line">a1.channels.c1.transactionCapacity = 100</span><br><span class="line">  </span><br><span class="line">a1.channels.c2.type = memory</span><br><span class="line">a1.channels.c2.capacity = 1000</span><br><span class="line">a1.channels.c2.transactionCapacity = 100</span><br></pre></td></tr></table></figure>
-
-<p>第二配置agent与back_agent　vi agent.flm　vi back_agent.flm</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">#agent.flm</span><br><span class="line">a1.sources = r1</span><br><span class="line">a1.sinks = k1</span><br><span class="line">a1.channels = c1</span><br><span class="line">Describe/configure the source</span><br><span class="line">a1.sources.r1.type = avro</span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line">a1.sources.r1.bind = 0.0.0.0</span><br><span class="line">a1.sources.r1.port = 6666 </span><br><span class="line">Describe the sink</span><br><span class="line">a1.sinks.k1.type = logger</span><br><span class="line">Use a channel which buffers events in memory</span><br><span class="line">a1.channels.c1.type = memory</span><br><span class="line">a1.channels.c1.capacity = 1000</span><br><span class="line">a1.channels.c1.transactionCapacity = 100</span><br><span class="line">Bind the source and sink to the channel</span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line">a1.sinks.k1.channel = c1</span><br><span class="line"></span><br><span class="line">#back_agent.flm</span><br><span class="line">a1.sources = r1</span><br><span class="line">a1.sinks = k1</span><br><span class="line">a1.channels = c1</span><br><span class="line">Describe/configure the source</span><br><span class="line">a1.sources.r1.type = avro</span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line">a1.sources.r1.bind = 0.0.0.0</span><br><span class="line">a1.sources.r1.port = 5555</span><br><span class="line">Describe the sink</span><br><span class="line">a1.sinks.k1.type = logger</span><br><span class="line">Use a channel which buffers events in memory</span><br><span class="line">a1.channels.c1.type = memory</span><br><span class="line">a1.channels.c1.capacity = 1000</span><br><span class="line">a1.channels.c1.transactionCapacity = 100</span><br><span class="line">Bind the source and sink to the channel</span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line">a1.sinks.k1.channel = c1</span><br></pre></td></tr></table></figure>
-
-<p>然后就可以使用命令启动这些配置了，先启动agent和back_agent，再启动pre_flm</p>
-<p>然后向pre_flm发送数据，发现agent会接受到数据，使用<code>crtl c</code>关闭agent，会发现back_agent可以接受到数据。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">flume-ng agent -c flume/conf/ -f pre.flm -n a1 -Dflume.root.logger=INFO,console</span><br><span class="line"></span><br><span class="line">flume-ng agent -c flume/conf/ -f agent.flm -n a1 -Dflume.root.logger=INFO,console</span><br><span class="line"></span><br><span class="line">flume-ng agent -c flume/conf/ –f agent_back.flm -n a1 -Dflume.root.logger=INFO,console</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-负载均衡"><a href="#2-负载均衡" class="headerlink" title="2.负载均衡"></a>2.负载均衡</h3><p>利用前置的agent，通过processor向多个agent轮询的发送数据</p>
-<p>首先配置前置的agent，vi pre_flm</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">a1.sources = r1</span><br><span class="line">a1.sinks = k1 k2</span><br><span class="line">a1.channels = c1 c2</span><br><span class="line">  </span><br><span class="line">#这个是配置Load balancing的关键，需要有一个sink group</span><br><span class="line">a1.sinkgroups = g1</span><br><span class="line">a1.sinkgroups.g1.sinks = k1 k2</span><br><span class="line"></span><br><span class="line">a1.sinkgroups.g1.processor.type = load_balance</span><br><span class="line">#是否是开启退避功能</span><br><span class="line">a1.sinkgroups.g1.processor.backoff = true</span><br><span class="line">＃轮询</span><br><span class="line">a1.sinkgroups.g1.processor.selector = round_robin</span><br><span class="line">  </span><br><span class="line"># Describe/configure the source</span><br><span class="line">a1.sources.r1.type = avro</span><br><span class="line">a1.sources.r1.bind = 0.0.0.0</span><br><span class="line">a1.sources.r1.port = 5140</span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line">  </span><br><span class="line"># Describe the sink</span><br><span class="line">a1.sinks.k1.type = avro</span><br><span class="line">a1.sinks.k1.channel = c1</span><br><span class="line">a1.sinks.k1.hostname = localhost</span><br><span class="line">a1.sinks.k1.port = 5555</span><br><span class="line">  </span><br><span class="line">a1.sinks.k2.type = avro</span><br><span class="line">a1.sinks.k2.channel = c2</span><br><span class="line">a1.sinks.k2.hostname = localhost</span><br><span class="line">a1.sinks.k2.port = 6666</span><br><span class="line">  </span><br><span class="line"># Use a channel which buffers events in memory</span><br><span class="line">a1.channels.c1.type = memory</span><br><span class="line">a1.channels.c1.capacity = 1000</span><br><span class="line">a1.channels.c1.transactionCapacity = 100</span><br><span class="line"></span><br><span class="line">a1.channels.c2.type = memory</span><br></pre></td></tr></table></figure>
-
-<p>第二配置agent a与agnet b　vi a.flm　vi b.flm</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#a.flm</span><br><span class="line">a1.sources = r1</span><br><span class="line">a1.sinks = k1</span><br><span class="line">a1.channels = c1</span><br><span class="line">  </span><br><span class="line"># Describe/configure the source</span><br><span class="line">a1.sources.r1.type = avro</span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line">a1.sources.r1.bind = 0.0.0.0</span><br><span class="line">a1.sources.r1.port = 5555</span><br><span class="line">  </span><br><span class="line"># Describe the sink</span><br><span class="line">a1.sinks.k1.type = logger</span><br><span class="line">  </span><br><span class="line"># Use a channel which buffers events in memory</span><br><span class="line">a1.channels.c1.type = memory</span><br><span class="line">a1.channels.c1.capacity = 1000</span><br><span class="line">a1.channels.c1.transactionCapacity = 100</span><br><span class="line">  </span><br><span class="line"># Bind the source and sink to the channel</span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line">a1.sinks.k1.channel = c1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#b.flm</span><br><span class="line">a1.sources = r1</span><br><span class="line">a1.sinks = k1</span><br><span class="line">a1.channels = c1</span><br><span class="line">  </span><br><span class="line"># Describe/configure the source</span><br><span class="line">a1.sources.r1.type = avro</span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line">a1.sources.r1.bind = 0.0.0.0</span><br><span class="line">a1.sources.r1.port = 5555</span><br><span class="line">  </span><br><span class="line"># Describe the sink</span><br><span class="line">a1.sinks.k1.type = logger</span><br><span class="line">  </span><br><span class="line"># Use a channel which buffers events in memory</span><br><span class="line">a1.channels.c1.type = memory</span><br><span class="line">a1.channels.c1.capacity = 1000</span><br><span class="line">a1.channels.c1.transactionCapacity = 100</span><br><span class="line">  </span><br><span class="line"># Bind the source and sink to the channel</span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line">a1.sinks.k1.channel = c1</span><br></pre></td></tr></table></figure>
-
-
+          
       
     </div>
     
@@ -419,6 +403,10 @@ var _hmt = _hmt || [];
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flume/">Flume</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/06/27/Flume/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -466,34 +454,8 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="设计模式之单例模式"><a href="#设计模式之单例模式" class="headerlink" title="设计模式之单例模式"></a>设计模式之单例模式</h2><h3 id="一-什么是单例模式"><a href="#一-什么是单例模式" class="headerlink" title="一.什么是单例模式"></a>一.什么是单例模式</h3><p>​    确保类只有一个实例，不会出现多个</p>
-<h3 id="二-单例模式解决了什么问题"><a href="#二-单例模式解决了什么问题" class="headerlink" title="二.单例模式解决了什么问题"></a>二.单例模式解决了什么问题</h3><p>​    保证类在内存的对象唯一</p>
-<h3 id="三-单例模式的两种形式"><a href="#三-单例模式的两种形式" class="headerlink" title="三.单例模式的两种形式"></a>三.单例模式的两种形式</h3><h4 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h4><pre><code>public class Single{
-
-    private static static Single instance = new Single();
-
-    private Single(){
-
-    }
-
-    public static Single getInstance(){
-
-        return instance;
-
-    }
-
-}</code></pre><p><strong>１．为什么叫这种模式为饿汉式？</strong></p>
-<p>​    类在加载的时候就创建好了这个对象</p>
-<p><strong>２．为什么构造方法是私有的，方法是静态的，属性也是静态的？</strong></p>
-<p>​         首先单例模式只创建一个实例，是不能通过new去创建实例的，所以构造方法是私有的</p>
-<p>​        第二不能通过实例去调用方法，只能通过类名去访问，所以方法是静态的 由于静态方法只能访                    </p>
-<p>　　问静态的属性所以属性也是静态的。　    </p>
-<h4 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h4><h5 id="线程不安全"><a href="#线程不安全" class="headerlink" title="线程不安全"></a>线程不安全</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class Single｛</span><br><span class="line"></span><br><span class="line">		private static Single single = null;</span><br><span class="line"></span><br><span class="line">		public Single&#123;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public static Single getInstance()&#123;</span><br><span class="line"></span><br><span class="line">			if(single ==  null)&#123;</span><br><span class="line">				single = new Single();</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			return single;</span><br><span class="line">		&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class Single&#123;</span><br><span class="line">    </span><br><span class="line">    private static Single single = null;</span><br><span class="line">    </span><br><span class="line">    public static Single getInstance()&#123;</span><br><span class="line">    </span><br><span class="line">        if(single == null)&#123;  //如果single已经实例化，则不在去获取锁，提高效率</span><br><span class="line">            synchronized(Single.class)&#123;</span><br><span class="line">                if(single == null)&#123;</span><br><span class="line">                    single = new Single();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        return single;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-
+              <h2 id="设计模式之单例模式"><a href="#设计模式之单例模式" class="headerlink" title="设计模式之单例模式"></a>设计模式之单例模式</h2><h3 id="一-什么是单例模式"><a href="#一-什么是单例模式" class="headerlink" title="一.什么是单例模式"></a>一.什么是单例模式</h3><p>​    确保类只有一个实例，不会出现多个</p>
+          
       
     </div>
     
@@ -506,6 +468,10 @@ var _hmt = _hmt || [];
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java-设计模式/">java 设计模式</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/06/26/java设计模式-单例模式/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -553,14 +519,8 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><p>​    </p>
-<h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><ul>
-<li><p>列表一</p>
-</li>
-<li><p>列表二<br><a href="www.baidu.com">百度</a></p>
-</li>
-</ul>
-
+              <h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><p>​</p>
+          
       
     </div>
     
@@ -568,84 +528,19 @@ var _hmt = _hmt || [];
       
       
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/java/">java</a><a class="article-category-link" href="/categories/java/设计模式/">设计模式</a>
+    <a class="article-category-link" href="/categories/测试使用/">测试使用</a>
     </div>
 
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/测试使用/">测试使用</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/测试使用/">测试使用</a></li></ul>
     </div>
 
       
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/06/26/hello-world/" class="article-date">
-      <time datetime="2019-06-26T01:23:52.754Z" itemprop="datePublished">2019-06-26</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/26/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
+        <p class="article-more-link">
+          <a href="/2019/06/26/My-New-Post/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
