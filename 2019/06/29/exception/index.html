@@ -14,21 +14,21 @@
 <meta name="author" content="HanderH">
 
 
-    
-    
 
-
-<meta name="description" content="学习总结　思考感悟　知识管理">
+<meta name="description" content="java中的异常分为哪几类看图：  在java中，所有异常都都有一个共同的祖先Throwable,Throwable有两个重要的子类，Exception和error  error:是程序无法处理的错误，表示程序有严重的错误，大多数错误都是jvm出现的问题，如StackOverError,OutOfMemoryError. Exception:程序本身可以处理的异常。它有一个子类RuntimeExc">
 <meta name="keywords" content="java 大数据　IT">
-<meta property="og:type" content="website">
-<meta property="og:title" content="hsj的个人博客">
-<meta property="og:url" content="http://www.handerh.top/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Exception">
+<meta property="og:url" content="http://www.handerh.top/2019/06/29/exception/index.html">
 <meta property="og:site_name" content="hsj的个人博客">
-<meta property="og:description" content="学习总结　思考感悟　知识管理">
+<meta property="og:description" content="java中的异常分为哪几类看图：  在java中，所有异常都都有一个共同的祖先Throwable,Throwable有两个重要的子类，Exception和error  error:是程序无法处理的错误，表示程序有严重的错误，大多数错误都是jvm出现的问题，如StackOverError,OutOfMemoryError. Exception:程序本身可以处理的异常。它有一个子类RuntimeExc">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/exception/exception.png">
+<meta property="og:updated_time" content="2019-06-29T11:25:21.726Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hsj的个人博客">
-<meta name="twitter:description" content="学习总结　思考感悟　知识管理">
+<meta name="twitter:title" content="Exception">
+<meta name="twitter:description" content="java中的异常分为哪几类看图：  在java中，所有异常都都有一个共同的祖先Throwable,Throwable有两个重要的子类，Exception和error  error:是程序无法处理的错误，表示程序有严重的错误，大多数错误都是jvm出现的问题，如StackOverError,OutOfMemoryError. Exception:程序本身可以处理的异常。它有一个子类RuntimeExc">
+<meta name="twitter:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/exception/exception.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -56,13 +56,11 @@
 <link rel="stylesheet" href="/css/style.css">
 
 
-    <style> .article { opacity: 0;} </style>
-
 
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>hsj的个人博客</title>
+<title>Exception | hsj的个人博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -71,8 +69,8 @@
     var yiliaConfig = {
         fancybox: true,
         animate: true,
-        isHome: true,
-        isPost: false,
+        isHome: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -289,12 +287,15 @@ var _hmt = _hmt || [];
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-exception" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-exception" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/2019/06/29/exception/" class="article-date">
       <time datetime="2019-06-29T10:01:54.000Z" itemprop="datePublished">2019-06-29</time>
 </a>
@@ -310,8 +311,8 @@ var _hmt = _hmt || [];
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/29/exception/">Exception</a>
+    <h1 class="article-title" itemprop="name">
+      Exception
     </h1>
   
 
@@ -337,6 +338,13 @@ var _hmt = _hmt || [];
 
         
       </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -375,383 +383,125 @@ var _hmt = _hmt || [];
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
+  
+    
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/06/29/equals/">
+                    equals
+                </a>
+            </div>
+        
+    </nav>
+
   
 </article>
 
-
-
-
-
-
-
-
-
-  
-    <article id="post-equals" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/06/29/equals/" class="article-date">
-      <time datetime="2019-06-29T03:14:16.000Z" itemprop="datePublished">2019-06-29</time>
-</a>
-
-
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#java中的异常分为哪几类"><span class="toc-number">1.</span> <span class="toc-text">java中的异常分为哪几类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异常处理"><span class="toc-number">2.</span> <span class="toc-text">异常处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#throw和throws的区别"><span class="toc-number">3.</span> <span class="toc-text">throw和throws的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#final-finally-finalize的区别"><span class="toc-number">4.</span> <span class="toc-text">final,finally,finalize的区别</span></a></li></ol>
+        
     </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/29/equals/">equals</a>
-    </h1>
-  
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-6 i,
+        .toc-level-6 ol {
+            display: none !important;
+        }
+    </style>
 
-        
-            <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.1k字</span>
-      </span>
-    </span>
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">4分</span>
-      </span>
-    </span>
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Exception　| hsj的个人博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
 </div>
 
+
+
+
+
+
+
+    
+      <section class="livere" id="comments">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NDk3My8yMTQ5Mw==">
+    <script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+    </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
         
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="equals-方法与-的区别"><a href="#equals-方法与-的区别" class="headerlink" title="equals()方法与==的区别"></a>equals()方法与==的区别</h2><ul>
-<li>==:对于基本类型比较的是值，对于引用类型比较的是地址</li>
-</ul>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/06/29/equals/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-clone-浅拷贝与深拷贝" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/06/29/clone-浅拷贝与深拷贝/" class="article-date">
-      <time datetime="2019-06-29T02:19:55.000Z" itemprop="datePublished">2019-06-29</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/29/clone-浅拷贝与深拷贝/">clone() 浅拷贝与深拷贝</a>
-    </h1>
-  
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">498字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-
+            <a href="/2019/06/29/equals/" title="下一篇: equals">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="clone的用法"><a href="#clone的用法" class="headerlink" title="clone的用法"></a>clone的用法</h3><p>用来复制一个对象的副本，产生一个新的对象，新对象的属性与原对象的属性一致，而且原对象的改变不影响新对象</p>
-<p>克隆有浅拷贝与深拷贝，用的时候一定要注意</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2019/06/29/clone-浅拷贝与深拷贝/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/exception/">Exception</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/equals/">equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/clone-浅拷贝与深拷贝/">clone() 浅拷贝与深拷贝</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/27/Flume/">Flume</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/26/java设计模式-单例模式/">java设计模式(单例模式)</a></li></ul>
 
 
 
 
-
-
-
-
-
-  
-    <article id="post-Flume" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/06/27/Flume/" class="article-date">
-      <time datetime="2019-06-27T06:23:30.000Z" itemprop="datePublished">2019-06-27</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+    <script>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/27/Flume/">Flume</a>
-    </h1>
-  
-
-        
-            <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.8k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">8分</span>
-      </span>
-    </span>
-</div>
-
-        
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="一-Flume是什么"><a href="#一-Flume是什么" class="headerlink" title="一.Flume是什么"></a>一.Flume是什么</h2><p>Flume是一个分布式的，可靠的，高可用的海量日志采集系统，以Event为单位进行传输</p>
-<h2 id="二-Flume的三大组件"><a href="#二-Flume的三大组件" class="headerlink" title="二.Flume的三大组件"></a>二.Flume的三大组件</h2><h3 id="source数据输入端的常见类型"><a href="#source数据输入端的常见类型" class="headerlink" title="source数据输入端的常见类型"></a>source数据输入端的常见类型</h3><ul>
-<li>spooling directory :文件中的数据</li>
-<li>exec :执行linux的命令，监控文件数据</li>
-<li>syslog:文件日志</li>
-<li>avro:序列化框架</li>
-<li>netcat:监听端口</li>
-</ul>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flume/">Flume</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/06/27/Flume/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-java设计模式-单例模式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/06/26/java设计模式-单例模式/" class="article-date">
-      <time datetime="2019-06-26T12:17:01.000Z" itemprop="datePublished">2019-06-26</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/26/java设计模式-单例模式/">java设计模式(单例模式)</a>
-    </h1>
-  
-
-        
-            <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">323字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
-</div>
-
-        
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="设计模式之单例模式"><a href="#设计模式之单例模式" class="headerlink" title="设计模式之单例模式"></a>设计模式之单例模式</h2><h3 id="一-什么是单例模式"><a href="#一-什么是单例模式" class="headerlink" title="一.什么是单例模式"></a>一.什么是单例模式</h3><p>​    确保类只有一个实例，不会出现多个</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java-设计模式/">java 设计模式</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/06/26/java设计模式-单例模式/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-  
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
@@ -823,10 +573,6 @@ setInterval("createtime()",250);
         })
     </script>
 
-
-    
-
-     
 
 
 
