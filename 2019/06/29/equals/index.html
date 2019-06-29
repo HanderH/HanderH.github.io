@@ -19,18 +19,18 @@
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="equals">
-<meta property="og:url" content="http://handerh.top/2019/06/29/equals/index.html">
+<meta property="og:url" content="http://www.handerh.top/2019/06/29/equals/index.html">
 <meta property="og:site_name" content="hsj的个人博客">
 <meta property="og:description" content="equals()方法与==的区别 ==:对于基本类型比较的是值，对于引用类型比较的是地址">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://handerh.top/.top//1.png">
-<meta property="og:image" content="http://handerh.top/.top//2.png">
-<meta property="og:image" content="http://handerh.top/.top//3.png">
-<meta property="og:updated_time" content="2019-06-29T07:05:58.377Z">
+<meta property="og:image" content="http://www.handerh.top/.top//equals1.png">
+<meta property="og:image" content="http://www.handerh.top/.top//equals2.png">
+<meta property="og:image" content="http://www.handerh.top/.top//equals3.png">
+<meta property="og:updated_time" content="2019-06-29T07:54:20.824Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="equals">
 <meta name="twitter:description" content="equals()方法与==的区别 ==:对于基本类型比较的是值，对于引用类型比较的是地址">
-<meta name="twitter:image" content="http://handerh.top/.top//1.png">
+<meta name="twitter:image" content="http://www.handerh.top/.top//equals1.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -365,10 +365,10 @@ var _hmt = _hmt || [];
 
 <p>在这里解释一下String类型在jvm是怎样存储的</p>
 <p>如果使用“”创建String类型，如str1,str2,它会去常量池查找有没有当前我要创建的值，如果有直接将常量池的引用复制给该变量。第一次使用String str1 = “hello”，由于常量池中没有“hello”，它会在常量池中创建，在使用String str2 = “hello”，由于常量池中存在”hello”，str2它会直接引用这个值，所以str1 == str2为true</p>
-<p><img src="/.top//1.png" alt="1"></p>
+<p><img src="/.top//equals1.png" alt="1"></p>
 <p>使用new创建String对象的时候，它回到常量池去查找有没有我要创建的值，如果有则拷贝一份到堆中，将该副本的引用赋值给变量。如果没有，则实例化该对象放到常量池，并且拷贝副本到堆中，将副本的引用复制给变量</p>
 <p>如：String str3 = new String(“hello”)，常量池创建，拷贝一份到堆中，并副本赋值给str3,String str4 = new String(“hello”)，从常量池拷贝一份到堆中，并将副本引用赋值给str4.所有str3 == str4为false</p>
-<p><img src="/.top//2.png" alt="2"></p>
+<p><img src="/.top//equals2.png" alt="2"></p>
 <ul>
 <li>equals:Object中的方法，在Object中比较的也是两个对象的地址,但是一般情况下，都要重写equals方法，来指定相等的规则。比如String类，重写equsls方法，比较的是String的值，而不是地址。</li>
 </ul>
@@ -394,7 +394,7 @@ var _hmt = _hmt || [];
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">		</span><br><span class="line">		Student s1 = new Student(&quot;zs&quot;, 18);</span><br><span class="line">		Student s2 = new Student(&quot;zs&quot;, 18);</span><br><span class="line"></span><br><span class="line">		HashSet&lt;Student&gt; set = new HashSet&lt;&gt;();</span><br><span class="line">		set.add(s1);</span><br><span class="line">		set.add(s2);</span><br><span class="line">		Iterator&lt;Student&gt; iterator = set.iterator();</span><br><span class="line">		while(iterator.hasNext()) &#123;</span><br><span class="line">			Student next = iterator.next();</span><br><span class="line">			System.out.println(next);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>输出结果</p>
-<p><img src="/.top//3.png" alt="3"></p>
+<p><img src="/.top//equals3.png" alt="3"></p>
 
       
     </div>
