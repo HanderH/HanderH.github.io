@@ -4,6 +4,9 @@
     <title><![CDATA[Exception]]></title>
     <url>%2F2019%2F06%2F29%2Fexception%2F</url>
     <content type="text"><![CDATA[java中的异常分为哪几类看图： 在java中，所有异常都都有一个共同的祖先Throwable,Throwable有两个重要的子类，Exception和error error:是程序无法处理的错误，表示程序有严重的错误，大多数错误都是jvm出现的问题，如StackOverError,OutOfMemoryError. Exception:程序本身可以处理的异常。它有一个子类RuntimeException,这一类异常有java虚拟机抛出，如NullException(要访问的变量没有引用任何对象)，ArithmeticException(算术异常，整数除以０时)，ArrayIndexOutOfBoundsException(下标越界) 异常处理 try:用于捕获异常，后面可以接多个catch,如果后面没有catch,则必须接finally catch:用于处理try捕获的异常 finally:无论是否捕获或者处理异常，finally块中的语句都会被执行，当tyr或catch块中遇到return语句时，finally语句块将在方法返回之前执行 throw和throws的区别 throw 用在方法体中，表示抛出异常，由方法体内的语句处理 throw是抛出异常的一个动作，抛出的是一个异常实例，执行throw一定抛出了某种异常 throws 用在方法声明后面，表示如果抛出异常，由该方法的调用者处理 throws主要是用来声明这个方法可能会抛出某种异常，让它的使用者知道需要捕获的异常类型 final,finally,finalize的区别 final :用来声明属性，方法和类，表示属性不可变，方法不可覆盖，类不可继承 finally:异常处理语句结构的一部分，表示总是执行 finalize:Object的一个方法，在垃圾回收器执行的时候会调用被回收对象的此方法，当该方法被调用则代表该对象即将死亡。当我们主动去调用该方法并不会导致该对象的死亡，这是一个回调方法，不需要我们调用]]></content>
+      <tags>
+        <tag>java</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[equals]]></title>
