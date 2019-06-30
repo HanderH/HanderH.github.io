@@ -15,21 +15,18 @@
 
 
 
-<meta name="description" content="clone的用法用来复制一个对象的副本，产生一个新的对象，新对象的属性与原对象的属性一致，而且原对象的改变不影响新对象 克隆有浅拷贝与深拷贝，用的时候一定要注意">
+<meta name="description" content="java中的流的类型 按照流的方向：可以分为输入流(InpuStream)和输出流(OutputStream)  按照功能分类：节点流（从一个特定的地方读写数据）和处理流(对一个已经存在的流的封装)  按照数据的处理单位: 字节流和字符流 流的分类字节流：节点流             FileInputStream:从文件系统获得输入的文件。 构造方法： ​    FileInputStream">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="clone() 浅拷贝与深拷贝">
-<meta property="og:url" content="http://www.handerh.top/2019/06/29/clone-浅拷贝与深拷贝/index.html">
+<meta property="og:title" content="java IO">
+<meta property="og:url" content="http://www.handerh.top/2019/06/30/java-IO/index.html">
 <meta property="og:site_name" content="hsj的个人博客">
-<meta property="og:description" content="clone的用法用来复制一个对象的副本，产生一个新的对象，新对象的属性与原对象的属性一致，而且原对象的改变不影响新对象 克隆有浅拷贝与深拷贝，用的时候一定要注意">
+<meta property="og:description" content="java中的流的类型 按照流的方向：可以分为输入流(InpuStream)和输出流(OutputStream)  按照功能分类：节点流（从一个特定的地方读写数据）和处理流(对一个已经存在的流的封装)  按照数据的处理单位: 字节流和字符流 流的分类字节流：节点流             FileInputStream:从文件系统获得输入的文件。 构造方法： ​    FileInputStream">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/clone1.png">
-<meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/clone2.png">
-<meta property="og:updated_time" content="2019-06-29T07:40:33.128Z">
+<meta property="og:updated_time" content="2019-06-30T05:29:07.457Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="clone() 浅拷贝与深拷贝">
-<meta name="twitter:description" content="clone的用法用来复制一个对象的副本，产生一个新的对象，新对象的属性与原对象的属性一致，而且原对象的改变不影响新对象 克隆有浅拷贝与深拷贝，用的时候一定要注意">
-<meta name="twitter:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/clone1.png">
+<meta name="twitter:title" content="java IO">
+<meta name="twitter:description" content="java中的流的类型 按照流的方向：可以分为输入流(InpuStream)和输出流(OutputStream)  按照功能分类：节点流（从一个特定的地方读写数据）和处理流(对一个已经存在的流的封装)  按照数据的处理单位: 字节流和字符流 流的分类字节流：节点流             FileInputStream:从文件系统获得输入的文件。 构造方法： ​    FileInputStream">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -61,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>clone() 浅拷贝与深拷贝 | hsj的个人博客</title>
+<title>java IO | hsj的个人博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -288,7 +285,7 @@ var _hmt = _hmt || [];
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-clone-浅拷贝与深拷贝" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-java-IO" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       
@@ -297,8 +294,8 @@ var _hmt = _hmt || [];
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2019/06/29/clone-浅拷贝与深拷贝/" class="article-date">
-      <time datetime="2019-06-29T02:19:55.000Z" itemprop="datePublished">2019-06-29</time>
+<a href="/2019/06/30/java-IO/" class="article-date">
+      <time datetime="2019-06-30T02:59:26.000Z" itemprop="datePublished">2019-06-30</time>
 </a>
 
 
@@ -314,7 +311,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      clone() 浅拷贝与深拷贝
+      java IO
     </h1>
   
 
@@ -325,7 +322,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">498字</span>
+        <span class="post-count">1.5k字</span>
       </span>
     </span>
 
@@ -334,7 +331,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
+        <span class="post-count">5分</span>
       </span>
     </span>
 </div>
@@ -359,31 +356,95 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="clone的用法"><a href="#clone的用法" class="headerlink" title="clone的用法"></a>clone的用法</h3><p>用来复制一个对象的副本，产生一个新的对象，新对象的属性与原对象的属性一致，而且原对象的改变不影响新对象</p>
-<p>克隆有浅拷贝与深拷贝，用的时候一定要注意</p>
-<a id="more"></a>
-
-<p>使用对象的clone()方法时，需要实现Cloneable接口,这是一个标志接口，不提供任何抽象方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public interface Cloneable &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h3><p>先来看一段代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class Persion implements Cloneable&#123;</span><br><span class="line">	</span><br><span class="line">	private int age;</span><br><span class="line">	private String name;</span><br><span class="line">	</span><br><span class="line">	public Persion(int age, String name) &#123;</span><br><span class="line">        </span><br><span class="line">		this.age = age;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	protected Object clone() throws CloneNotSupportedException &#123;</span><br><span class="line"></span><br><span class="line">		return super.clone();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) throws CloneNotSupportedException &#123;</span><br><span class="line">	</span><br><span class="line">		Persion p = new Persion(18,&quot;zｈang&quot;);</span><br><span class="line">		Persion p2 = (Persion) p.clone();</span><br><span class="line">		System.out.println(p.name == p2.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>它的打印结果是什么呢？</p>
-<p>true</p>
-<p>没看错，就是这个结果，有没有困惑的地方？这就是由于浅拷贝导致的。看张图：</p>
-<p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/clone1.png" alt></p>
-<p>由于name是String类型，拷贝的只是它的引用,所以他们的name的地址值是相等的</p>
-<p>那怎样将它改为深拷贝呢？</p>
-<p>如果是引用类型，我们需要重新在原对象的基础上重新创建出一个对象。</p>
-<p>例如，将上面改为深拷贝，只需要修改一下clone方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">	protected Object clone() throws CloneNotSupportedException &#123;</span><br><span class="line">		</span><br><span class="line">		String newName = new String(this.name);//拷贝原对象的name值</span><br><span class="line">		Persion p  = (Persion)super.clone();</span><br><span class="line">		p.name = newName;</span><br><span class="line">		return p;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/clone2.png" alt></p>
-<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><p>再来看一个深拷贝的例子：</p>
-<p>A要实现深拷贝，必须要求其属性中含有的引用类型也必须进行深拷贝，也就是要求B要进行深拷贝</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">class A implements Cloneable&#123;</span><br><span class="line">	</span><br><span class="line">  int id;</span><br><span class="line">	 B b;</span><br><span class="line">	 </span><br><span class="line">	public A(int id, B b) &#123;</span><br><span class="line">	</span><br><span class="line">		this.id = id;</span><br><span class="line">		this.b = b;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@Override</span><br><span class="line">	protected Object clone() throws CloneNotSupportedException &#123;</span><br><span class="line">		//深拷贝</span><br><span class="line">		B nb = (B) b.clone();</span><br><span class="line">		A na = (A) super.clone();</span><br><span class="line">		na.b = nb;</span><br><span class="line">		</span><br><span class="line">		return na;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class B implements Cloneable &#123;</span><br><span class="line"></span><br><span class="line">	 String name;</span><br><span class="line">	 B(String name) &#123;</span><br><span class="line">	</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	protected Object clone() throws CloneNotSupportedException &#123;</span><br><span class="line">	</span><br><span class="line">		B b = (B) super.clone();</span><br><span class="line">		String sname = new String(name);</span><br><span class="line">		b.name = sname;</span><br><span class="line">		return b;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        <h3 id="java中的流的类型"><a href="#java中的流的类型" class="headerlink" title="java中的流的类型"></a>java中的流的类型</h3><ul>
+<li><p>按照流的方向：可以分为输入流(InpuStream)和输出流(OutputStream)</p>
+</li>
+<li><p>按照功能分类：节点流（从一个特定的地方读写数据）和处理流(对一个已经存在的流的封装)</p>
+</li>
+<li><p>按照数据的处理单位: 字节流和字符流</p>
+<h3 id="流的分类"><a href="#流的分类" class="headerlink" title="流的分类"></a>流的分类</h3><h4 id="字节流："><a href="#字节流：" class="headerlink" title="字节流："></a>字节流：</h4><p><strong>节点流</strong>            </p>
+<p><strong>FileInputStream</strong>:从文件系统获得输入的文件。</p>
+<p>构造方法：</p>
+<p>​    FileInputStream(File file)　连接到一个实际的文件</p>
+<p>​    FileInputStream(String name)　根据路径连接到一个实际的文件</p>
+<p>方法：</p>
+<p>​    public int read(byte[] b)  throws IOException　将源文件的字节数据读到缓冲区              　　b，根据返回值判断文件数据是否已经读完，返回-1，代表文件数据已读完</p>
+<p>​    public int read(byte[] b,  int off, int len)  throws IOException,将源文件的字节数                                       　　b,从数组的偏移量off位置开始存放长度为len的字节数，如果len&gt;b.length-off,将会抛出　    </p>
+<pre><code>IndexOutOfBoundsException .</code></pre><p><strong>FileOutputStream</strong>：</p>
+<p>构造方法</p>
+<p>​    FileOutputStream(File file)　创建一个文件输出流写入指定的 File对象</p>
+<pre><code>FileOutputStream(File file, boolean append)创建一个文件输出流写入指定的 File对象，append表示拼接，不覆盖</code></pre><p><strong>ByteArrayInputStream</strong>： 把字节数组转换为输入流</p>
+<p>构造方法：</p>
+<p>​        ByteArrayInputStream(byte[] buf) :使用一个字节数组当中所有的数据做为数据源，程序        可以像输入流方式一样读取字节，可以看做一个虚拟的文件，用文件的方式去读取它里面的数据。</p>
+<p>​        ByteArrayInputStream(byte[] b,int offset,int length):从数组当中的第offset开始，一直取出length个这个字节做为数据源</p>
+<p><strong>ByteArrayOutputStream</strong>    ： 把字节数组转换为输出流</p>
+<p>构造方法：</p>
+<p>​    ByteArrayOutputStream()创建一个新的字节数组输出流</p>
+<p>​    ByteArrayOutputStream(int size)创建一个新的字节数组输出流，具有指定大小的缓冲容量，        　　以字节为单位的。</p>
+<p><strong>处理流</strong></p>
+<p><strong>BufferedInputStream</strong>: 缓冲输入流</p>
+<p>构造方法：BufferedInputStream(InputStream in)</p>
+<p>​        　BufferedInputStream(InputStream in, int size)　指定缓冲区的大小</p>
+<p><strong>BufferedOutputStream</strong>：缓冲输出流</p>
+<p>构造方法：</p>
+<p>​        BufferedOutputStream(OutputStream out)创建一个新的缓冲输出流，将数据入到　　指定的基本输出流中</p>
+<p>​        BufferedOutputStream(OutputStream out, int size)创建一个新的缓冲输出流，用指定的缓冲区大小写数据到指定的基本输出流中。</p>
+<p><strong>DataInputStream</strong>:数据输入流，读时提供更多的类型</p>
+<p>构造方法：DataInputStream(InputStream in)</p>
+<p>方法：</p>
+<p>​    readByte()——从输入流中读取1个字节，指它转换为byte类型的数据；<br>　　readLong()——从输入流中读取8个字节，指它转换为long类型的数据；<br>　　readFloat()——从输入流中读取4个字节，指它转换为float类型的数据；<br>　　readUTF()—— 从输入流中读取1到3个字节，指它转换为UTF-8字符编码的字符串；</p>
+<p><strong>DataOutputStream</strong>：数据输出流，读时提供更多的类型</p>
+<p>构造方法：</p>
+<p>​        DataOutputStream(OutputStream out)创建一个新的数据输出流，将数据写入到指定的基本输出流中。</p>
+<p>方法：</p>
+<p>​    writeByte(int v)——将byte作为字节流输出<br>　　writeLong(long v)——将long作为输出流输出<br>　　writeFloat(float v)——将float作为输出流输出<br>　　writeUTF(String str)—— 将String作为输出流输出</p>
+<p><strong>ObjectInputStream</strong>:对象输入流，主要用于对象序列化和反序列化</p>
+<p>构造方法：</p>
+<p>​    ObjectInputStream( )创建一个对象输入流</p>
+<p>​    ObjectInputStream(InputStream in)创建一个对象输入流读取指定的输入流。</p>
+<p><strong>ObjectOutputStream</strong>:对象输出流</p>
+<p>构造方法：</p>
+<p>​    ObjectOutputStream(OutputStream out)创建对象输出到指定的输出流</p>
+</li>
+</ul>
+<h4 id="字符流："><a href="#字符流：" class="headerlink" title="字符流："></a>字符流：</h4><p>  <strong>节点流</strong></p>
+<p>  <strong>CharArrayReader</strong> ：把字符数组转换为Reader，从字符数组中读取字符；</p>
+<p>  构造方法：</p>
+<p>  ​    CharArrayReader(char[] buf)创建从指定的字符数组的一个chararrayreader。<br>      CharArrayReader(char[] buf, int offset, int length创建从指定的字符数组的一个　chararrayreader。</p>
+<p>  <strong>CharArrayWriter</strong>：将字符数组有Writer写出</p>
+<p>  构造方法：</p>
+<p>  ​    CharArrayWriter()　        </p>
+<p>   <strong>StringReader</strong>  : 把字符串转换为Reader，从字符串中读取字符；</p>
+<p>  构造方法：</p>
+<p>  ​        StringReader(String s)</p>
+<p>  <strong>StringWriter</strong> :将字符串有Writer写出</p>
+<p>   <strong>FileReader</strong> : 从文件中读取字符；</p>
+<p>  构造方法：</p>
+<p>  ​    FileReader(File file)</p>
+<p>  <strong>FileWriter</strong>:将字符写入到指定文件</p>
+<p>  构造方法：</p>
+<p>  ​    FileWriter(File file)</p>
+<p>  ​    FileWriter(File file, boolean append)    </p>
+<p>  ​    FileWriter(String fileName)</p>
+<p>  ​    FileWriter(String fileName, boolean append)</p>
+<p>  <strong>处理流</strong></p>
+<p>  <strong>InputStreamReader</strong> : 过滤器，把InputStream转换为Reader，可以指定字符编码；</p>
+<p>  构造方法：</p>
+<p>  ​    InputStreamReader(InputStream in)创建一个inputstreamreader使用默认字符集。</p>
+<p>  ​    InputStreamReader(InputStream in, Charset cs)创建一个inputstreamreader使用给定的字符集。</p>
+<p>  ​    InputStreamReader(InputStream in, CharsetDecoder dec)创建一个inputstreamreader使用给定的字符集解码。<br>      InputStreamReader(InputStream in, String charsetName)创建一个inputstreamreader使用指定的字符集。</p>
+<p>   <strong>OutputStreamWriter</strong>:将字符流转为字节流输出，可以指定字符编码；</p>
+<p>  构造方法：</p>
+<p>  ​    OutputStreamWriter(OutputStream out)创建一个outputstreamwriter使用默认的字符编码。<br>  OutputStreamWriter(OutputStream out, Charset cs)创建一个outputstreamwriter使用给定的字符集。<br>  OutputStreamWriter(OutputStream out, CharsetEncoder enc)创建一个outputstreamwriter使用给定的字符集编码。<br>  OutputStreamWriter(OutputStream out, String charsetName)创建一个outputstreamwriter使用指定的字符集。</p>
+<p>   <strong>BufferedReader</strong>: 过滤器，为其他Reader提供读缓冲区，此外，它的readLine()方法能够读入一行字符串；</p>
+<p>  构造方法：</p>
+<p>  ​    BufferedReader(Reader in)创建一个使用默认大小输入缓冲区的缓冲字符输入流。<br>          BufferedReader(Reader in, int sz)创建一个使用指定大小的输入缓冲区的缓冲字符输入流。</p>
+<p>  <strong>BufferedWriter</strong>:            </p>
+<p>  构造方法：</p>
+<p>  ​    BufferedWriter(Writer out)创建一个使用默认大小输出缓冲区的缓冲字符输出流</p>
+<p>  ​    BufferedWriter(Writer out, int sz)创建一个新的缓冲字符输出流，该流使用给定大小的输出缓冲区。</p>
+<h3 id="序列化与反序列化"><a href="#序列化与反序列化" class="headerlink" title="序列化与反序列化"></a>序列化与反序列化</h3><p>序列化：将对象写到输出流中，便于在网络中进行传输或者存储到文件中</p>
+<p>反序列化:将输入流中的数据转化为对象，将从网络或文件中读取的字节数据转化为对象</p>
 
       
     </div>
@@ -395,16 +456,10 @@ var _hmt = _hmt || [];
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/06/29/equals/">
-                    equals
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/06/27/Flume/">
-                    Flume
+                <a href="/2019/06/29/exception/">
+                    Exception
                 </a>
             </div>
         
@@ -416,7 +471,7 @@ var _hmt = _hmt || [];
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#clone的用法"><span class="toc-number">1.</span> <span class="toc-text">clone的用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浅拷贝"><span class="toc-number">2.</span> <span class="toc-text">浅拷贝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深拷贝"><span class="toc-number">3.</span> <span class="toc-text">深拷贝</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#java中的流的类型"><span class="toc-number">1.</span> <span class="toc-text">java中的流的类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#流的分类"><span class="toc-number">2.</span> <span class="toc-text">流的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#字节流："><span class="toc-number">2.1.</span> <span class="toc-text">字节流：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符流："><span class="toc-number">2.2.</span> <span class="toc-text">字符流：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#序列化与反序列化"><span class="toc-number">3.</span> <span class="toc-text">序列化与反序列化</span></a></li></ol>
         
     </div>
     <style>
@@ -452,7 +507,7 @@ var _hmt = _hmt || [];
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"clone() 浅拷贝与深拷贝　| hsj的个人博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"java IO　| hsj的个人博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -493,15 +548,13 @@ var _hmt = _hmt || [];
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/06/29/equals/" title="上一篇: equals">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/06/27/Flume/" title="下一篇: Flume">
+            <a href="/2019/06/29/exception/" title="下一篇: Exception">
                 <i class="fa fa-angle-right"></i>
             </a>
         
