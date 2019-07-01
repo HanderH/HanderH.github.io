@@ -291,6 +291,129 @@ var _hmt = _hmt || [];
 </nav>
       <div class="body-wrap">
   
+    <article id="post-深入理解volatile" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      
+<a href="/2019/07/01/深入理解volatile/" class="article-date">
+      <time datetime="2019-07-01T11:24:39.000Z" itemprop="datePublished">2019-07-01</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+       
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/01/深入理解volatile/">深入理解volatile</a>
+    </h1>
+  
+
+          <!--
+            
+                 <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.5k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">6分</span>
+      </span>
+    </span>
+</div>
+
+            
+           -->
+       </header>
+        
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="一-java内存模型"><a href="#一-java内存模型" class="headerlink" title="一.java内存模型"></a>一.java内存模型</h2><p>在说volatile之前，需要了解java的内存模型。java采用的是共享内存模型，线程之间的共享变量存储在主内存中，每个线程有一个私有的本地本地内存，本地内存存储了该线程读写共享变量的副本，如图</p>
+<p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/Thread/java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.png" alt></p>
+<p>举个栗子：a = 100</p>
+<p>一个线程需要修改a的值，必须先将a读到自己的本地内存，对a执行更新操作，再将a的值写回到主存中</p>
+<h2 id="二-并发编程中的三个概念"><a href="#二-并发编程中的三个概念" class="headerlink" title="二.并发编程中的三个概念"></a>二.并发编程中的三个概念</h2><ol>
+<li>原子性：一个操作或多个操作，要么全执行，要么全不执行。最典型的例子就是银行转账问题，</li>
+</ol>
+<p>假设A向B转账1000块钱，包含两个操作，A减去1000块钱,B加上1000块钱，假设这个操作不包含原子性，会发生一件很恐怖的事情，在A减去1000块钱后，操作突然中断，这导致A少了1000块钱，但是B没有增加，这1000块钱凭空消失，所有这两个操作必须具备原子性。</p>
+<p>在java中，对变量的简单读取和赋值（将数值变量)才具备原子性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int a = 10 ;//原子性</span><br><span class="line">int b = a;//非原子性</span><br><span class="line">int count=a+1;//原子性</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>可见性: 当多个线程共享一个变量时，如果一个线程修改了该变量的值，其它线程会立刻知道</li>
+</ol>
+<p>java中通过volatile实现可见性，被volatile修饰的变量，当它被修改时，它会保证修改的值会立即被写回主存，当有其它线程需要的时候，拿到的是最新值</p>
+<ol start="3">
+<li><p>有序性：程序执行的顺序会按照代码的顺序执行。在java中，编译器和处理器会对我们编写的代码优化，进行指令重排，指令重排不会影响单线程执行的结果，但是会影响多线程执行的结果。java中使用volatile可以禁止指令重排序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//线程一执行的代码</span><br><span class="line">int a = 10;</span><br><span class="line">boolean start = true;</span><br><span class="line"></span><br><span class="line">//线程二执行的代码</span><br><span class="line">while(!start)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">对a的操作</span><br></pre></td></tr></table></figure>
+
+<p>由于线程一的两行代码没有依赖关系，所以可能打算指令重排，线程一先执行boolean start = true;当还没有执行int a = 10;，线程二开始执行，执行对a的操作，但是由于a的值不是10，不是a的操作需要的结果，程序会出错,使用volatile可以避免这个问题</p>
+</li>
+</ol>
+<h2 id="三-volatile"><a href="#三-volatile" class="headerlink" title="三.volatile"></a>三.volatile</h2><p>案例一：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">public class TestVolatile &#123;</span><br><span class="line">	</span><br><span class="line">	private /* volatile */ List&lt;String&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">	public void t() &#123;</span><br><span class="line">		while(true) &#123;</span><br><span class="line">			if(list.size()==2) &#123;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	public void t2() &#123;</span><br><span class="line">		for(int i=0;i&lt;3;i++) &#123;</span><br><span class="line">			System.out.println(&quot;添加了第&quot;+i+&quot;个元素&quot;);</span><br><span class="line">			list.add(&quot;a&quot;);</span><br><span class="line">			try &#123;</span><br><span class="line">				Thread.sleep(1000);</span><br><span class="line">			&#125; catch (InterruptedException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		TestVolatile t = new TestVolatile();</span><br><span class="line">		new Thread(new Runnable() &#123;</span><br><span class="line">			@Override</span><br><span class="line">			public void run() &#123;</span><br><span class="line">				t.t2();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;).start();//线程一</span><br><span class="line">		new Thread(new Runnable() &#123;</span><br><span class="line">			@Override</span><br><span class="line">			public void run() &#123;</span><br><span class="line">				t.t();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;).start();//线程二</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果不使用volatile关键字修饰，程序会进入到死循环，因为当线程一执行list.add()方法时，线程二不能马上获得线程一添加元素后list.size()的大小，当线程一将程序执行完，list.size()=3,那线程二永远也不可能中断。</p>
+<p>使用volatile,当线程一执行list.add(),方法时，会改变list.size()的大小，线程二会立刻获取到修改后的新值，当list.size()=2时，线程二就会结束。</p>
+<p>案例二：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public class TestVolatile2 &#123;</span><br><span class="line">	</span><br><span class="line">	boolean flag = true;</span><br><span class="line">	public void t1() &#123;</span><br><span class="line">		while(true) &#123;</span><br><span class="line">//			System.out.println(&quot;111&quot;); // 使用这句化程序会正常结束　１</span><br><span class="line">//			synchronized(this) &#123; &#125;//使用这句化程序会正常结束　２</span><br><span class="line">			int a = 10; //使用这句化程序不会正常结束　３</span><br><span class="line">			if(!flag) &#123;</span><br><span class="line">				throw new IllegalArgumentException(Thread.currentThread().getName()+&quot;停止&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		TestVolatile2 t = new TestVolatile2();</span><br><span class="line">		new Thread(new Runnable() &#123;</span><br><span class="line">			@Override</span><br><span class="line">			public void run() &#123;</span><br><span class="line">				t.t1();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;).start();</span><br><span class="line">		try &#123;</span><br><span class="line">			Thread.sleep(50);</span><br><span class="line">		&#125; catch (InterruptedException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		t.flag = false;</span><br><span class="line">		System.out.println(Thread.currentThread().getName()+&quot;执行完毕&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用上面的１,2语句都可以让程序正常结束，但是使用3不行。为什么呢，因为synchronized也保证了可见性，但是为什么1可以呢？看下面println源码，是不是恍然大悟</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public void println(String x) &#123;</span><br><span class="line">       synchronized (this) &#123;</span><br><span class="line">           print(x);</span><br><span class="line">           newLine();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="四-volatile有没有保证原子性"><a href="#四-volatile有没有保证原子性" class="headerlink" title="四.volatile有没有保证原子性"></a>四.volatile有没有保证原子性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public class SynchronizedTest1 &#123;</span><br><span class="line">	private volatile int count = 0;</span><br><span class="line">	</span><br><span class="line">	public  void synchronizedTest1() &#123;</span><br><span class="line">		</span><br><span class="line">		for(int i=0;i&lt;1000;i++) &#123;</span><br><span class="line">			count++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SynchronizedTest1 t1 = new SynchronizedTest1();</span><br><span class="line">		for(int i=0;i&lt;10;i++) &#123;</span><br><span class="line">			new Thread(new Runnable() &#123;</span><br><span class="line">				@Override</span><br><span class="line">				public void run() &#123;</span><br><span class="line">					t1.synchronizedTest1();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;).start();</span><br><span class="line">		&#125;</span><br><span class="line">		try &#123;</span><br><span class="line">			Thread.sleep(3000);</span><br><span class="line">		&#125; catch (InterruptedException e) &#123;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(t1.count);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>10个线程每个线程累加1000，如果volatile可以保证原子性的话，那么最后的结果就是10000,但是最后的运行结果是小于10000,也就是说volatile没有保证原子性</p>
+<p>分析：假设现在count=10;线程一将count=10读到自己的本地内存，线程一阻塞，线程二运行，线程二将count=10读到自己的本地内存，对count进行加一操作(count=11)，但是还没写回到主存，线程二就被阻塞了，线程一开始执行，对count进行加一操作(count=11),将count=11写回到主存中，线程一执行完毕，线程二开始执行，但是由于线程二只剩写操作，不需要重新从主存读数据，直接将count=11写回到主存，线程二将线程一的值覆盖了。这就是最后的结果小于10000的原因。</p>
+<p>总结：volatile保证了共享变量的可见性和有序性，但是没有保证原子性</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java多线程/">java多线程</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-谈谈synchronized" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -346,7 +469,7 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="一-线程安全问题"><a href="#一-线程安全问题" class="headerlink" title="一.线程安全问题"></a>一.线程安全问题</h2><p>​    在单线程的情况下不会出现线程安全问题，而在多线程中，有可能会出现同时访问一个共享，可变资源的情况。共享意味着该资源可被多个线程共享，可变意味着资源可被多个线程修改，这样很可能出现线程安全问题。</p>
+        <h2 id="一-线程安全问题"><a href="#一-线程安全问题" class="headerlink" title="一.线程安全问题"></a>一.线程安全问题</h2><p>​    在单线程的情况下不会出现线程安全问题，而在多线程中，有可能会出现同时访问一个共享可变资源的情况。共享意味着该资源可被多个线程共享，可变意味着资源可被多个线程修改，这样很可能出现线程安全问题。</p>
 <p>看一段线程安全的代码:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class SynchronizedTest1 &#123;</span><br><span class="line">	private int count = 0;</span><br><span class="line">	public void synchronizedTest1() &#123;</span><br><span class="line">		for(int i=0;i&lt;1000;i++) &#123;</span><br><span class="line">			count++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SynchronizedTest1 t1 = new SynchronizedTest1();</span><br><span class="line">		for(int i=0;i&lt;10;i++) &#123;</span><br><span class="line">			new Thread(new Runnable() &#123;</span><br><span class="line">				@Override</span><br><span class="line">				public void run() &#123;</span><br><span class="line">					t1.synchronizedTest1();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;).start();</span><br><span class="line">		&#125;</span><br><span class="line">		try &#123;</span><br><span class="line">			Thread.sleep(3000);</span><br><span class="line">		&#125; catch (InterruptedException e) &#123;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(t1.count);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
