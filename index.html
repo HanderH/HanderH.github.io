@@ -210,7 +210,7 @@ var _hmt = _hmt || [];
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flume/">Flume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-设计模式/">java 设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java多线程/">java多线程</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flume/">Flume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hbase/">hbase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-设计模式/">java 设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java多线程/">java多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a></li></ul>
                     </div>
                 </section>
                 
@@ -290,6 +290,281 @@ var _hmt = _hmt || [];
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-hbase基本操作" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      
+<a href="/2019/07/02/hbase基本操作/" class="article-date">
+      <time datetime="2019-07-02T07:06:41.000Z" itemprop="datePublished">2019-07-02</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+       
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/02/hbase基本操作/">hbase的基本操作</a>
+    </h1>
+  
+
+          <!--
+            
+                 <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">852字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">4分</span>
+      </span>
+    </span>
+</div>
+
+            
+           -->
+       </header>
+        
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="一-hbase环境搭建"><a href="#一-hbase环境搭建" class="headerlink" title="一.hbase环境搭建"></a>一.hbase环境搭建</h2><p>在操作hbase之前，肯定得先搭好环境。hbase的环境搭建其实也挺简单的，但前提是你配置好了hadoop和Zookeeper.</p>
+<p>1.解压hbase的压缩包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf hbase-x-x.tar.gz -C 指定目录</span><br></pre></td></tr></table></figure>
+
+<p>2.建立软连接，方便配置环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ln -s hbase-2.2.0/ hbase</span><br><span class="line"></span><br><span class="line">vi ~/.bashrc</span><br><span class="line"># 添加如下代码 自己的路径</span><br><span class="line">export HBASE_HOME=/home/master/software/hbase</span><br><span class="line">＃追加path</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$ZK_HOME/bin:$HBASE_HOME/bin</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>进入hbase/conf/ 修改两个配置文件</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">vi hbase-env.sh</span><br><span class="line"># 添加</span><br><span class="line">export JAVA_HOME=/home/master/software/jdk</span><br><span class="line">＃　指定不用内置的zookeeper</span><br><span class="line">export HBASE_MANAGES_ZK=false</span><br><span class="line"># 指定存放数据的文件　需要创建</span><br><span class="line">export HBASE_LOG_DIR=/home/master/software/data/hbase/logs</span><br><span class="line">export HBASE_PID_DIR=/home/master/software/data/hbase/pids</span><br><span class="line"></span><br><span class="line">vi hbase-site.xml </span><br><span class="line"># 添加</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line"> &lt;property&gt;</span><br><span class="line">    &lt;name&gt;hbase.rootdir&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;hdfs://hadoop01:9000/hbase&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">    &lt;name&gt;hbase.zookeeper.property.dataDir&lt;/name&gt;</span><br><span class="line">    &lt;!-- 指定自己配置的zk存放数据的位置-&gt;</span><br><span class="line">    &lt;value&gt;/home/master/software/data/zk&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">       &lt;name&gt;hbase.cluster.distributed&lt;/name&gt;</span><br><span class="line">       &lt;value&gt;true&lt;/value&gt;</span><br><span class="line">   &lt;/property&gt;</span><br><span class="line">       &lt;!--默认HMaster HTTP访问端口--&gt;</span><br><span class="line">   &lt;property&gt;</span><br><span class="line">       &lt;name&gt;hbase.master.info.port&lt;/name&gt;</span><br><span class="line">       &lt;value&gt;16010&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">       &lt;!--默认HRegionServer HTTP访问端口--&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">       &lt;name&gt;hbase.regionserver.info.port&lt;/name&gt;</span><br><span class="line">       &lt;value&gt;16030&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">       &lt;!--不使用默认内置的，配置独立的ZK集群地址，除了master，自己配了几台zookeeper，此处就配几台--&gt;</span><br><span class="line">   &lt;property&gt;</span><br><span class="line">       &lt;name&gt;hbase.zookeeper.quorum&lt;/name&gt;</span><br><span class="line">       &lt;value&gt;hadoop01:2181,hadoop02:2181,hadoop03:2181&lt;/value&gt;</span><br><span class="line">   &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>创建配置文件指定的目录</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/software/data/hbase/logs</span><br><span class="line">mkdir -p ~/software/data/hbase/pids</span><br><span class="line">mkdir -p ~/software/data/hbase/logs</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>修改conf下的regionservers文件加入regoinserver的ip</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi regionservers</span><br><span class="line"># 添加</span><br><span class="line">hadoop01</span><br><span class="line">hadoop02</span><br><span class="line">hadoop03</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>同步时间</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo date -s &quot;2019-7-2 14:10:10&quot;</span><br></pre></td></tr></table></figure>
+
+<p>##　二.hbase的shell命令操作</p>
+<p>命名空间的操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create_namespace &apos;hsj&apos; //创建一个命名空间</span><br><span class="line">list_namespace //查看namesoace</span><br><span class="line">drop_namespace &apos;hsj&apos; //删除namespace 删除的namespace一定要为空</span><br></pre></td></tr></table></figure>
+
+<p>表的操作 ddl</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//创建表</span><br><span class="line">create &apos;hsj:emp&apos;,&#123;NAME =&gt; &apos;info&apos;,NAME =&gt; &apos;extrainfo&apos;,VERSIONS =&gt; 3&#125; //指定版本数</span><br><span class="line">create &apos;hsj:student&apos;,&apos;info&apos;</span><br><span class="line">//修改表</span><br><span class="line">alter &apos;hsj:student&apos;,&#123;NAME =&gt;&apos;info&apos;,VERSIONS =&gt;3&#125;</span><br><span class="line">//删除表</span><br><span class="line">disable &apos;hsj:student&apos;</span><br><span class="line">drop &apos;hsj:studen&apos;</span><br></pre></td></tr></table></figure>
+
+<p>dml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//插入数据或修改</span><br><span class="line">put &apos;hsj:student&apos;,&apos;1001&apos;,&apos;info:name&apos;,&apos;zs&apos;</span><br><span class="line">put &apos;hsj:student&apos;,&apos;1002&apos;,&apos;info:name&apos;,&apos;li&apos;</span><br><span class="line">put &apos;hsj:student&apos;,&apos;1002&apos;,&apos;info:age&apos;,18</span><br><span class="line">//查询数据</span><br><span class="line">scan &apos;hsj:student&apos; //扫描全表</span><br><span class="line">get &apos;hsj:student&apos;,&apos;1001&apos;</span><br><span class="line">get &apos;hsj:student&apos;,&apos;1001&apos;,&apos;info:name&apos;</span><br><span class="line">//删除数据</span><br><span class="line">delete &apos;hsj:student&apos;,&apos;1001&apos;,&apos;info:name&apos;</span><br><span class="line">deleteall &apos;hsj:student&apos;,&apos;1002&apos;</span><br><span class="line">//查询表中数据有多少行</span><br><span class="line">count &apos;hsj:student&apos;</span><br><span class="line">//删除表中所有数据</span><br><span class="line">truncate &apos;hsj:student&apos;</span><br></pre></td></tr></table></figure>
+
+<h2 id="三-读写数据的流程"><a href="#三-读写数据的流程" class="headerlink" title="三. 读写数据的流程"></a>三. 读写数据的流程</h2><ul>
+<li>读数据的流程</li>
+</ul>
+<p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/hbase/read.png" alt></p>
+<ol>
+<li>Client向zk集群发送获取元数据所在的RegionServer</li>
+<li>zk返回Meta所在的RegionServer</li>
+<li>client读取RegionServer上的Meta，找到对应的读请求的RegionServer</li>
+<li>client读取RegionServer上的Regizhogon数据，先读MemoStore中的数据，如果不存在,读取blockCache,读取StoreFile</li>
+</ol>
+<ul>
+<li>写数据的流程</li>
+</ul>
+<p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/hbase/write.png" alt></p>
+<ol>
+<li>Client向zk集群发送获取元数据所在的RegionServer</li>
+<li>zk返回Meta所在的RegionServer</li>
+<li>client读取RegionServer上的Meta，找到对应的写请求的RegionServer</li>
+<li>现将写操作写入RegionServer的Hlog,在将数据写入MemoStore</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hbase/">hbase</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-简单了解一下zookeeper" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      
+<a href="/2019/07/02/简单了解一下zookeeper/" class="article-date">
+      <time datetime="2019-07-02T06:23:50.000Z" itemprop="datePublished">2019-07-02</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+       
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/02/简单了解一下zookeeper/">简单了解一下zookeeper</a>
+    </h1>
+  
+
+          <!--
+            
+                 <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">3分</span>
+      </span>
+    </span>
+</div>
+
+            
+           -->
+       </header>
+        
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="一-Zookeeper是什么"><a href="#一-Zookeeper是什么" class="headerlink" title="一.Zookeeper是什么"></a>一.Zookeeper是什么</h2><p>Zookeeper是一个开源的分布式服务管理框架。它负责管理数据，接受观察者的注册，一旦数据的状态发生变化，Zookeeper负责通知观察者做出相应的反应。</p>
+<h2 id="二-Zookeeper的特点"><a href="#二-Zookeeper的特点" class="headerlink" title="二.Zookeeper的特点"></a>二.Zookeeper的特点</h2><ol>
+<li>一个领导者（leader)，多个跟随者（Follower)</li>
+<li>全局数据一一致，每个Server保存一份相同的数据副本</li>
+<li>更新请求按顺序执行，来自同一个Client的更新请求按其发送顺序依次执行</li>
+<li>数据更新原子性</li>
+<li>实时性，在一定时间范围内，Client能读到最新数据</li>
+</ol>
+<h2 id="三-Zookeeper全分布式的搭建"><a href="#三-Zookeeper全分布式的搭建" class="headerlink" title="三.Zookeeper全分布式的搭建"></a>三.Zookeeper全分布式的搭建</h2><p> 　1. 将包解压缩到指定路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf Zookeeper.x.x.tar.gz -C 指定路径</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>建立软连接，方便配置环境变量</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s Zookeeper.x.x zookeeper</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>配置环境变量</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi .bashrc</span><br><span class="line"></span><br><span class="line">export ZK_HOME=/home/master/software/zookeeper</span><br><span class="line"># 在path后面追加</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$ZK_HOME/bin:</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>修改文件</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">cd zookeeper/conf/</span><br><span class="line"></span><br><span class="line">vi zoo.cfg </span><br><span class="line">tickTime=2000</span><br><span class="line"># 指定zk数据存放的位置</span><br><span class="line">dataDir=/home/master/software/data/zk/data</span><br><span class="line"># 指定zk日志存放的位置</span><br><span class="line">dataLogDir=/home/master/software/data/zk/dataLog</span><br><span class="line">clientPort=2181</span><br><span class="line">initLimit=5</span><br><span class="line">syncLimit=2</span><br><span class="line"># server.num后面的数字是myid中的值　myid后面要创建　hadoop0x是主机名</span><br><span class="line">server.1=hadoop01:2888:3888</span><br><span class="line">server.2=hadoop02:2888:3888</span><br><span class="line">server.3=hadoop03:2888:3888</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>在dataDir目录下新建myid文件,里面填写一个数字就行，要和上面的server匹配</li>
+</ol>
+<p>比如server.1,我就需要在dataDir下面myid填一个１</p>
+<p>有没有发现zookeeper不需要指定master，是的，因为它自己会通过选举机制选出leader</p>
+<p>##　四.选举机制</p>
+<p>选举机制比较复杂，这里只说一个不够恰当的例子,稍微理解一下</p>
+<p>选举机制其实是半数机制相关，一旦有超过半数的机器启动，zk就会选举出一个leader</p>
+<p>选举机制说明<br>          假设有五台Zookeeper组成的集群，id总1-5，假设者五台机器依序启动，<br>        (1)服务器１启动，只有一台服务器，发出去的报文没有任何响应，所以它的选举状态一直是LOCKING状态<br>        (2)服务器２启动，与服务器１通信，交换自己的选举结果，这时候服务器１选择id较大服务器            ２，但是由于没 有到达半数以上，２也处于LOCKING<br>        (3)服务器３启动，１，２选择３，到达半数以上，３成为leader<br>        (4)服务器4启动，但是由于已经确定了３为leader，所以4是Follwer<br>        (5)服务器５启动，与４一样</p>
+<h2 id="五-节点类型"><a href="#五-节点类型" class="headerlink" title="五.节点类型"></a>五.节点类型</h2><p>Zookeeper分为两种节点</p>
+<p>持久：客户端和服务器断开连接后，创建的节点不删除。持久化节点有持久化编号目录节点，和没有编号的目录节点两种</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create -s /node  &quot;node&quot; 带编号的吃句话节点　，-s　带编号</span><br></pre></td></tr></table></figure>
+
+<p>短暂:客户端和服务器断开连接后，创建的节点删除，临时节点有临时顺序编号目录节点 ，和没有编号的目录节点两种。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create -e -s /node2 &quot;node2&quot;  , -e 临时节点　-s :带编号</span><br></pre></td></tr></table></figure>
+
+<h2 id="六-Zookeeper监听事件"><a href="#六-Zookeeper监听事件" class="headerlink" title="六.Zookeeper监听事件"></a>六.Zookeeper监听事件</h2><p>监听器原理：事件监听有三要素，分为事件源　事件对象（描述事件源产生的行为）监听器</p>
+<pre><code>    事件对象
+事件源　－－－－－－》监听器（监听关注的事件）－－－－－》触发某个行为　</code></pre><p>zookeeper监听器原理：</p>
+<p>zookeeper有两个线程，一个connect(网络连接),一个lisener，.connect会将注册的监听事件发送给zookeeper，zk收到后，会将注册的监听事件放进放进监听事件列表，当有数据或者路径发生变化时，zookeeper会将这个消息发送给listener线程，listener内部会调用process()方法。</p>
+<p>zk写数据流程：</p>
+<p> 　1. client向一个server发送写数据的请求，如果这个server不是leader，他会把请求转发给leader，leader会将写请求转发给每个server，server写成功后会通知leader<br>     2. 当半数以上的serverxie写成功后，leader就会告诉那个接受请求的server写数据成功了。<br>     3. server进而告诉客户端写数据成功</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zookeeper/">zookeeper</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-深入理解volatile" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -719,11 +994,11 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-exception" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-java的exception" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       
-<a href="/2019/06/29/exception/" class="article-date">
+<a href="/2019/06/29/java的exception/" class="article-date">
       <time datetime="2019-06-29T10:01:54.000Z" itemprop="datePublished">2019-06-29</time>
 </a>
 
@@ -740,7 +1015,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/29/exception/">Exception</a>
+      <a class="article-title" href="/2019/06/29/java的exception/">Exception</a>
     </h1>
   
 
