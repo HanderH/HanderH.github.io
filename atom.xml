@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>hsj的个人博客</title>
+  <title>hsj的博客</title>
   <icon>https://www.gravatar.com/avatar/0b5d6648195c1648e8c43af28a2b4905</icon>
   <subtitle>life and work</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.handerh.top/"/>
-  <updated>2019-07-03T13:50:42.478Z</updated>
+  <updated>2019-07-04T14:21:01.197Z</updated>
   <id>http://www.handerh.top/</id>
   
   <author>
@@ -15,6 +15,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GC-垃圾回收机制</title>
+    <link href="http://www.handerh.top/2019/07/04/GC-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/"/>
+    <id>http://www.handerh.top/2019/07/04/GC-垃圾回收机制/</id>
+    <published>2019-07-04T12:27:11.000Z</published>
+    <updated>2019-07-04T14:21:01.197Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一-垃圾回收机制干嘛的"><a href="#一-垃圾回收机制干嘛的" class="headerlink" title="一.垃圾回收机制干嘛的"></a>一.垃圾回收机制干嘛的</h2><p>当我们运行一个程序时，创建的对象和一些变量是存在内存中，如果我们创建的对象和变量过多，它会占用大量的内存，在程序运行时，有一些对象和变量可能是无用的，我们没必要浪费内存去存储，垃圾回收机制就是帮我们回收这些无用的垃圾。</p><h2 id="二-垃圾回收机制主要针对哪些内存"><a href="#二-垃圾回收机制主要针对哪些内存" class="headerlink" title="二.垃圾回收机制主要针对哪些内存"></a>二.垃圾回收机制主要针对哪些内存</h2><p>JVM运行时内存区域主要包括五大部分，分别是程序计数器，本地方法栈，java虚拟栈，方法区，堆，由于，程序计数器，本地方法栈，java虚拟栈是每个线程私有的，当线程运行完毕时，会自动回收这些内存区域，而对于堆和方法区是线程共享的，这部分内存的分配和回收都是动态的，所以这方法去和堆是GC主要针对的区域。</p><h2 id="三-GC什么时候回收垃圾"><a href="#三-GC什么时候回收垃圾" class="headerlink" title="三.GC什么时候回收垃圾"></a>三.GC什么时候回收垃圾</h2><p>首先GC会通过特定的搜索算法找到没有被引用的对象，对这些对象进行垃圾回收</p><h3 id="搜索算法"><a href="#搜索算法" class="headerlink" title="搜索算法"></a>搜索算法</h3><h4 id="计数器法："><a href="#计数器法：" class="headerlink" title="计数器法："></a>计数器法：</h4><p>​    每一个对象都拥有一个对象引用计数器，当增加一个对该对象的引用时，引用计数器就会加一，减少一个对象引用，引用计数器就会减一，当该对象的引用计数器为0时，则认为该对象没有被引用是可以进行回收的，但是引用计数器有一个缺点，就是无法解决循环引用，比如A对象引用了B对象,B对象引用了A对象,但是这两个对象没有被任何的其它对象引用，这两个对象就无法回收了</p><h4 id="GC-Roots可达性分析"><a href="#GC-Roots可达性分析" class="headerlink" title="GC Roots可达性分析"></a>GC Roots可达性分析</h4><p>从一些GC ROOTS对象作为起点，向下搜索，搜索通过的路径为引用链，当一个对象没有被该引用链连接时，则认为该对象是无用的。</p><p>GC Roots对象包括虚拟机栈中的引用的对象，方法区域中的类静态属性引用的对象，方法区域中常量引用的对象。</p><h2 id="四-对象的引用是什么"><a href="#四-对象的引用是什么" class="headerlink" title="四.对象的引用是什么"></a>四.对象的引用是什么</h2><p>无论是引用计数器还是可达性分析，判断对象是否有用都与引用有关，那如何定义对象的引用。</p><p>Java中对象的引用分为四种级别，由高到低分别为：强引用，软引用，弱引用，虚引用</p><h4 id="强引用（Strong-Reference"><a href="#强引用（Strong-Reference" class="headerlink" title="强引用（Strong Reference):"></a>强引用（Strong Reference):</h4><p>强引用在我们每天写代码的时候都会用到，比如Object obj = new Object();如果一个对象被强引用引用，那么这个对象是不会被垃圾回收器回收的。</p><h4 id="软引用-SoftReference"><a href="#软引用-SoftReference" class="headerlink" title="软引用(SoftReference):"></a>软引用(SoftReference):</h4><p>如果一个对象具有软引用，当JVM内存空间充足的情况下，垃圾回收器不会回收它</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object obj = new Object();</span><br><span class="line">SoftReference&lt;Object&gt; str = new SoftReference&lt;Object&gt;(obj);</span><br></pre></td></tr></table></figure><p>可以用来实现内存敏感的高速缓存.在jvm报告内存不足时，立刻清空所有软引用</p><p>gc回收软引用的过程</p><ol><li>首先将SoftReference引用的obj置空</li><li>标记new Object()为finalize</li><li>回收内存，并添加到RefererceQueue.(如果有的话)</li></ol><h4 id="弱引用"><a href="#弱引用" class="headerlink" title="弱引用"></a>弱引用</h4><p>被弱引用引用的对象可有可无，只要被GC扫描到，随时都会被清除。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object obj = new Object();</span><br><span class="line">WeakReference&lt;Object&gt; str = new WeakReference&lt;Object&gt;(obj);</span><br></pre></td></tr></table></figure><h4 id="虚引用"><a href="#虚引用" class="headerlink" title="虚引用"></a>虚引用</h4><p>如果一个对象持有虚引用，就跟没有一样，随时都可以被回收</p><p>虚引用与软引用和弱引用不同。</p><h2 id="五-回收算法"><a href="#五-回收算法" class="headerlink" title="五.回收算法"></a>五.回收算法</h2>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;一-垃圾回收机制干嘛的&quot;&gt;&lt;a href=&quot;#一-垃圾回收机制干嘛的&quot; class=&quot;headerlink&quot; title=&quot;一.垃圾回收机制干嘛的&quot;&gt;&lt;/a&gt;一.垃圾回收机制干嘛的&lt;/h2&gt;&lt;p&gt;当我们运行一个程序时，创建的对象和一些变量是存在内存中，如果我们创建
+      
+    
+    </summary>
+    
+      <category term="jvm" scheme="http://www.handerh.top/categories/jvm/"/>
+    
+    
+      <category term="jvm" scheme="http://www.handerh.top/tags/jvm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>工厂模式</title>
+    <link href="http://www.handerh.top/2019/07/04/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://www.handerh.top/2019/07/04/工厂模式/</id>
+    <published>2019-07-04T08:51:29.000Z</published>
+    <updated>2019-07-04T11:31:51.401Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="java设计模式之工厂模式"><a href="#java设计模式之工厂模式" class="headerlink" title="java设计模式之工厂模式"></a>java设计模式之工厂模式</h3><p>什么是工厂模式：实现了对同一接口下一些类的实例的创建，定义了一个产生实例对象的接口，让其子类决定实例化哪个工厂类</p><a id="more"></a><h4 id="工厂方法模式："><a href="#工厂方法模式：" class="headerlink" title="工厂方法模式："></a>工厂方法模式：</h4><p>看栗子：</p><p>假设我们有一个游戏(Game)接口，它有两个实现类，一个是手机游戏，一个是电脑游戏，游戏都是由一个工厂生产的。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface Game &#123;</span><br><span class="line"></span><br><span class="line">public void downLoad();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class PhoneGame implements Game&#123;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public void downLoad() &#123;</span><br><span class="line"></span><br><span class="line">System.out.println(&quot;下载手机游戏&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class ComputerGame implements Game&#123;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public void downLoad() &#123;</span><br><span class="line"></span><br><span class="line">System.out.println(&quot;下载电脑游戏&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//游戏工厂　负责生产游戏</span><br><span class="line">public class GameFactory &#123;</span><br><span class="line"></span><br><span class="line">public Game getPhoneGame() &#123;</span><br><span class="line">return new PhoneGame();</span><br><span class="line">&#125;</span><br><span class="line">public Game getComputerGame() &#123;</span><br><span class="line">return new ComputerGame();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h4><p>简单工厂模式对象的创建依赖于工厂，当我们新增一个对象时，需要更改工厂类</p><p>比如当增加一个新的电视游戏类时，我们需要在工厂类添加一个方法获取电视游戏对象</p><p>所以，为了避免更改工厂类，采用抽象工厂模式。</p><p>抽象工厂模式采用增加工厂类的方法来避免修改代码</p><p>还是上面的例子：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface Game &#123;</span><br><span class="line"></span><br><span class="line">public void downLoad();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class PhoneGame implements Game&#123;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public void downLoad() &#123;</span><br><span class="line"></span><br><span class="line">System.out.println(&quot;下载手机游戏&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class ComputerGame implements Game&#123;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public void downLoad() &#123;</span><br><span class="line"></span><br><span class="line">System.out.println(&quot;下载电脑游戏&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>提供一个抽象工厂负责创建游戏对象</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface Factory &#123;</span><br><span class="line"></span><br><span class="line">public Game getGame();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>真正创建对象的工厂</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class ComputerFactory implements Factory&#123;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public Game getGame() &#123;</span><br><span class="line"></span><br><span class="line">return new ComputerGame();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class PhoneFactory implements Factory&#123;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public Game getGame() &#123;</span><br><span class="line">return new PhoneGame();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>当我们增加一个新的电视游戏类的时候，再创建一个电视游戏工厂就可以了。</p><p>说了这么多，那工厂模式有什么用呢？</p><p>首先工厂模式是为了帮我们创建对象的，那为什么要使用工厂模式呢，</p><p>工厂模式帮我们降低了耦合性，将对象的使用和创建分离开</p><p>降低代码重复使用，如果一个对象的创建需要很多初始化参数，我们不需要在每个需要它的类中去创建，在工厂类中创建一次就行。工厂类创建封装了创建对象的细节</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;java设计模式之工厂模式&quot;&gt;&lt;a href=&quot;#java设计模式之工厂模式&quot; class=&quot;headerlink&quot; title=&quot;java设计模式之工厂模式&quot;&gt;&lt;/a&gt;java设计模式之工厂模式&lt;/h3&gt;&lt;p&gt;什么是工厂模式：实现了对同一接口下一些类的实例的创建，定义了一个产生实例对象的接口，让其子类决定实例化哪个工厂类&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://www.handerh.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="java设计模式" scheme="http://www.handerh.top/tags/java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>代理模式</title>
