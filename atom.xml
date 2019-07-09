@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.handerh.top/"/>
-  <updated>2019-07-05T15:30:55.060Z</updated>
+  <updated>2019-07-09T10:46:29.132Z</updated>
   <id>http://www.handerh.top/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java类加载器</title>
+    <link href="http://www.handerh.top/2019/07/09/java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/"/>
+    <id>http://www.handerh.top/2019/07/09/java类加载器/</id>
+    <published>2019-07-09T09:13:37.000Z</published>
+    <updated>2019-07-09T10:46:29.132Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一-java类加载器的种类"><a href="#一-java类加载器的种类" class="headerlink" title="一.java类加载器的种类"></a>一.java类加载器的种类</h2><ol><li>启动类加载器(Bootstrap):加载 java_home/jre/lib下面的类库</li><li>扩展类加载器(Extension):加载 java_home/jre/lib/ext下面的类库</li><li>系统类加载器(System/App):加载classpath下的类</li></ol><h2 id="二-java类加载体系之双亲委托机制"><a href="#二-java类加载体系之双亲委托机制" class="headerlink" title="二. java类加载体系之双亲委托机制"></a>二. java类加载体系之双亲委托机制</h2><p>BootStrapClassLoader ： 启 动 类 加 载 器 ， 该 ClassLoader 是 jvm 在 启 动 时 创 建 的 ， 用 于 加<br>载 $JAVA_HOME$/jre/lib 下面的类库</p><p>ExtClassLoader：扩展类加载器,加载 $JAVA_HOME/jre/lib/ext 下的类 库</p><p>AppClassLoader：应用程序类加载器,AppClassLoader 会加载 java 环境变量CLASSPATH 所 指 定 的 路 径 下 的 类 库 ,可 以 通 过System.getProperty(“java.class.path”)获取.</p><p>双亲委派体系是这样的：</p><p>​    1）当 AppClassLoader 加载一个 class 时，它首先不会自己去尝试加载这个类，而是把类加载请求委派给父类加载器 ExtClassLoader 去完成。<br>    2）当 ExtClassLoader 加载一个 class 时，它首先也不会自己去尝试加载这个类，而是把类加载请求委派给BootStrapClassLoader 去完成。<br>    3）如果 BootStrapClassLoader 加载失败（例如在$JAVA_HOME$/jre/lib 里未查找到该 class），会使用ExtClassLoader 来尝试加载；<br>    4）若 ExtClassLoader 也加载失败，则会使用 AppClassLoader 来加载，如果 AppClassLoader 也加载失败，则会报出异常 ClassNotFoundException。</p><p><img src="https://handerh-1259550163.cos.apshanghai.myqcloud.com/java/jvm/classload.png" alt></p><p>为什么说双亲委派机制是安全的？</p><p>ClassLoader 加载的 class 文件来源很多，比如编译器编译生成的 class、或者网络下载的字节码。</p><p>有一些class文件是不可靠的，比如我可以自定义一个 java.lang.Integer 类来覆盖 jdk 中默认的 Integer<br>类</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class Integer &#123;</span><br><span class="line"> public Integer(int value) &#123;</span><br><span class="line">  System.exit(0);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>如果没有双亲委派机制，当我们使用Integer　a = new Integer(１);的时候，会加载我们使用的这个类，</p><p>那么程序就会退出。如果使用双亲委派机制，类加载器加载的是jdk的Integer。</p><h2 id="三-类加载过程"><a href="#三-类加载过程" class="headerlink" title="三.类加载过程"></a>三.类加载过程</h2><p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/jvm/classload2.png" alt></p><p>加载：将类的字节码加载到内存，生成代表这个类的java.lang.class对象</p><p>验证：验证这个字节码是否符合虚拟机的规范</p><p>准备：为类变量分配内存</p><p>解析：将符号引用解析为直接引用</p><p>初始化：对静态变量和静态代码块进行初始化操作</p><p>触发类初始化的条件</p><ul><li><p>创建类的实例，new 一个对象</p></li><li><p>访问某个类的静态方法或这静态变量</p></li><li><p>使用反射创建一个类对象</p></li><li><p>初始化一个类的子类（会先初始化子类的父类)</p><p>总结：类的初始化步骤</p><p>​        １. 如果该类还没有被加载和链接，首先执行类的加载和链接</p><p>​        ２．加入这个类存在直接父类，先出初始化直接父类（在一个类加载器中，类只能初始化一次）；</p><p>​        ３．初始化静态变量以及静态代码块</p><p>​    </p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;一-java类加载器的种类&quot;&gt;&lt;a href=&quot;#一-java类加载器的种类&quot; class=&quot;headerlink&quot; title=&quot;一.java类加载器的种类&quot;&gt;&lt;/a&gt;一.java类加载器的种类&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;启动类加载器(Bootstrap):加载
+      
+    
+    </summary>
+    
+    
+      <category term="jvm" scheme="http://www.handerh.top/tags/jvm/"/>
+    
+  </entry>
   
   <entry>
     <title>GC-垃圾回收机制</title>

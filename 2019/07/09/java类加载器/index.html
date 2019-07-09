@@ -14,21 +14,22 @@
 <meta name="author" content="HanderH">
 
 
-    
-    
 
-
-<meta name="description" content="学习总结　思考感悟　知识管理">
-<meta name="keywords" content="java 大数据　IT">
-<meta property="og:type" content="website">
-<meta property="og:title" content="hsj的博客">
-<meta property="og:url" content="http://www.handerh.top/page/2/index.html">
+<meta name="description" content="一.java类加载器的种类 启动类加载器(Bootstrap):加载 java_home/jre/lib下面的类库 扩展类加载器(Extension):加载 java_home/jre/lib/ext下面的类库 系统类加载器(System/App):加载classpath下的类  二. java类加载体系之双亲委托机制BootStrapClassLoader ： 启 动 类 加 载 器 ， 该 C">
+<meta name="keywords" content="jvm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java类加载器">
+<meta property="og:url" content="http://www.handerh.top/2019/07/09/java类加载器/index.html">
 <meta property="og:site_name" content="hsj的博客">
-<meta property="og:description" content="学习总结　思考感悟　知识管理">
+<meta property="og:description" content="一.java类加载器的种类 启动类加载器(Bootstrap):加载 java_home/jre/lib下面的类库 扩展类加载器(Extension):加载 java_home/jre/lib/ext下面的类库 系统类加载器(System/App):加载classpath下的类  二. java类加载体系之双亲委托机制BootStrapClassLoader ： 启 动 类 加 载 器 ， 该 C">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://handerh-1259550163.cos.apshanghai.myqcloud.com/java/jvm/classload.png">
+<meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/jvm/classload2.png">
+<meta property="og:updated_time" content="2019-07-09T10:46:29.132Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hsj的博客">
-<meta name="twitter:description" content="学习总结　思考感悟　知识管理">
+<meta name="twitter:title" content="java类加载器">
+<meta name="twitter:description" content="一.java类加载器的种类 启动类加载器(Bootstrap):加载 java_home/jre/lib下面的类库 扩展类加载器(Extension):加载 java_home/jre/lib/ext下面的类库 系统类加载器(System/App):加载classpath下的类  二. java类加载体系之双亲委托机制BootStrapClassLoader ： 启 动 类 加 载 器 ， 该 C">
+<meta name="twitter:image" content="https://handerh-1259550163.cos.apshanghai.myqcloud.com/java/jvm/classload.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -56,13 +57,11 @@
 <link rel="stylesheet" href="/css/style.css">
 
 
-    <style> .article { opacity: 0;} </style>
-
 
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>hsj的博客</title>
+<title>java类加载器 | hsj的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -71,8 +70,8 @@
     var yiliaConfig = {
         fancybox: true,
         animate: true,
-        isHome: true,
-        isPost: false,
+        isHome: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -289,14 +288,17 @@ var _hmt = _hmt || [];
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-java的exception" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-java类加载器" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       
-<a href="/2019/06/29/java的exception/" class="article-date">
-      <time datetime="2019-06-29T10:01:54.000Z" itemprop="datePublished">2019-06-29</time>
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2019/07/09/java类加载器/" class="article-date">
+      <time datetime="2019-07-09T09:13:37.000Z" itemprop="datePublished">2019-07-09</time>
 </a>
 
 
@@ -311,8 +313,8 @@ var _hmt = _hmt || [];
        
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/29/java的exception/">Exception</a>
+    <h1 class="article-title" itemprop="name">
+      java类加载器
     </h1>
   
 
@@ -323,7 +325,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">494字</span>
+        <span class="post-count">714字</span>
       </span>
     </span>
 
@@ -332,7 +334,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">2分</span>
       </span>
     </span>
 </div>
@@ -342,444 +344,199 @@ var _hmt = _hmt || [];
        </header>
         
       
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jvm/">jvm</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="java中的异常分为哪几类"><a href="#java中的异常分为哪几类" class="headerlink" title="java中的异常分为哪几类"></a>java中的异常分为哪几类</h3><p>看图：</p>
-<p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/exception/exception.png" alt></p>
-<p>在java中，所有异常都都有一个共同的祖先Throwable,Throwable有两个重要的子类，Exception和error</p>
-<ol>
-<li>error:是程序无法处理的错误，表示程序有严重的错误，大多数错误都是jvm出现的问题，如StackOverError,OutOfMemoryError.</li>
-<li>Exception:程序本身可以处理的异常。它有一个子类RuntimeException,这一类异常有java虚拟机抛出，如NullException(要访问的变量没有引用任何对象)，ArithmeticException(算术异常，整数除以０时)，ArrayIndexOutOfBoundsException(下标越界)</li>
+        <h2 id="一-java类加载器的种类"><a href="#一-java类加载器的种类" class="headerlink" title="一.java类加载器的种类"></a>一.java类加载器的种类</h2><ol>
+<li>启动类加载器(Bootstrap):加载 java_home/jre/lib下面的类库</li>
+<li>扩展类加载器(Extension):加载 java_home/jre/lib/ext下面的类库</li>
+<li>系统类加载器(System/App):加载classpath下的类</li>
 </ol>
-<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><ul>
-<li>try:用于捕获异常，后面可以接多个catch,如果后面没有catch,则必须接finally</li>
-<li>catch:用于处理try捕获的异常</li>
-<li>finally:无论是否捕获或者处理异常，finally块中的语句都会被执行，当tyr或catch块中遇到return语句时，finally语句块将在方法返回之前执行</li>
-</ul>
-<h3 id="throw和throws的区别"><a href="#throw和throws的区别" class="headerlink" title="throw和throws的区别"></a>throw和throws的区别</h3><ul>
-<li>throw <ul>
-<li>用在方法体中，表示抛出异常，由方法体内的语句处理</li>
-<li>throw是抛出异常的一个动作，抛出的是一个异常实例，执行throw一定抛出了某种异常</li>
-</ul>
+<h2 id="二-java类加载体系之双亲委托机制"><a href="#二-java类加载体系之双亲委托机制" class="headerlink" title="二. java类加载体系之双亲委托机制"></a>二. java类加载体系之双亲委托机制</h2><p>BootStrapClassLoader ： 启 动 类 加 载 器 ， 该 ClassLoader 是 jvm 在 启 动 时 创 建 的 ， 用 于 加<br>载 $JAVA_HOME$/jre/lib 下面的类库</p>
+<p>ExtClassLoader：扩展类加载器,加载 $JAVA_HOME/jre/lib/ext 下的类 库</p>
+<p>AppClassLoader：应用程序类加载器,AppClassLoader 会加载 java 环境变量CLASSPATH 所 指 定 的 路 径 下 的 类 库 ,可 以 通 过System.getProperty(“java.class.path”)获取.</p>
+<p>双亲委派体系是这样的：</p>
+<p>​    1）当 AppClassLoader 加载一个 class 时，它首先不会自己去尝试加载这个类，而是把类加载请求委派给父类加载器 ExtClassLoader 去完成。<br>    2）当 ExtClassLoader 加载一个 class 时，它首先也不会自己去尝试加载这个类，而是把类加载请求委派给BootStrapClassLoader 去完成。<br>    3）如果 BootStrapClassLoader 加载失败（例如在$JAVA_HOME$/jre/lib 里未查找到该 class），会使用ExtClassLoader 来尝试加载；<br>    4）若 ExtClassLoader 也加载失败，则会使用 AppClassLoader 来加载，如果 AppClassLoader 也加载失败，则会报出异常 ClassNotFoundException。</p>
+<p><img src="https://handerh-1259550163.cos.apshanghai.myqcloud.com/java/jvm/classload.png" alt></p>
+<p>为什么说双亲委派机制是安全的？</p>
+<p>ClassLoader 加载的 class 文件来源很多，比如编译器编译生成的 class、或者网络下载的字节码。</p>
+<p>有一些class文件是不可靠的，比如我可以自定义一个 java.lang.Integer 类来覆盖 jdk 中默认的 Integer<br>类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class Integer &#123;</span><br><span class="line"> 	public Integer(int value) &#123;</span><br><span class="line">	 	 System.exit(0);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果没有双亲委派机制，当我们使用Integer　a = new Integer(１);的时候，会加载我们使用的这个类，</p>
+<p>那么程序就会退出。如果使用双亲委派机制，类加载器加载的是jdk的Integer。</p>
+<h2 id="三-类加载过程"><a href="#三-类加载过程" class="headerlink" title="三.类加载过程"></a>三.类加载过程</h2><p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/jvm/classload2.png" alt></p>
+<p>加载：将类的字节码加载到内存，生成代表这个类的java.lang.class对象</p>
+<p>验证：验证这个字节码是否符合虚拟机的规范</p>
+<p>准备：为类变量分配内存</p>
+<p>解析：将符号引用解析为直接引用</p>
+<p>初始化：对静态变量和静态代码块进行初始化操作</p>
+<p>触发类初始化的条件</p>
+<ul>
+<li><p>创建类的实例，new 一个对象</p>
 </li>
-<li>throws<ul>
-<li>用在方法声明后面，表示如果抛出异常，由该方法的调用者处理</li>
-<li>throws主要是用来声明这个方法可能会抛出某种异常，让它的使用者知道需要捕获的异常类型</li>
-</ul>
+<li><p>访问某个类的静态方法或这静态变量</p>
+</li>
+<li><p>使用反射创建一个类对象</p>
+</li>
+<li><p>初始化一个类的子类（会先初始化子类的父类)</p>
+<p>总结：类的初始化步骤</p>
+<p>​        １. 如果该类还没有被加载和链接，首先执行类的加载和链接</p>
+<p>​        ２．加入这个类存在直接父类，先出初始化直接父类（在一个类加载器中，类只能初始化一次）；</p>
+<p>​        ３．初始化静态变量以及静态代码块</p>
+<p>​    </p>
 </li>
 </ul>
-<h3 id="final-finally-finalize的区别"><a href="#final-finally-finalize的区别" class="headerlink" title="final,finally,finalize的区别"></a>final,finally,finalize的区别</h3><ul>
-<li>final :用来声明属性，方法和类，表示属性不可变，方法不可覆盖，类不可继承</li>
-<li>finally:异常处理语句结构的一部分，表示总是执行</li>
-<li>finalize:Object的一个方法，在垃圾回收器执行的时候会调用被回收对象的此方法，当该方法被调用则代表该对象即将死亡。当我们主动去调用该方法并不会导致该对象的死亡，这是一个回调方法，不需要我们调用</li>
-</ul>
 
       
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
     </div>
     
   </div>
   
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-equals" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/06/29/equals/" class="article-date">
-      <time datetime="2019-06-29T03:14:16.000Z" itemprop="datePublished">2019-06-29</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/29/equals/">equals</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.1k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">4分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="equals-方法与-的区别"><a href="#equals-方法与-的区别" class="headerlink" title="equals()方法与==的区别"></a>equals()方法与==的区别</h2><ul>
-<li>==:对于基本类型比较的是值，对于引用类型比较的是地址</li>
-</ul>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/06/29/equals/#more">more >></a>
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/07/09/java类加载器/">java类加载器</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">HanderH</a></p>
+        <p><span>发布时间:</span>2019-07-09, 17:13:37</p>
+        <p><span>最后更新:</span>2019-07-09, 18:46:29</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/07/09/java类加载器/" title="java类加载器">http://www.handerh.top/2019/07/09/java类加载器/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/07/09/java类加载器/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-clone-浅拷贝与深拷贝" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/06/29/clone-浅拷贝与深拷贝/" class="article-date">
-      <time datetime="2019-06-29T02:19:55.000Z" itemprop="datePublished">2019-06-29</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/29/clone-浅拷贝与深拷贝/">clone() 浅拷贝与深拷贝</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">498字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="clone的用法"><a href="#clone的用法" class="headerlink" title="clone的用法"></a>clone的用法</h3><p>用来复制一个对象的副本，产生一个新的对象，新对象的属性与原对象的属性一致，而且原对象的改变不影响新对象</p>
-<p>克隆有浅拷贝与深拷贝，用的时候一定要注意</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/06/29/clone-浅拷贝与深拷贝/#more">more >></a>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
         </p>
-      
-      <div class="clearfix"></div>
     </div>
-    
-  </div>
-  
-</article>
 
 
 
-
-
-
-
-
-
-  
-    <article id="post-Flume" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/06/27/Flume/" class="article-date">
-      <time datetime="2019-06-27T06:23:30.000Z" itemprop="datePublished">2019-06-27</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
+    <nav id="article-nav">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/27/Flume/">Flume</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.8k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">8分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
         
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="一-Flume是什么"><a href="#一-Flume是什么" class="headerlink" title="一.Flume是什么"></a>一.Flume是什么</h2><p>Flume是一个分布式的，可靠的，高可用的海量日志采集系统，以Event为单位进行传输</p>
-<h2 id="二-Flume的三大组件"><a href="#二-Flume的三大组件" class="headerlink" title="二.Flume的三大组件"></a>二.Flume的三大组件</h2><h3 id="source数据输入端的常见类型"><a href="#source数据输入端的常见类型" class="headerlink" title="source数据输入端的常见类型"></a>source数据输入端的常见类型</h3><ul>
-<li>spooling directory :文件中的数据</li>
-<li>exec :执行linux的命令，监控文件数据</li>
-<li>syslog:文件日志</li>
-<li>avro:序列化框架</li>
-<li>netcat:监听端口</li>
-</ul>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flume/">Flume</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/06/27/Flume/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-java设计模式-单例模式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/06/26/java设计模式-单例模式/" class="article-date">
-      <time datetime="2019-06-26T12:17:01.000Z" itemprop="datePublished">2019-06-26</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/07/04/GC-垃圾回收机制/">
+                    GC-垃圾回收机制
+                </a>
+            </div>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/26/java设计模式-单例模式/">java设计模式(单例模式)</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">584字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="设计模式之单例模式"><a href="#设计模式之单例模式" class="headerlink" title="设计模式之单例模式"></a>设计模式之单例模式</h2><h3 id="一-什么是单例模式"><a href="#一-什么是单例模式" class="headerlink" title="一.什么是单例模式"></a>一.什么是单例模式</h3><p>​    确保类只有一个实例，不会出现多个</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java-设计模式/">java 设计模式</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/06/26/java设计模式-单例模式/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
     </nav>
+
   
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-java类加载器的种类"><span class="toc-number">1.</span> <span class="toc-text">一.java类加载器的种类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-java类加载体系之双亲委托机制"><span class="toc-number">2.</span> <span class="toc-text">二. java类加载体系之双亲委托机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-类加载过程"><span class="toc-number">3.</span> <span class="toc-text">三.类加载过程</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-6 i,
+        .toc-level-6 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"java类加载器　| hsj的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <section class="livere" id="comments">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NDk3My8yMTQ5Mw==">
+    <script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+    </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/07/04/GC-垃圾回收机制/" title="下一篇: GC-垃圾回收机制">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/09/java类加载器/">java类加载器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/GC-垃圾回收机制/">GC-垃圾回收机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/工厂模式/">工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/代理模式/">代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/java类与类之间的关系/">java类与类之间的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/hbase基本操作/">hbase的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/简单了解一下zookeeper/">简单了解一下zookeeper</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/深入理解volatile/">深入理解volatile</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/谈谈synchronized/">谈谈synchronized</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/30/java-IO/">java IO</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/java的exception/">Exception</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/equals/">equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/clone-浅拷贝与深拷贝/">clone() 浅拷贝与深拷贝</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/27/Flume/">Flume</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/26/java设计模式-单例模式/">java设计模式(单例模式)</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
@@ -851,10 +608,6 @@ setInterval("createtime()",250);
         })
     </script>
 
-
-    
-
-     
 
 
 
