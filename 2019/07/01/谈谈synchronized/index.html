@@ -15,18 +15,18 @@
 
 
 
-<meta name="description" content="一.线程安全问题​    在单线程的情况下不会出现线程安全问题，而在多线程中，有可能会出现同时访问一个共享可变资源的情况。共享意味着该资源可被多个线程共享，可变意味着资源可被多个线程修改，这样很可能出现线程安全问题。 看一段线程安全的代码: 123456789101112131415161718192021222324public class SynchronizedTest1 &amp;#123;	pr">
+<meta name="description" content="一.线程安全问题​    在单线程的情况下不会出现线程安全问题，而在多线程中，有可能会出现同时访问一个共享可变资源的情况。共享意味着该资源可被多个线程共享，可变意味着资源可被多个线程修改，这样很可能出现线程安全问题。">
 <meta name="keywords" content="java多线程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="谈谈synchronized">
 <meta property="og:url" content="http://www.handerh.top/2019/07/01/谈谈synchronized/index.html">
 <meta property="og:site_name" content="hsj的博客">
-<meta property="og:description" content="一.线程安全问题​    在单线程的情况下不会出现线程安全问题，而在多线程中，有可能会出现同时访问一个共享可变资源的情况。共享意味着该资源可被多个线程共享，可变意味着资源可被多个线程修改，这样很可能出现线程安全问题。 看一段线程安全的代码: 123456789101112131415161718192021222324public class SynchronizedTest1 &amp;#123;	pr">
+<meta property="og:description" content="一.线程安全问题​    在单线程的情况下不会出现线程安全问题，而在多线程中，有可能会出现同时访问一个共享可变资源的情况。共享意味着该资源可被多个线程共享，可变意味着资源可被多个线程修改，这样很可能出现线程安全问题。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-01T12:56:08.873Z">
+<meta property="og:updated_time" content="2019-07-10T12:26:02.120Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="谈谈synchronized">
-<meta name="twitter:description" content="一.线程安全问题​    在单线程的情况下不会出现线程安全问题，而在多线程中，有可能会出现同时访问一个共享可变资源的情况。共享意味着该资源可被多个线程共享，可变意味着资源可被多个线程修改，这样很可能出现线程安全问题。 看一段线程安全的代码: 123456789101112131415161718192021222324public class SynchronizedTest1 &amp;#123;	pr">
+<meta name="twitter:description" content="一.线程安全问题​    在单线程的情况下不会出现线程安全问题，而在多线程中，有可能会出现同时访问一个共享可变资源的情况。共享意味着该资源可被多个线程共享，可变意味着资源可被多个线程修改，这样很可能出现线程安全问题。">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -206,7 +206,7 @@ var _hmt = _hmt || [];
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flume/">Flume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hbase/">hbase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-设计模式/">java 设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java多线程/">java多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java设计模式/">java设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flume/">Flume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hbase/">hbase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hive/">hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java多线程/">java多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java设计模式/">java设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
                     </div>
                 </section>
                 
@@ -343,6 +343,10 @@ var _hmt = _hmt || [];
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/java/">java</a>
+    </div>
+
 
         
     <div class="article-tag tagcloud">
@@ -357,6 +361,8 @@ var _hmt = _hmt || [];
       
           
         <h2 id="一-线程安全问题"><a href="#一-线程安全问题" class="headerlink" title="一.线程安全问题"></a>一.线程安全问题</h2><p>​    在单线程的情况下不会出现线程安全问题，而在多线程中，有可能会出现同时访问一个共享可变资源的情况。共享意味着该资源可被多个线程共享，可变意味着资源可被多个线程修改，这样很可能出现线程安全问题。</p>
+<a id="more"></a>
+
 <p>看一段线程安全的代码:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class SynchronizedTest1 &#123;</span><br><span class="line">	private int count = 0;</span><br><span class="line">	public void synchronizedTest1() &#123;</span><br><span class="line">		for(int i=0;i&lt;1000;i++) &#123;</span><br><span class="line">			count++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SynchronizedTest1 t1 = new SynchronizedTest1();</span><br><span class="line">		for(int i=0;i&lt;10;i++) &#123;</span><br><span class="line">			new Thread(new Runnable() &#123;</span><br><span class="line">				@Override</span><br><span class="line">				public void run() &#123;</span><br><span class="line">					t1.synchronizedTest1();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;).start();</span><br><span class="line">		&#125;</span><br><span class="line">		try &#123;</span><br><span class="line">			Thread.sleep(3000);</span><br><span class="line">		&#125; catch (InterruptedException e) &#123;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(t1.count);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -413,7 +419,7 @@ var _hmt = _hmt || [];
         <p><span>本文标题:</span><a href="/2019/07/01/谈谈synchronized/">谈谈synchronized</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HanderH</a></p>
         <p><span>发布时间:</span>2019-07-01, 15:11:22</p>
-        <p><span>最后更新:</span>2019-07-01, 20:56:08</p>
+        <p><span>最后更新:</span>2019-07-10, 20:26:02</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/07/01/谈谈synchronized/" title="谈谈synchronized">http://www.handerh.top/2019/07/01/谈谈synchronized/</a>
             <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/07/01/谈谈synchronized/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -540,7 +546,7 @@ var _hmt = _hmt || [];
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/09/java类加载器/">java类加载器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/GC-垃圾回收机制/">GC-垃圾回收机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/工厂模式/">工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/代理模式/">代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/java类与类之间的关系/">java类与类之间的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/hbase基本操作/">hbase的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/简单了解一下zookeeper/">简单了解一下zookeeper</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/深入理解volatile/">深入理解volatile</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/谈谈synchronized/">谈谈synchronized</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/30/java-IO/">java IO</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/java的exception/">Exception</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/equals/">equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/clone-浅拷贝与深拷贝/">clone() 浅拷贝与深拷贝</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/27/Flume/">Flume</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/26/java设计模式-单例模式/">java设计模式(单例模式)</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/hive/">hive</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/插入排序/">插入排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/09/java类加载器/">java类加载器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/GC-垃圾回收机制/">GC-垃圾回收机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/工厂模式/">工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/代理模式/">代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/java类与类之间的关系/">java类与类之间的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/hbase基本操作/">hbase的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/简单了解一下zookeeper/">简单了解一下zookeeper</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/深入理解volatile/">深入理解volatile</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/谈谈synchronized/">谈谈synchronized</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/30/java-IO/">java IO</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/java的exception/">Exception</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/equals/">equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/clone-浅拷贝与深拷贝/">clone() 浅拷贝与深拷贝</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/27/Flume/">Flume</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/26/java设计模式-单例模式/">java设计模式(单例模式)</a></li></ul>
 
 
 
