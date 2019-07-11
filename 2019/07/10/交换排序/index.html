@@ -15,18 +15,18 @@
 
 
 
-<meta name="description" content="java设计模式之工厂模式什么是工厂模式：实现了对同一接口下一些类的实例的创建，定义了一个产生实例对象的接口，让其子类决定实例化哪个工厂类">
-<meta name="keywords" content="java设计模式">
+<meta name="description" content="交换排序的基本思想根据序列中两个元素的比较结果来对换这两个记录在序列中的位置，也就是说，将键值较大的记录向序列的尾部移动，键值较小的记录向序列的前部移动。">
+<meta name="keywords" content="数据结构与算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="工厂模式">
-<meta property="og:url" content="http://www.handerh.top/2019/07/04/工厂模式/index.html">
+<meta property="og:title" content="交换排序">
+<meta property="og:url" content="http://www.handerh.top/2019/07/10/交换排序/index.html">
 <meta property="og:site_name" content="hsj的博客">
-<meta property="og:description" content="java设计模式之工厂模式什么是工厂模式：实现了对同一接口下一些类的实例的创建，定义了一个产生实例对象的接口，让其子类决定实例化哪个工厂类">
+<meta property="og:description" content="交换排序的基本思想根据序列中两个元素的比较结果来对换这两个记录在序列中的位置，也就是说，将键值较大的记录向序列的尾部移动，键值较小的记录向序列的前部移动。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-04T11:31:51.401Z">
+<meta property="og:updated_time" content="2019-07-11T13:41:29.672Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="工厂模式">
-<meta name="twitter:description" content="java设计模式之工厂模式什么是工厂模式：实现了对同一接口下一些类的实例的创建，定义了一个产生实例对象的接口，让其子类决定实例化哪个工厂类">
+<meta name="twitter:title" content="交换排序">
+<meta name="twitter:description" content="交换排序的基本思想根据序列中两个元素的比较结果来对换这两个记录在序列中的位置，也就是说，将键值较大的记录向序列的尾部移动，键值较小的记录向序列的前部移动。">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -58,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>工厂模式 | hsj的博客</title>
+<title>交换排序 | hsj的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -285,7 +285,7 @@ var _hmt = _hmt || [];
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-工厂模式" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-交换排序" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       
@@ -294,8 +294,8 @@ var _hmt = _hmt || [];
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2019/07/04/工厂模式/" class="article-date">
-      <time datetime="2019-07-04T08:51:29.000Z" itemprop="datePublished">2019-07-04</time>
+<a href="/2019/07/10/交换排序/" class="article-date">
+      <time datetime="2019-07-10T12:30:08.000Z" itemprop="datePublished">2019-07-10</time>
 </a>
 
 
@@ -311,7 +311,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      工厂模式
+      交换排序
     </h1>
   
 
@@ -322,7 +322,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">621字</span>
+        <span class="post-count">423字</span>
       </span>
     </span>
 
@@ -331,7 +331,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
+        <span class="post-count">1分</span>
       </span>
     </span>
 </div>
@@ -344,13 +344,13 @@ var _hmt = _hmt || [];
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
+    <a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java设计模式/">java设计模式</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -360,43 +360,20 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="java设计模式之工厂模式"><a href="#java设计模式之工厂模式" class="headerlink" title="java设计模式之工厂模式"></a>java设计模式之工厂模式</h3><p>什么是工厂模式：实现了对同一接口下一些类的实例的创建，定义了一个产生实例对象的接口，让其子类决定实例化哪个工厂类</p>
+        <h3 id="交换排序的基本思想"><a href="#交换排序的基本思想" class="headerlink" title="交换排序的基本思想"></a>交换排序的基本思想</h3><p>根据序列中两个元素的比较结果来对换这两个记录在序列中的位置，也就是说，将键值较大的记录向序列的尾部移动，键值较小的记录向序列的前部移动。</p>
 <a id="more"></a>
 
-<h4 id="工厂方法模式："><a href="#工厂方法模式：" class="headerlink" title="工厂方法模式："></a>工厂方法模式：</h4><p>看栗子：</p>
-<p>假设我们有一个游戏(Game)接口，它有两个实现类，一个是手机游戏，一个是电脑游戏，游戏都是由一个工厂生产的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface Game &#123;</span><br><span class="line">	</span><br><span class="line">	public void downLoad();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序:"></a>冒泡排序:</h4><p>比较两个相邻的数，如果前面的数大于后面的数，则将这两个数交换位置。第一次遍历后，最大的数会被放到数组的最后位置，即array[length - 1]。第二次遍历时跳过最后一个元素，因为该元素通过第一次遍历已经确定是最大值。持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要较。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public void bubleSort(int[] arr) &#123;</span><br><span class="line">		for(int i=0;i&lt;arr.length-1;i++) &#123;</span><br><span class="line">			for(int j=0;j&lt;arr.length-1-i;j++) &#123;</span><br><span class="line">				if(arr[j]&gt;arr[j+1]) &#123;</span><br><span class="line">					int tmp = arr[j];</span><br><span class="line">					arr[j] = arr[j+1];</span><br><span class="line">					arr[j+1] = tmp;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class PhoneGame implements Game&#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void downLoad() &#123;</span><br><span class="line"></span><br><span class="line">		System.out.println(&quot;下载手机游戏&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h4><p>基本思想：</p>
+<ol>
+<li>先从数列中取出一个数作为基准数</li>
+<li>分区过程，将比这个数大的数全放到它的右边，小于或等于它的数全放到它的左边</li>
+<li>再对左右区间重复第二步，直到各区间只有一个数</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public void quickSort(int arr[],int left,int right) &#123;</span><br><span class="line">		if(right&gt;left) &#123;</span><br><span class="line">			int index = getIndex(arr,left,right);</span><br><span class="line">			quickSort(arr,left,index-1);</span><br><span class="line">			quickSort(arr,index+1,right);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	public int getIndex(int[] arr,int left,int right) &#123;</span><br><span class="line">		</span><br><span class="line">		int data = arr[left];</span><br><span class="line">		while(left&lt;right) &#123;</span><br><span class="line">			</span><br><span class="line">			while(left&lt;right&amp;&amp;arr[left]&lt;data) &#123;</span><br><span class="line">				left++;</span><br><span class="line">			&#125;</span><br><span class="line">			arr[right] = arr[left];</span><br><span class="line">			while(left&lt;right&amp;&amp;arr[right]&gt;data) &#123;</span><br><span class="line">				right--;</span><br><span class="line">			&#125;</span><br><span class="line">			arr[left] = arr[right];</span><br><span class="line">		&#125;</span><br><span class="line">		arr[left] = data;</span><br><span class="line">		return left;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class ComputerGame implements Game&#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void downLoad() &#123;</span><br><span class="line">		</span><br><span class="line">		System.out.println(&quot;下载电脑游戏&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//游戏工厂　负责生产游戏</span><br><span class="line">public class GameFactory &#123;</span><br><span class="line">	</span><br><span class="line">	public Game getPhoneGame() &#123;</span><br><span class="line">		return new PhoneGame();</span><br><span class="line">	&#125;</span><br><span class="line">	public Game getComputerGame() &#123;</span><br><span class="line">		return new ComputerGame();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h4><p>简单工厂模式对象的创建依赖于工厂，当我们新增一个对象时，需要更改工厂类</p>
-<p>比如当增加一个新的电视游戏类时，我们需要在工厂类添加一个方法获取电视游戏对象</p>
-<p>所以，为了避免更改工厂类，采用抽象工厂模式。</p>
-<p>抽象工厂模式采用增加工厂类的方法来避免修改代码</p>
-<p>还是上面的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface Game &#123;</span><br><span class="line">	</span><br><span class="line">	public void downLoad();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class PhoneGame implements Game&#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void downLoad() &#123;</span><br><span class="line"></span><br><span class="line">		System.out.println(&quot;下载手机游戏&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class ComputerGame implements Game&#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void downLoad() &#123;</span><br><span class="line">		</span><br><span class="line">		System.out.println(&quot;下载电脑游戏&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>提供一个抽象工厂负责创建游戏对象</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface Factory &#123;</span><br><span class="line">	</span><br><span class="line">	public Game getGame();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>真正创建对象的工厂</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class ComputerFactory implements Factory&#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public Game getGame() &#123;</span><br><span class="line">		</span><br><span class="line">		return new ComputerGame();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class PhoneFactory implements Factory&#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public Game getGame() &#123;</span><br><span class="line">		return new PhoneGame();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当我们增加一个新的电视游戏类的时候，再创建一个电视游戏工厂就可以了。</p>
-<p>说了这么多，那工厂模式有什么用呢？</p>
-<p>首先工厂模式是为了帮我们创建对象的，那为什么要使用工厂模式呢，</p>
-<p>工厂模式帮我们降低了耦合性，将对象的使用和创建分离开</p>
-<p>降低代码重复使用，如果一个对象的创建需要很多初始化参数，我们不需要在每个需要它的类中去创建，在工厂类中创建一次就行。工厂类创建封装了创建对象的细节</p>
 
       
     </div>
@@ -405,13 +382,13 @@ var _hmt = _hmt || [];
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/07/04/工厂模式/">工厂模式</a></p>
+        <p><span>本文标题:</span><a href="/2019/07/10/交换排序/">交换排序</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HanderH</a></p>
-        <p><span>发布时间:</span>2019-07-04, 16:51:29</p>
-        <p><span>最后更新:</span>2019-07-04, 19:31:51</p>
+        <p><span>发布时间:</span>2019-07-10, 20:30:08</p>
+        <p><span>最后更新:</span>2019-07-11, 21:41:29</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/07/04/工厂模式/" title="工厂模式">http://www.handerh.top/2019/07/04/工厂模式/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/07/04/工厂模式/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/07/10/交换排序/" title="交换排序">http://www.handerh.top/2019/07/10/交换排序/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/07/10/交换排序/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -423,16 +400,10 @@ var _hmt = _hmt || [];
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/07/04/GC-垃圾回收机制/">
-                    GC-垃圾回收机制
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/07/03/代理模式/">
-                    代理模式
+                <a href="/2019/07/10/hive/">
+                    hive
                 </a>
             </div>
         
@@ -444,7 +415,7 @@ var _hmt = _hmt || [];
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#java设计模式之工厂模式"><span class="toc-number">1.</span> <span class="toc-text">java设计模式之工厂模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#工厂方法模式："><span class="toc-number">1.1.</span> <span class="toc-text">工厂方法模式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#抽象工厂模式"><span class="toc-number">1.2.</span> <span class="toc-text">抽象工厂模式</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#交换排序的基本思想"><span class="toc-number">1.</span> <span class="toc-text">交换排序的基本思想</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#冒泡排序"><span class="toc-number">1.1.</span> <span class="toc-text">冒泡排序:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#快速排序"><span class="toc-number">1.2.</span> <span class="toc-text">快速排序</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -480,7 +451,7 @@ var _hmt = _hmt || [];
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"工厂模式　| hsj的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"交换排序　| hsj的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -521,15 +492,13 @@ var _hmt = _hmt || [];
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/07/04/GC-垃圾回收机制/" title="上一篇: GC-垃圾回收机制">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/07/03/代理模式/" title="下一篇: 代理模式">
+            <a href="/2019/07/10/hive/" title="下一篇: hive">
                 <i class="fa fa-angle-right"></i>
             </a>
         
