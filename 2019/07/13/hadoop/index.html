@@ -14,21 +14,19 @@
 <meta name="author" content="HanderH">
 
 
-    
-    
 
-
-<meta name="description" content="学习总结　思考感悟　知识管理">
-<meta name="keywords" content="java 大数据　IT">
-<meta property="og:type" content="website">
-<meta property="og:title" content="hsj的博客">
-<meta property="og:url" content="http://www.handerh.top/index.html">
+<meta name="description" content="1.hadoop的优势 高可靠：维护多个副本，数据不易丢失 高扩展：集群方便添加节点 高效：MapReduce并行处理程序 高容错：提交任务失败会再次提交  2.hadoop的组成 MapReduce:负责计算 Map阶段并行处理输入的数据 Reduce阶段对Map结果进行汇总  Yarn:资源调度 Yarn主要由ResourceManager,NodeManager,ApplicationMas">
+<meta name="keywords" content="hadoop">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hadoop">
+<meta property="og:url" content="http://www.handerh.top/2019/07/13/hadoop/index.html">
 <meta property="og:site_name" content="hsj的博客">
-<meta property="og:description" content="学习总结　思考感悟　知识管理">
+<meta property="og:description" content="1.hadoop的优势 高可靠：维护多个副本，数据不易丢失 高扩展：集群方便添加节点 高效：MapReduce并行处理程序 高容错：提交任务失败会再次提交  2.hadoop的组成 MapReduce:负责计算 Map阶段并行处理输入的数据 Reduce阶段对Map结果进行汇总  Yarn:资源调度 Yarn主要由ResourceManager,NodeManager,ApplicationMas">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-14T03:19:24.509Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hsj的博客">
-<meta name="twitter:description" content="学习总结　思考感悟　知识管理">
+<meta name="twitter:title" content="hadoop">
+<meta name="twitter:description" content="1.hadoop的优势 高可靠：维护多个副本，数据不易丢失 高扩展：集群方便添加节点 高效：MapReduce并行处理程序 高容错：提交任务失败会再次提交  2.hadoop的组成 MapReduce:负责计算 Map阶段并行处理输入的数据 Reduce阶段对Map结果进行汇总  Yarn:资源调度 Yarn主要由ResourceManager,NodeManager,ApplicationMas">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -56,13 +54,11 @@
 <link rel="stylesheet" href="/css/style.css">
 
 
-    <style> .article { opacity: 0;} </style>
-
 
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>hsj的博客</title>
+<title>hadoop | hsj的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -71,8 +67,8 @@
     var yiliaConfig = {
         fancybox: true,
         animate: true,
-        isHome: true,
-        isPost: false,
+        isHome: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -289,12 +285,15 @@ var _hmt = _hmt || [];
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-hadoop" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-hadoop" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/2019/07/13/hadoop/" class="article-date">
       <time datetime="2019-07-13T07:43:02.000Z" itemprop="datePublished">2019-07-13</time>
 </a>
@@ -311,8 +310,8 @@ var _hmt = _hmt || [];
        
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/13/hadoop/">hadoop</a>
+    <h1 class="article-title" itemprop="name">
+      hadoop
     </h1>
   
 
@@ -341,6 +340,21 @@ var _hmt = _hmt || [];
            -->
        </header>
         
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -486,894 +500,140 @@ var _hmt = _hmt || [];
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
   
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-交换排序" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/07/10/交换排序/" class="article-date">
-      <time datetime="2019-07-10T12:30:08.000Z" itemprop="datePublished">2019-07-10</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/10/交换排序/">交换排序</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">423字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="交换排序的基本思想"><a href="#交换排序的基本思想" class="headerlink" title="交换排序的基本思想"></a>交换排序的基本思想</h3><p>根据序列中两个元素的比较结果来对换这两个记录在序列中的位置，也就是说，将键值较大的记录向序列的尾部移动，键值较小的记录向序列的前部移动。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/07/10/交换排序/#more">more >></a>
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/07/13/hadoop/">hadoop</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">HanderH</a></p>
+        <p><span>发布时间:</span>2019-07-13, 15:43:02</p>
+        <p><span>最后更新:</span>2019-07-14, 11:19:24</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/07/13/hadoop/" title="hadoop">http://www.handerh.top/2019/07/13/hadoop/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/07/13/hadoop/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hive" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/07/10/hive/" class="article-date">
-      <time datetime="2019-07-10T08:21:25.000Z" itemprop="datePublished">2019-07-10</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/10/hive/">hive</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">4.6k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">21分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="1-hive的基本概念"><a href="#1-hive的基本概念" class="headerlink" title="1.hive的基本概念"></a>1.hive的基本概念</h2><p>Hive是基于hadoop的一个数据仓库工具，可以将结构化数据文件映射成一张表，并提供类sql查询功能</p>
-<p>本质：将sql语句转化成MapReduce程序</p>
-<ol>
-<li><p>hive处理的数据存储在hdfs</p>
-</li>
-<li><p>hive分析数据底层的实现是MapReduce</p>
-</li>
-<li><p>执行程序运行在yarn上</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/hive/">hive</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hive/">hive</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/07/10/hive/#more">more >></a>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
         </p>
-      
-      <div class="clearfix"></div>
     </div>
-    
-  </div>
-  
-</article>
 
 
 
-
-
-
-
-
-
-  
-    <article id="post-插入排序" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/07/10/插入排序/" class="article-date">
-      <time datetime="2019-07-10T00:48:58.000Z" itemprop="datePublished">2019-07-10</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
+    <nav id="article-nav">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/10/插入排序/">插入排序</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">581字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
         
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="一-直接插入排序"><a href="#一-直接插入排序" class="headerlink" title="一.直接插入排序"></a>一.直接插入排序</h2><p>算法思想：当插入第i个元素的时候，前面的V[0],…,V[i-1]等i-1个 元素已经有序。这时，将第i个元素与前i-1个元素V[i-1]，…，V[0]依次比较，找到插入位置即将V[i]插入，同时原来位置上的元素向后顺移。在这里，插入位置的查找是顺序查找。直接插入排序是一种稳定的排序算法。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/07/10/插入排序/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-java类加载器" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/07/09/java类加载器/" class="article-date">
-      <time datetime="2019-07-09T09:13:37.000Z" itemprop="datePublished">2019-07-09</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/07/10/交换排序/">
+                    交换排序
+                </a>
+            </div>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/09/java类加载器/">java类加载器</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">714字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="一-java类加载器的种类"><a href="#一-java类加载器的种类" class="headerlink" title="一.java类加载器的种类"></a>一.java类加载器的种类</h2><ol>
-<li>启动类加载器(Bootstrap):加载 java_home/jre/lib下面的类库</li>
-<li>扩展类加载器(Extension):加载 java_home/jre/lib/ext下面的类库</li>
-<li>系统类加载器(System/App):加载classpath下的类</li>
-</ol>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/jvm-java/">jvm java</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jvm/">jvm</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/07/09/java类加载器/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-GC-垃圾回收机制" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/07/04/GC-垃圾回收机制/" class="article-date">
-      <time datetime="2019-07-04T12:27:11.000Z" itemprop="datePublished">2019-07-04</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/04/GC-垃圾回收机制/">GC-垃圾回收机制</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.6k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">5分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="一-垃圾回收机制干嘛的"><a href="#一-垃圾回收机制干嘛的" class="headerlink" title="一.垃圾回收机制干嘛的"></a>一.垃圾回收机制干嘛的</h2><p>当我们运行一个程序时，创建的对象和一些变量是存在内存中，如果我们创建的对象和变量过多，它会占用大量的内存，在程序运行时，有一些对象和变量可能是无用的，我们没必要浪费内存去存储，垃圾回收机制就是帮我们回收这些无用的垃圾。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/jvm/">jvm</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jvm/">jvm</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/07/04/GC-垃圾回收机制/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-工厂模式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/07/04/工厂模式/" class="article-date">
-      <time datetime="2019-07-04T08:51:29.000Z" itemprop="datePublished">2019-07-04</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/04/工厂模式/">工厂模式</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">621字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="java设计模式之工厂模式"><a href="#java设计模式之工厂模式" class="headerlink" title="java设计模式之工厂模式"></a>java设计模式之工厂模式</h3><p>什么是工厂模式：实现了对同一接口下一些类的实例的创建，定义了一个产生实例对象的接口，让其子类决定实例化哪个工厂类</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java设计模式/">java设计模式</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/07/04/工厂模式/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-代理模式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/07/03/代理模式/" class="article-date">
-      <time datetime="2019-07-03T12:06:35.000Z" itemprop="datePublished">2019-07-03</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/03/代理模式/">代理模式</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">661字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="java的静态代理和动态代理"><a href="#java的静态代理和动态代理" class="headerlink" title="java的静态代理和动态代理"></a>java的静态代理和动态代理</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>代理模式是一种常见的设计模式，分为静态代理，动态代理。代理提供了一种让我们间接访问目标对象的方法，以便我们对目标对象实现基本的功能外，还可以增加一些额外的功能。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java设计模式/">java设计模式</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/07/03/代理模式/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-java类与类之间的关系" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/07/03/java类与类之间的关系/" class="article-date">
-      <time datetime="2019-07-03T11:08:36.000Z" itemprop="datePublished">2019-07-03</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/03/java类与类之间的关系/">java类与类之间的关系</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">496字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="java类之间的关系"><a href="#java类之间的关系" class="headerlink" title="java类之间的关系"></a>java类之间的关系</h3><p>在java的面向对象的设计模式中，类与类之间的关系主要有６种。分别是依赖，关联，聚合，组合，继承，实现。其中，关联，聚合，组合仅仅在语义上有区别，在编程环境中的语法是一样的。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/java/">java</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/07/03/java类与类之间的关系/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hbase基本操作" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/07/02/hbase基本操作/" class="article-date">
-      <time datetime="2019-07-02T07:06:41.000Z" itemprop="datePublished">2019-07-02</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/02/hbase基本操作/">hbase的基本操作</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">2k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">10分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="一-hbase环境搭建"><a href="#一-hbase环境搭建" class="headerlink" title="一.hbase环境搭建"></a>一.hbase环境搭建</h2><p>在操作hbase之前，肯定得先搭好环境。hbase的环境搭建其实也挺简单的，但前提是你配置好了hadoop和Zookeeper.</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/hbase/">hbase</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hbase/">hbase</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/07/02/hbase基本操作/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
+
   
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-hadoop的优势"><span class="toc-number">1.</span> <span class="toc-text">1.hadoop的优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-hadoop的组成"><span class="toc-number">2.</span> <span class="toc-text">2.hadoop的组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-Hdfs"><span class="toc-number">3.</span> <span class="toc-text">三.Hdfs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1hdfs的读写流程"><span class="toc-number">3.1.</span> <span class="toc-text">3.1hdfs的读写流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-副本节点选择"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 副本节点选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-数据完整性"><span class="toc-number">3.3.</span> <span class="toc-text">3.3.数据完整性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四-MapReduce"><span class="toc-number">4.</span> <span class="toc-text">四.MapReduce</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-MapReduce进程"><span class="toc-number">4.1.</span> <span class="toc-text">4.1.MapReduce进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-文件切片"><span class="toc-number">4.2.</span> <span class="toc-text">4.2.文件切片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-Shuffle机制"><span class="toc-number">4.3.</span> <span class="toc-text">4.3.Shuffle机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-Partition-分区"><span class="toc-number">4.4.</span> <span class="toc-text">4.4.Partition 分区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5排序"><span class="toc-number">4.5.</span> <span class="toc-text">4.5排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-Combiner-合并"><span class="toc-number">4.6.</span> <span class="toc-text">4.6 Combiner 合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-MapTask-ReduceTask工作机制"><span class="toc-number">4.7.</span> <span class="toc-text">4.7.MapTask,ReduceTask工作机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-8-join操作"><span class="toc-number">4.8.</span> <span class="toc-text">4.8.join操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五-Yarn"><span class="toc-number">5.</span> <span class="toc-text">五.Yarn</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-6 i,
+        .toc-level-6 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"hadoop　| hsj的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <section class="livere" id="comments">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NDk3My8yMTQ5Mw==">
+    <script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+    </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/07/10/交换排序/" title="下一篇: 交换排序">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/13/hadoop/">hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/交换排序/">交换排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/hive/">hive</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/插入排序/">插入排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/09/java类加载器/">java类加载器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/GC-垃圾回收机制/">GC-垃圾回收机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/工厂模式/">工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/代理模式/">代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/java类与类之间的关系/">java类与类之间的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/hbase基本操作/">hbase的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/简单了解一下zookeeper/">简单了解一下zookeeper</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/深入理解volatile/">深入理解volatile</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/谈谈synchronized/">谈谈synchronized</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/30/java-IO/">java IO</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/java的exception/">Exception</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/equals/">equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/clone-浅拷贝与深拷贝/">clone() 浅拷贝与深拷贝</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/27/Flume/">Flume</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/26/java设计模式-单例模式/">java设计模式(单例模式)</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
@@ -1445,10 +705,6 @@ setInterval("createtime()",250);
         })
     </script>
 
-
-    
-
-     
 
 
 
