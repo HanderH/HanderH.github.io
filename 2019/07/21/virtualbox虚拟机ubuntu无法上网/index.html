@@ -15,18 +15,25 @@
 
 
 
-<meta name="description" content="一.直接插入排序算法思想：当插入第i个元素的时候，前面的V[0],…,V[i-1]等i-1个 元素已经有序。这时，将第i个元素与前i-1个元素V[i-1]，…，V[0]依次比较，找到插入位置即将V[i]插入，同时原来位置上的元素向后顺移。在这里，插入位置的查找是顺序查找。直接插入排序是一种稳定的排序算法。">
-<meta name="keywords" content="数据结构与算法">
+<meta name="description" content="今天想要在虚拟机上安装redis，结果尽然发现虚拟机不能上网，根据网上的一顿操作，差点把自己心态搞崩，不过，最后还是集百家智慧，重要搞定了。 打开虚拟机的时候，果断 sudo apt-get install redis-server,结果发现不能上网, ping www.baidu.com ,发现ping不同，顿时感觉不好了，于是去度娘搜了一波，过程极度坎坷，好在最后成功解决。 解决方法,配置双网">
+<meta name="keywords" content="ubuntu linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="插入排序">
-<meta property="og:url" content="http://www.handerh.top/2019/07/10/插入排序/index.html">
+<meta property="og:title" content="virtualbox虚拟机ubuntu无法上网">
+<meta property="og:url" content="http://www.handerh.top/2019/07/21/virtualbox虚拟机ubuntu无法上网/index.html">
 <meta property="og:site_name" content="hsj的博客">
-<meta property="og:description" content="一.直接插入排序算法思想：当插入第i个元素的时候，前面的V[0],…,V[i-1]等i-1个 元素已经有序。这时，将第i个元素与前i-1个元素V[i-1]，…，V[0]依次比较，找到插入位置即将V[i]插入，同时原来位置上的元素向后顺移。在这里，插入位置的查找是顺序查找。直接插入排序是一种稳定的排序算法。">
+<meta property="og:description" content="今天想要在虚拟机上安装redis，结果尽然发现虚拟机不能上网，根据网上的一顿操作，差点把自己心态搞崩，不过，最后还是集百家智慧，重要搞定了。 打开虚拟机的时候，果断 sudo apt-get install redis-server,结果发现不能上网, ping www.baidu.com ,发现ping不同，顿时感觉不好了，于是去度娘搜了一波，过程极度坎坷，好在最后成功解决。 解决方法,配置双网">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-10T12:19:44.299Z">
+<meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/1.png">
+<meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/2.png">
+<meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/3.png">
+<meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/4.png">
+<meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/5.png">
+<meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/6.png">
+<meta property="og:updated_time" content="2019-07-21T04:27:35.754Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="插入排序">
-<meta name="twitter:description" content="一.直接插入排序算法思想：当插入第i个元素的时候，前面的V[0],…,V[i-1]等i-1个 元素已经有序。这时，将第i个元素与前i-1个元素V[i-1]，…，V[0]依次比较，找到插入位置即将V[i]插入，同时原来位置上的元素向后顺移。在这里，插入位置的查找是顺序查找。直接插入排序是一种稳定的排序算法。">
+<meta name="twitter:title" content="virtualbox虚拟机ubuntu无法上网">
+<meta name="twitter:description" content="今天想要在虚拟机上安装redis，结果尽然发现虚拟机不能上网，根据网上的一顿操作，差点把自己心态搞崩，不过，最后还是集百家智慧，重要搞定了。 打开虚拟机的时候，果断 sudo apt-get install redis-server,结果发现不能上网, ping www.baidu.com ,发现ping不同，顿时感觉不好了，于是去度娘搜了一波，过程极度坎坷，好在最后成功解决。 解决方法,配置双网">
+<meta name="twitter:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/1.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -58,7 +65,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>插入排序 | hsj的博客</title>
+<title>virtualbox虚拟机ubuntu无法上网 | hsj的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -285,7 +292,7 @@ var _hmt = _hmt || [];
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-插入排序" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-virtualbox虚拟机ubuntu无法上网" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       
@@ -294,8 +301,8 @@ var _hmt = _hmt || [];
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2019/07/10/插入排序/" class="article-date">
-      <time datetime="2019-07-10T00:48:58.000Z" itemprop="datePublished">2019-07-10</time>
+<a href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/" class="article-date">
+      <time datetime="2019-07-21T03:37:06.000Z" itemprop="datePublished">2019-07-21</time>
 </a>
 
 
@@ -311,7 +318,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      插入排序
+      virtualbox虚拟机ubuntu无法上网
     </h1>
   
 
@@ -322,7 +329,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">581字</span>
+        <span class="post-count">311字</span>
       </span>
     </span>
 
@@ -331,7 +338,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
+        <span class="post-count">1分</span>
       </span>
     </span>
 </div>
@@ -344,13 +351,13 @@ var _hmt = _hmt || [];
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
+    <a class="article-category-link" href="/categories/linux/">linux</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu-linux/">ubuntu linux</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -360,17 +367,28 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="一-直接插入排序"><a href="#一-直接插入排序" class="headerlink" title="一.直接插入排序"></a>一.直接插入排序</h2><p>算法思想：当插入第i个元素的时候，前面的V[0],…,V[i-1]等i-1个 元素已经有序。这时，将第i个元素与前i-1个元素V[i-1]，…，V[0]依次比较，找到插入位置即将V[i]插入，同时原来位置上的元素向后顺移。在这里，插入位置的查找是顺序查找。直接插入排序是一种稳定的排序算法。</p>
-<a id="more"></a>
+        <p>今天想要在虚拟机上安装redis，结果尽然发现虚拟机不能上网，根据网上的一顿操作，差点把自己心态搞崩，不过，最后还是集百家智慧，重要搞定了。</p>
+<p>打开虚拟机的时候，果断 sudo apt-get install redis-server,结果发现不能上网,</p>
+<p>ping <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> ,发现ping不同，顿时感觉不好了，于是去度娘搜了一波，过程极度坎坷，好在最后成功解决。</p>
+<p>解决方法,配置双网卡，一个Nat模式，用来连接外网，一个host-only模式，用来虚拟机与主机之间进行交换。</p>
+<p>一.配置Nat模式 </p>
+<p>全局设定－－》网络－－》添加</p>
+<p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/1.png" alt></p>
+<p>设置–&gt;网络－－》nat模式（网卡一）</p>
+<p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/2.png" alt></p>
+<p>二.设置host-only模式（网卡二）</p>
+<p>点击管理–&gt;主机网络管理器–&gt;</p>
+<p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/3.png" alt></p>
+<p>设置–&gt;网络－－》host-only</p>
+<p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/4.png" alt></p>
+<p>配置文件　 sudo vi /etc/network/interfaces</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># The loopback network interface</span><br><span class="line">auto lo</span><br><span class="line">iface lo inet loopback</span><br><span class="line"></span><br><span class="line"># The primary network interface　网卡一</span><br><span class="line">auto enp0s3</span><br><span class="line">iface enp0s3 inet dhcp</span><br><span class="line">up route add default gw 10.0.2.2 dev enp0s3 #网卡一默认走网关10.0.2.2 </span><br><span class="line"># The primary network interface2　网卡二</span><br><span class="line">auto enp0s8</span><br><span class="line">iface enp0s8 inet static</span><br><span class="line">address 192.168.56.16</span><br><span class="line">gateway 192.168.56.1</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line">broadcast 192.168.56.255</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public void directInsertSort(int[] arr) &#123;</span><br><span class="line">		if(arr.length == 0 || arr == null) &#123;</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		for(int i=1;i&lt;arr.length;i++) &#123;</span><br><span class="line">			for(int j=i-1;j&gt;=0;j--) &#123;</span><br><span class="line">				if(arr[j]&gt;arr[j+1]) &#123;</span><br><span class="line">					int tmp = arr[j+1];</span><br><span class="line">					arr[j+1] = arr[j];</span><br><span class="line">					arr[j] = tmp;</span><br><span class="line">				&#125; </span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="二-希尔排序"><a href="#二-希尔排序" class="headerlink" title="二.希尔排序"></a>二.希尔排序</h2><p>算法思想：希尔排序也是一种插入排序，只不过希尔排序是根据步长进行比较，不是与前面一个一个元素进行比较。确定步长step，将每个步长为step的元素进行比较,使用插入排序，让该序列有序，之后步长递减，将每个步长为step的元素进行比较，使用插入排序，让该序列有序，直到步长为１．</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public void shellSort(int[] arr) &#123;</span><br><span class="line">		//确定每次比较的步长 </span><br><span class="line">		for(int step = arr.length/2;step&gt;0;step/=2) &#123;</span><br><span class="line">			//　每个步长序列进行直接插入排序</span><br><span class="line">			for(int i=step;i&lt;arr.length;i++) &#123;</span><br><span class="line">				for(int j=i-step;j&gt;=0;j-=step) &#123;</span><br><span class="line">					if(arr[j+step]&lt;arr[j]) &#123;</span><br><span class="line">						int tmp = arr[j+step];</span><br><span class="line">							arr[j+step]=arr[j];</span><br><span class="line">							arr[j] = tmp;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="三-折半插入"><a href="#三-折半插入" class="headerlink" title="三.折半插入"></a>三.折半插入</h2><p>算法思想：当插入第i(i&gt;=1)个元素时，前面的V[0],…,V[i-1]等i-1个 元素已经有序，跟直接插入不同的是，折半插入不会与前面的元素一个个比较，而是利用二分搜索的思想，搜索到位置，进行插入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public void binarySerachInsert(int[] arr) &#123;</span><br><span class="line">		for(int i=1;i&lt;arr.length;i++) &#123;</span><br><span class="line">			int right = i-1;</span><br><span class="line">			int left = 0;</span><br><span class="line">			int tmp = arr[i];</span><br><span class="line">			// 第i个元素的值小于有序序列的最大值</span><br><span class="line">			if(tmp&lt;arr[right]) &#123;</span><br><span class="line">				while(left&lt;=right) &#123;</span><br><span class="line">					int mid = (right+left)/2;</span><br><span class="line">					if(tmp&gt;arr[mid]) &#123;</span><br><span class="line">						left = mid+1;</span><br><span class="line">					&#125;else if(tmp&lt;arr[mid]) &#123;</span><br><span class="line">						right = mid-1;</span><br><span class="line">					&#125;else &#123;</span><br><span class="line">						left = left+1;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				for(int j=i;j&gt;left;j--) &#123;</span><br><span class="line">					arr[j] = arr[j-1];</span><br><span class="line">				&#125;</span><br><span class="line">				arr[left] = tmp;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
+<p>最后都可以ping通</p>
+<p>ping <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></p>
+<p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/5.png" alt></p>
+<p>ping主机</p>
+<p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/6.png" alt></p>
 
       
     </div>
@@ -379,13 +397,13 @@ var _hmt = _hmt || [];
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/07/10/插入排序/">插入排序</a></p>
+        <p><span>本文标题:</span><a href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/">virtualbox虚拟机ubuntu无法上网</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HanderH</a></p>
-        <p><span>发布时间:</span>2019-07-10, 08:48:58</p>
-        <p><span>最后更新:</span>2019-07-10, 20:19:44</p>
+        <p><span>发布时间:</span>2019-07-21, 11:37:06</p>
+        <p><span>最后更新:</span>2019-07-21, 12:27:35</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/07/10/插入排序/" title="插入排序">http://www.handerh.top/2019/07/10/插入排序/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/07/10/插入排序/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/" title="virtualbox虚拟机ubuntu无法上网">http://www.handerh.top/2019/07/21/virtualbox虚拟机ubuntu无法上网/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/07/21/virtualbox虚拟机ubuntu无法上网/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -397,16 +415,10 @@ var _hmt = _hmt || [];
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/07/10/hive/">
-                    hive
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/07/09/java类加载器/">
-                    java类加载器
+                <a href="/2019/07/13/hadoop/">
+                    hadoop
                 </a>
             </div>
         
@@ -418,7 +430,7 @@ var _hmt = _hmt || [];
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-直接插入排序"><span class="toc-number">1.</span> <span class="toc-text">一.直接插入排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-希尔排序"><span class="toc-number">2.</span> <span class="toc-text">二.希尔排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-折半插入"><span class="toc-number">3.</span> <span class="toc-text">三.折半插入</span></a></li></ol>
+            
         
     </div>
     <style>
@@ -454,7 +466,7 @@ var _hmt = _hmt || [];
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"插入排序　| hsj的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"virtualbox虚拟机ubuntu无法上网　| hsj的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -495,15 +507,13 @@ var _hmt = _hmt || [];
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/07/10/hive/" title="上一篇: hive">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/07/09/java类加载器/" title="下一篇: java类加载器">
+            <a href="/2019/07/13/hadoop/" title="下一篇: hadoop">
                 <i class="fa fa-angle-right"></i>
             </a>
         

@@ -15,18 +15,20 @@
 
 
 
-<meta name="description" content="1.hadoop的优势 高可靠：维护多个副本，数据不易丢失 高扩展：集群方便添加节点 高效：MapReduce并行处理程序 高容错：提交任务失败会再次提交  2.hadoop的组成 MapReduce:负责计算 Map阶段并行处理输入的数据 Reduce阶段对Map结果进行汇总  Yarn:资源调度 Yarn主要由ResourceManager,NodeManager,ApplicationMas">
+<meta name="description" content="1.hadoop的优势 高可靠：维护多个副本，数据不易丢失  高扩展：集群方便添加节点">
 <meta name="keywords" content="hadoop">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hadoop">
 <meta property="og:url" content="http://www.handerh.top/2019/07/13/hadoop/index.html">
 <meta property="og:site_name" content="hsj的博客">
-<meta property="og:description" content="1.hadoop的优势 高可靠：维护多个副本，数据不易丢失 高扩展：集群方便添加节点 高效：MapReduce并行处理程序 高容错：提交任务失败会再次提交  2.hadoop的组成 MapReduce:负责计算 Map阶段并行处理输入的数据 Reduce阶段对Map结果进行汇总  Yarn:资源调度 Yarn主要由ResourceManager,NodeManager,ApplicationMas">
+<meta property="og:description" content="1.hadoop的优势 高可靠：维护多个副本，数据不易丢失  高扩展：集群方便添加节点">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-14T03:19:24.509Z">
+<meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/shuffle.png">
+<meta property="og:updated_time" content="2019-07-14T08:48:53.798Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hadoop">
-<meta name="twitter:description" content="1.hadoop的优势 高可靠：维护多个副本，数据不易丢失 高扩展：集群方便添加节点 高效：MapReduce并行处理程序 高容错：提交任务失败会再次提交  2.hadoop的组成 MapReduce:负责计算 Map阶段并行处理输入的数据 Reduce阶段对Map结果进行汇总  Yarn:资源调度 Yarn主要由ResourceManager,NodeManager,ApplicationMas">
+<meta name="twitter:description" content="1.hadoop的优势 高可靠：维护多个副本，数据不易丢失  高扩展：集群方便添加节点">
+<meta name="twitter:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/shuffle.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -206,7 +208,7 @@ var _hmt = _hmt || [];
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flume/">Flume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hbase/">hbase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hive/">hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java多线程/">java多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java设计模式/">java设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flume/">Flume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hbase/">hbase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hive/">hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java多线程/">java多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java设计模式/">java设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu-linux/">ubuntu linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
                     </div>
                 </section>
                 
@@ -361,10 +363,15 @@ var _hmt = _hmt || [];
       
           
         <h2 id="1-hadoop的优势"><a href="#1-hadoop的优势" class="headerlink" title="1.hadoop的优势"></a>1.hadoop的优势</h2><ol>
-<li>高可靠：维护多个副本，数据不易丢失</li>
-<li>高扩展：集群方便添加节点</li>
-<li>高效：MapReduce并行处理程序</li>
-<li>高容错：提交任务失败会再次提交</li>
+<li><p>高可靠：维护多个副本，数据不易丢失</p>
+</li>
+<li><p>高扩展：集群方便添加节点</p>
+<a id="more"></a>
+</li>
+<li><p>高效：MapReduce并行处理程序</p>
+</li>
+<li><p>高容错：提交任务失败会再次提交</p>
+</li>
 </ol>
 <h2 id="2-hadoop的组成"><a href="#2-hadoop的组成" class="headerlink" title="2.hadoop的组成"></a>2.hadoop的组成</h2><ul>
 <li><p>MapReduce:负责计算</p>
@@ -419,7 +426,7 @@ var _hmt = _hmt || [];
 <p><strong>KeyValueTextInputFormat</strong>:也是按行读取数据，键值对&lt;Text,Text&gt;,默认按tab键分割，tab键前面的为key，后面的为value。可以通过conf.set(KeyValueLineRecordReader.KEY_VALUE_SEPARATOR,”\t”)设置</p>
 <p><strong>NLineInputFormat</strong>:不在按block进行分片，而是按照指定的行数进行分片,NLineInputFormat.setNumLinesPerSplit(job,num);</p>
 <h3 id="4-3-Shuffle机制"><a href="#4-3-Shuffle机制" class="headerlink" title="4.3.Shuffle机制"></a>4.3.Shuffle机制</h3><p>Shuffle实在map方法之后，reduce方法之前。如图:</p>
-<p><img src alt></p>
+<p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/shuffle.png" alt></p>
 <p>1）MapTask收集我们的map()方法输出的kv对，放到内存缓冲区中</p>
 <p>2）从内存缓冲区不断溢出本地磁盘文件，可能会溢出多个文件</p>
 <p>3）多个溢出文件会被合并成大的溢出文件</p>
@@ -507,7 +514,7 @@ var _hmt = _hmt || [];
         <p><span>本文标题:</span><a href="/2019/07/13/hadoop/">hadoop</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HanderH</a></p>
         <p><span>发布时间:</span>2019-07-13, 15:43:02</p>
-        <p><span>最后更新:</span>2019-07-14, 11:19:24</p>
+        <p><span>最后更新:</span>2019-07-14, 16:48:53</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/07/13/hadoop/" title="hadoop">http://www.handerh.top/2019/07/13/hadoop/</a>
             <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/07/13/hadoop/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -521,6 +528,12 @@ var _hmt = _hmt || [];
 
 
     <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/">
+                    virtualbox虚拟机ubuntu无法上网
+                </a>
+            </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
@@ -614,7 +627,9 @@ var _hmt = _hmt || [];
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/" title="上一篇: virtualbox虚拟机ubuntu无法上网">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -626,7 +641,7 @@ var _hmt = _hmt || [];
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/13/hadoop/">hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/交换排序/">交换排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/hive/">hive</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/插入排序/">插入排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/09/java类加载器/">java类加载器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/GC-垃圾回收机制/">GC-垃圾回收机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/工厂模式/">工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/代理模式/">代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/java类与类之间的关系/">java类与类之间的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/hbase基本操作/">hbase的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/简单了解一下zookeeper/">简单了解一下zookeeper</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/深入理解volatile/">深入理解volatile</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/谈谈synchronized/">谈谈synchronized</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/30/java-IO/">java IO</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/java的exception/">Exception</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/equals/">equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/clone-浅拷贝与深拷贝/">clone() 浅拷贝与深拷贝</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/27/Flume/">Flume</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/26/java设计模式-单例模式/">java设计模式(单例模式)</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/">virtualbox虚拟机ubuntu无法上网</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/13/hadoop/">hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/交换排序/">交换排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/hive/">hive</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/插入排序/">插入排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/09/java类加载器/">java类加载器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/GC-垃圾回收机制/">GC-垃圾回收机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/工厂模式/">工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/代理模式/">代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/java类与类之间的关系/">java类与类之间的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/hbase基本操作/">hbase的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/简单了解一下zookeeper/">简单了解一下zookeeper</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/深入理解volatile/">深入理解volatile</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/谈谈synchronized/">谈谈synchronized</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/30/java-IO/">java IO</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/java的exception/">Exception</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/equals/">equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/clone-浅拷贝与深拷贝/">clone() 浅拷贝与深拷贝</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/27/Flume/">Flume</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/26/java设计模式-单例模式/">java设计模式(单例模式)</a></li></ul>
 
 
 
