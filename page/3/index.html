@@ -14,19 +14,21 @@
 <meta name="author" content="HanderH">
 
 
+    
+    
 
-<meta name="description" content="交换排序的基本思想根据序列中两个元素的比较结果来对换这两个记录在序列中的位置，也就是说，将键值较大的记录向序列的尾部移动，键值较小的记录向序列的前部移动。">
-<meta name="keywords" content="数据结构与算法">
-<meta property="og:type" content="article">
-<meta property="og:title" content="交换排序">
-<meta property="og:url" content="http://www.handerh.top/2019/07/10/交换排序/index.html">
+
+<meta name="description" content="学习总结　思考感悟　知识管理">
+<meta name="keywords" content="java 大数据　IT">
+<meta property="og:type" content="website">
+<meta property="og:title" content="hsj的博客">
+<meta property="og:url" content="http://www.handerh.top/page/3/index.html">
 <meta property="og:site_name" content="hsj的博客">
-<meta property="og:description" content="交换排序的基本思想根据序列中两个元素的比较结果来对换这两个记录在序列中的位置，也就是说，将键值较大的记录向序列的尾部移动，键值较小的记录向序列的前部移动。">
+<meta property="og:description" content="学习总结　思考感悟　知识管理">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-11T13:41:29.672Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="交换排序">
-<meta name="twitter:description" content="交换排序的基本思想根据序列中两个元素的比较结果来对换这两个记录在序列中的位置，也就是说，将键值较大的记录向序列的尾部移动，键值较小的记录向序列的前部移动。">
+<meta name="twitter:title" content="hsj的博客">
+<meta name="twitter:description" content="学习总结　思考感悟　知识管理">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -54,11 +56,13 @@
 <link rel="stylesheet" href="/css/style.css">
 
 
+    <style> .article { opacity: 0;} </style>
+
 
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>交换排序 | hsj的博客</title>
+<title>hsj的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -67,8 +71,8 @@
     var yiliaConfig = {
         fancybox: true,
         animate: true,
-        isHome: false,
-        isPost: true,
+        isHome: true,
+        isPost: false,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -285,17 +289,14 @@ var _hmt = _hmt || [];
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-交换排序" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
+  
+    <article id="post-java设计模式-单例模式" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       
-        <!-- 不蒜子统计 -->
-        <span id="busuanzi_container_page_pv" style='display:none' class="article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
-<a href="/2019/07/10/交换排序/" class="article-date">
-      <time datetime="2019-07-10T12:30:08.000Z" itemprop="datePublished">2019-07-10</time>
+<a href="/2019/06/26/java设计模式-单例模式/" class="article-date">
+      <time datetime="2019-06-26T12:17:01.000Z" itemprop="datePublished">2019-06-26</time>
 </a>
 
 
@@ -310,8 +311,8 @@ var _hmt = _hmt || [];
        
         
   
-    <h1 class="article-title" itemprop="name">
-      交换排序
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/26/java设计模式-单例模式/">java设计模式(单例模式)</a>
     </h1>
   
 
@@ -322,7 +323,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">423字</span>
+        <span class="post-count">584字</span>
       </span>
     </span>
 
@@ -331,7 +332,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">2分</span>
       </span>
     </span>
 </div>
@@ -341,128 +342,40 @@ var _hmt = _hmt || [];
        </header>
         
       
-      <div class="article-info article-info-post">
-        
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
-    </div>
-
-
-        
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
-    </div>
-
-        <div class="clearfix"></div>
-      </div>
-      
     
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="交换排序的基本思想"><a href="#交换排序的基本思想" class="headerlink" title="交换排序的基本思想"></a>交换排序的基本思想</h3><p>根据序列中两个元素的比较结果来对换这两个记录在序列中的位置，也就是说，将键值较大的记录向序列的尾部移动，键值较小的记录向序列的前部移动。</p>
-<a id="more"></a>
-
-<h4 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序:"></a>冒泡排序:</h4><p>比较两个相邻的数，如果前面的数大于后面的数，则将这两个数交换位置。第一次遍历后，最大的数会被放到数组的最后位置，即array[length - 1]。第二次遍历时跳过最后一个元素，因为该元素通过第一次遍历已经确定是最大值。持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要较。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public void bubleSort(int[] arr) &#123;</span><br><span class="line">		for(int i=0;i&lt;arr.length-1;i++) &#123;</span><br><span class="line">			for(int j=0;j&lt;arr.length-1-i;j++) &#123;</span><br><span class="line">				if(arr[j]&gt;arr[j+1]) &#123;</span><br><span class="line">					int tmp = arr[j];</span><br><span class="line">					arr[j] = arr[j+1];</span><br><span class="line">					arr[j+1] = tmp;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h4><p>基本思想：</p>
-<ol>
-<li>先从数列中取出一个数作为基准数</li>
-<li>分区过程，将比这个数大的数全放到它的右边，小于或等于它的数全放到它的左边</li>
-<li>再对左右区间重复第二步，直到各区间只有一个数</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public void quickSort(int arr[],int left,int right) &#123;</span><br><span class="line">		if(right&gt;left) &#123;</span><br><span class="line">			int index = getIndex(arr,left,right);</span><br><span class="line">			quickSort(arr,left,index-1);</span><br><span class="line">			quickSort(arr,index+1,right);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	public int getIndex(int[] arr,int left,int right) &#123;</span><br><span class="line">		</span><br><span class="line">		int data = arr[left];</span><br><span class="line">		while(left&lt;right) &#123;</span><br><span class="line">			</span><br><span class="line">			while(left&lt;right&amp;&amp;arr[left]&lt;data) &#123;</span><br><span class="line">				left++;</span><br><span class="line">			&#125;</span><br><span class="line">			arr[right] = arr[left];</span><br><span class="line">			while(left&lt;right&amp;&amp;arr[right]&gt;data) &#123;</span><br><span class="line">				right--;</span><br><span class="line">			&#125;</span><br><span class="line">			arr[left] = arr[right];</span><br><span class="line">		&#125;</span><br><span class="line">		arr[left] = data;</span><br><span class="line">		return left;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+              <h2 id="设计模式之单例模式"><a href="#设计模式之单例模式" class="headerlink" title="设计模式之单例模式"></a>设计模式之单例模式</h2><h3 id="一-什么是单例模式"><a href="#一-什么是单例模式" class="headerlink" title="一.什么是单例模式"></a>一.什么是单例模式</h3><p>​    确保类只有一个实例，不会出现多个</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/java设计模式-java/">java设计模式　java</a>
+    </div>
 
 
       
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java设计模式/">java设计模式</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/06/26/java设计模式-单例模式/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
     </div>
     
   </div>
   
-    
-    <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/07/10/交换排序/">交换排序</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主页">HanderH</a></p>
-        <p><span>发布时间:</span>2019-07-10, 20:30:08</p>
-        <p><span>最后更新:</span>2019-07-11, 21:41:29</p>
-        <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/07/10/交换排序/" title="交换排序">http://www.handerh.top/2019/07/10/交换排序/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/07/10/交换排序/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
-            <script> var clipboard = new Clipboard('.copy-path'); </script>
-        </p>
-        <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
-        </p>
-    </div>
-
-
-
-    <nav id="article-nav">
-        
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/07/13/hadoop/">
-                    hadoop
-                </a>
-            </div>
-        
-        
-            <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/07/10/hive/">
-                    hive
-                </a>
-            </div>
-        
-    </nav>
-
-  
 </article>
 
-    <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
-        
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#交换排序的基本思想"><span class="toc-number">1.</span> <span class="toc-text">交换排序的基本思想</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#冒泡排序"><span class="toc-number">1.1.</span> <span class="toc-text">冒泡排序:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#快速排序"><span class="toc-number">1.2.</span> <span class="toc-text">快速排序</span></a></li></ol></li></ol>
-        
-    </div>
-    <style>
-        .left-col .switch-btn,
-        .left-col .switch-area {
-            display: none;
-        }
-        .toc-level-6 i,
-        .toc-level-6 ol {
-            display: none !important;
-        }
-    </style>
-
-    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
-
-    <script>
-        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
-    </script>
-
-
-
-    
-<div class="share">
-    
-        <div class="bdsharebuttonbox">
-            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
-            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
-            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
-            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
-            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
-            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
-        </div>
-        <script>
-            window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"交换排序　| hsj的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-        </script>
-    
-
-    
-</div>
 
 
 
@@ -470,56 +383,13 @@ var _hmt = _hmt || [];
 
 
 
-    
-      <section class="livere" id="comments">
-    <!-- 来必力City版安装代码 -->
-    <div id="lv-container" data-id="city" data-uid="MTAyMC80NDk3My8yMTQ5Mw==">
-    <script type="text/javascript">
-   (function(d, s) {
-       var j, e = d.getElementsByTagName(s)[0];
 
-       if (typeof LivereTower === 'function') { return; }
-
-       j = d.createElement(s);
-       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-       j.async = true;
-
-       e.parentNode.insertBefore(j, e);
-       })(document, 'script');
-    </script>
-    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
-    </div>
-    <!-- City版安装代码已完成 -->
-</section>
-    
-
-
-
-
-    <div class="scroll" id="post-nav-button">
-        
-            <a href="/2019/07/13/hadoop/" title="上一篇: hadoop">
-                <i class="fa fa-angle-left"></i>
-            </a>
-        
-
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
-        
-            <a href="/2019/07/10/hive/" title="下一篇: hive">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
-    </div>
-
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/22/scala/">scala</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/">virtualbox虚拟机ubuntu无法上网</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/13/hadoop/">hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/交换排序/">交换排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/hive/">hive</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/插入排序/">插入排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/09/java类加载器/">java类加载器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/GC-垃圾回收机制/">GC-垃圾回收机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/工厂模式/">工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/代理模式/">代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/java类与类之间的关系/">java类与类之间的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/hbase基本操作/">hbase的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/简单了解一下zookeeper/">简单了解一下zookeeper</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/深入理解volatile/">深入理解volatile</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/谈谈synchronized/">谈谈synchronized</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/30/java-IO/">java IO</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/java的exception/">Exception</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/equals/">equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/clone-浅拷贝与深拷贝/">clone() 浅拷贝与深拷贝</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/27/Flume/">Flume</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/26/java设计模式-单例模式/">java设计模式(单例模式)</a></li></ul>
-
-
-
-
-    <script>
-        
-    </script>
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
+  
 </div>
       <footer id="footer">
     <div class="outer">
@@ -591,6 +461,10 @@ setInterval("createtime()",250);
         })
     </script>
 
+
+    
+
+     
 
 
 

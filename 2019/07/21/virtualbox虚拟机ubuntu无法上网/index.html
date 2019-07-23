@@ -23,17 +23,17 @@
 <meta property="og:site_name" content="hsj的博客">
 <meta property="og:description" content="今天想要在虚拟机上安装redis，结果尽然发现虚拟机不能上网，根据网上的一顿操作，差点把自己心态搞崩，不过，最后还是集百家智慧，重要搞定了。 打开虚拟机的时候，果断 sudo apt-get install redis-server,结果发现不能上网, ping www.baidu.com ,发现ping不同，顿时感觉不好了，于是去度娘搜了一波，过程极度坎坷，好在最后成功解决。 解决方法,配置双网">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/1.png">
+<meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/%EF%BC%91.png">
 <meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/2.png">
 <meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/3.png">
 <meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/4.png">
 <meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/5.png">
 <meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/6.png">
-<meta property="og:updated_time" content="2019-07-21T04:27:35.754Z">
+<meta property="og:updated_time" content="2019-07-21T09:35:57.235Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="virtualbox虚拟机ubuntu无法上网">
 <meta name="twitter:description" content="今天想要在虚拟机上安装redis，结果尽然发现虚拟机不能上网，根据网上的一顿操作，差点把自己心态搞崩，不过，最后还是集百家智慧，重要搞定了。 打开虚拟机的时候，果断 sudo apt-get install redis-server,结果发现不能上网, ping www.baidu.com ,发现ping不同，顿时感觉不好了，于是去度娘搜了一波，过程极度坎坷，好在最后成功解决。 解决方法,配置双网">
-<meta name="twitter:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/1.png">
+<meta name="twitter:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/%EF%BC%91.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -213,7 +213,7 @@ var _hmt = _hmt || [];
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flume/">Flume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hbase/">hbase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hive/">hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java多线程/">java多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java设计模式/">java设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu-linux/">ubuntu linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flume/">Flume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hbase/">hbase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hive/">hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java多线程/">java多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java设计模式/">java设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scala/">scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu-linux/">ubuntu linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
                     </div>
                 </section>
                 
@@ -373,7 +373,7 @@ var _hmt = _hmt || [];
 <p>解决方法,配置双网卡，一个Nat模式，用来连接外网，一个host-only模式，用来虚拟机与主机之间进行交换。</p>
 <p>一.配置Nat模式 </p>
 <p>全局设定－－》网络－－》添加</p>
-<p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/1.png" alt></p>
+<p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/%EF%BC%91.png" alt></p>
 <p>设置–&gt;网络－－》nat模式（网卡一）</p>
 <p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/linux/2.png" alt></p>
 <p>二.设置host-only模式（网卡二）</p>
@@ -400,7 +400,7 @@ var _hmt = _hmt || [];
         <p><span>本文标题:</span><a href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/">virtualbox虚拟机ubuntu无法上网</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HanderH</a></p>
         <p><span>发布时间:</span>2019-07-21, 11:37:06</p>
-        <p><span>最后更新:</span>2019-07-21, 12:27:35</p>
+        <p><span>最后更新:</span>2019-07-21, 17:35:57</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/" title="virtualbox虚拟机ubuntu无法上网">http://www.handerh.top/2019/07/21/virtualbox虚拟机ubuntu无法上网/</a>
             <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/07/21/virtualbox虚拟机ubuntu无法上网/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -414,6 +414,12 @@ var _hmt = _hmt || [];
 
 
     <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2019/07/22/scala/">
+                    scala
+                </a>
+            </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
@@ -507,7 +513,9 @@ var _hmt = _hmt || [];
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2019/07/22/scala/" title="上一篇: scala">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -519,7 +527,7 @@ var _hmt = _hmt || [];
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/">virtualbox虚拟机ubuntu无法上网</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/13/hadoop/">hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/交换排序/">交换排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/hive/">hive</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/插入排序/">插入排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/09/java类加载器/">java类加载器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/GC-垃圾回收机制/">GC-垃圾回收机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/工厂模式/">工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/代理模式/">代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/java类与类之间的关系/">java类与类之间的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/hbase基本操作/">hbase的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/简单了解一下zookeeper/">简单了解一下zookeeper</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/深入理解volatile/">深入理解volatile</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/谈谈synchronized/">谈谈synchronized</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/30/java-IO/">java IO</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/java的exception/">Exception</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/equals/">equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/clone-浅拷贝与深拷贝/">clone() 浅拷贝与深拷贝</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/27/Flume/">Flume</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/26/java设计模式-单例模式/">java设计模式(单例模式)</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/22/scala/">scala</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/">virtualbox虚拟机ubuntu无法上网</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/13/hadoop/">hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/交换排序/">交换排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/hive/">hive</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/插入排序/">插入排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/09/java类加载器/">java类加载器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/GC-垃圾回收机制/">GC-垃圾回收机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/工厂模式/">工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/代理模式/">代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/java类与类之间的关系/">java类与类之间的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/hbase基本操作/">hbase的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/简单了解一下zookeeper/">简单了解一下zookeeper</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/深入理解volatile/">深入理解volatile</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/谈谈synchronized/">谈谈synchronized</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/30/java-IO/">java IO</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/java的exception/">Exception</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/equals/">equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/clone-浅拷贝与深拷贝/">clone() 浅拷贝与深拷贝</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/27/Flume/">Flume</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/26/java设计模式-单例模式/">java设计模式(单例模式)</a></li></ul>
 
 
 

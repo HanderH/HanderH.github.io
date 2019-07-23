@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[scala]]></title>
+    <url>%2F2019%2F07%2F22%2Fscala%2F</url>
+    <content type="text"><![CDATA[一.变量scla的数据类型 Any:根类型，所有类的父类，它有两个直接子类，AnyValue,AnyRef AnyRef:所有Scala中引用类（reference class)的父类 Null:所有引用类的子类，类似与java中的null Nothing:所有类的子类，可以将Nothing类型的值返回给任意变量或者函数 数据类型列表 变量声明1234567规则: val/var vname:type = valuevar i //error 变量声明必须初始化var x = _ //error 需要明确具体的类型val y = _ //error val不可变，需要确定的值var i:int = 10val j:Char = &apos;a&apos; var和val的区别： var修饰的变量是可变的，val修饰的变量是不可变的，它底层其实是使用final关键字修饰 键盘输入语句12345println(&quot;请输入你的姓名&quot;)var name = StdIn.readLine()println(&quot;请输入你的证件号&quot;)var card = StdIn.readLine(); 二.程序流程控制1. if-else与java中的if-else 差不多 2.fo循环控制Scala为for循环这一常见的控制结果提供了非常多的特性，这些特性被成为for推导式或or表达式 范围数据循环方式 12345678910111213//两边都是闭合的for(i&lt;-start to end)&#123; &#125;//左开右闭for(i&lt;-start until end)&#123; &#125;//对集合进行循环遍历var list = List(&quot;hello&quot;,&quot;world&quot;,&quot;good&quot;)for (i&lt;-list)&#123; println(i)&#125; 循环守卫 1234 //条件为true的进入循环体内部 为false的则不进入 for (i&lt;-1 to 10 if i%2!=0 )&#123; println(i)&#125; 引入变量 123 for (i&lt;-1 to 10;j = 10-i )&#123; println(i+&quot;:&quot;+j)&#125; 嵌套循环 1234 //嵌套循环 for (i&lt;-1 to 3;j&lt;-1 to 3)&#123; println(&quot;xxx&quot;)&#125; 循环返回值 123//y 是一个Vector集合 Vector(1, 2, 3)val y = for (i&lt;-1 to 3) yield i println(y) 使用花括号 1234567for &#123; i&lt;-1 to 3 j&lt;-1 to 3 &#125; &#123; println(&quot;xxx&quot;) &#125; 控制步长 12345678//使用range控制for循环的步长 var range = new Range(1,10,2) for (i&lt;- range)&#123; println(i) &#125; for (i&lt;-1 to 10 if i % 2 == 1)&#123; println(i) &#125; 3.while循环控制12345678while()&#123; &#125;do&#123; &#125;while()两者区别:while先进行判断再执行 do while 先执行再判断 循环中断 1234567891011 var i =1; breakable&#123; while (i&lt;20)&#123; println(i) if(i%4==0)&#123; break; &#125; &#125; &#125; //需要导包 import util.control.Breaks._ scala控制结构去掉了continue]]></content>
+      <categories>
+        <category>scala</category>
+      </categories>
+      <tags>
+        <tag>scala</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[virtualbox虚拟机ubuntu无法上网]]></title>
     <url>%2F2019%2F07%2F21%2Fvirtualbox%E8%99%9A%E6%8B%9F%E6%9C%BAubuntu%E6%97%A0%E6%B3%95%E4%B8%8A%E7%BD%91%2F</url>
     <content type="text"><![CDATA[今天想要在虚拟机上安装redis，结果尽然发现虚拟机不能上网，根据网上的一顿操作，差点把自己心态搞崩，不过，最后还是集百家智慧，重要搞定了。 打开虚拟机的时候，果断 sudo apt-get install redis-server,结果发现不能上网, ping www.baidu.com ,发现ping不同，顿时感觉不好了，于是去度娘搜了一波，过程极度坎坷，好在最后成功解决。 解决方法,配置双网卡，一个Nat模式，用来连接外网，一个host-only模式，用来虚拟机与主机之间进行交换。 一.配置Nat模式 全局设定－－》网络－－》添加 设置–&gt;网络－－》nat模式（网卡一） 二.设置host-only模式（网卡二） 点击管理–&gt;主机网络管理器–&gt; 设置–&gt;网络－－》host-only 配置文件 sudo vi /etc/network/interfaces 123456789101112131415# The loopback network interfaceauto loiface lo inet loopback# The primary network interface 网卡一auto enp0s3iface enp0s3 inet dhcpup route add default gw 10.0.2.2 dev enp0s3 #网卡一默认走网关10.0.2.2 # The primary network interface2 网卡二auto enp0s8iface enp0s8 inet staticaddress 192.168.56.16gateway 192.168.56.1netmask 255.255.255.0broadcast 192.168.56.255 最后都可以ping通 ping www.baidu.com ping主机]]></content>

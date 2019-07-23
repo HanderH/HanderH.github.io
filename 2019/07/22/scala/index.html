@@ -15,18 +15,21 @@
 
 
 
-<meta name="description" content="交换排序的基本思想根据序列中两个元素的比较结果来对换这两个记录在序列中的位置，也就是说，将键值较大的记录向序列的尾部移动，键值较小的记录向序列的前部移动。">
-<meta name="keywords" content="数据结构与算法">
+<meta name="description" content="一.变量scla的数据类型  Any:根类型，所有类的父类，它有两个直接子类，AnyValue,AnyRef AnyRef:所有Scala中引用类（reference class)的父类 Null:所有引用类的子类，类似与java中的null">
+<meta name="keywords" content="scala">
 <meta property="og:type" content="article">
-<meta property="og:title" content="交换排序">
-<meta property="og:url" content="http://www.handerh.top/2019/07/10/交换排序/index.html">
+<meta property="og:title" content="scala">
+<meta property="og:url" content="http://www.handerh.top/2019/07/22/scala/index.html">
 <meta property="og:site_name" content="hsj的博客">
-<meta property="og:description" content="交换排序的基本思想根据序列中两个元素的比较结果来对换这两个记录在序列中的位置，也就是说，将键值较大的记录向序列的尾部移动，键值较小的记录向序列的前部移动。">
+<meta property="og:description" content="一.变量scla的数据类型  Any:根类型，所有类的父类，它有两个直接子类，AnyValue,AnyRef AnyRef:所有Scala中引用类（reference class)的父类 Null:所有引用类的子类，类似与java中的null">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-11T13:41:29.672Z">
+<meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/scala/scala1.png">
+<meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/scala/scala2.png">
+<meta property="og:updated_time" content="2019-07-22T09:23:08.743Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="交换排序">
-<meta name="twitter:description" content="交换排序的基本思想根据序列中两个元素的比较结果来对换这两个记录在序列中的位置，也就是说，将键值较大的记录向序列的尾部移动，键值较小的记录向序列的前部移动。">
+<meta name="twitter:title" content="scala">
+<meta name="twitter:description" content="一.变量scla的数据类型  Any:根类型，所有类的父类，它有两个直接子类，AnyValue,AnyRef AnyRef:所有Scala中引用类（reference class)的父类 Null:所有引用类的子类，类似与java中的null">
+<meta name="twitter:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/scala/scala1.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -58,7 +61,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>交换排序 | hsj的博客</title>
+<title>scala | hsj的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -285,7 +288,7 @@ var _hmt = _hmt || [];
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-交换排序" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-scala" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       
@@ -294,8 +297,8 @@ var _hmt = _hmt || [];
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2019/07/10/交换排序/" class="article-date">
-      <time datetime="2019-07-10T12:30:08.000Z" itemprop="datePublished">2019-07-10</time>
+<a href="/2019/07/22/scala/" class="article-date">
+      <time datetime="2019-07-22T06:46:09.000Z" itemprop="datePublished">2019-07-22</time>
 </a>
 
 
@@ -311,7 +314,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      交换排序
+      scala
     </h1>
   
 
@@ -322,7 +325,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">423字</span>
+        <span class="post-count">605字</span>
       </span>
     </span>
 
@@ -331,7 +334,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">2分</span>
       </span>
     </span>
 </div>
@@ -344,13 +347,13 @@ var _hmt = _hmt || [];
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
+    <a class="article-category-link" href="/categories/scala/">scala</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scala/">scala</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -360,20 +363,68 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="交换排序的基本思想"><a href="#交换排序的基本思想" class="headerlink" title="交换排序的基本思想"></a>交换排序的基本思想</h3><p>根据序列中两个元素的比较结果来对换这两个记录在序列中的位置，也就是说，将键值较大的记录向序列的尾部移动，键值较小的记录向序列的前部移动。</p>
+        <h2 id="一-变量"><a href="#一-变量" class="headerlink" title="一.变量"></a>一.变量</h2><h3 id="scla的数据类型"><a href="#scla的数据类型" class="headerlink" title="scla的数据类型"></a>scla的数据类型</h3><p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/scala/scala1.png" alt></p>
+<ul>
+<li>Any:根类型，所有类的父类，它有两个直接子类，AnyValue,AnyRef</li>
+<li>AnyRef:所有Scala中引用类（reference class)的父类</li>
+<li>Null:所有引用类的子类，类似与java中的null</li>
+</ul>
 <a id="more"></a>
 
-<h4 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序:"></a>冒泡排序:</h4><p>比较两个相邻的数，如果前面的数大于后面的数，则将这两个数交换位置。第一次遍历后，最大的数会被放到数组的最后位置，即array[length - 1]。第二次遍历时跳过最后一个元素，因为该元素通过第一次遍历已经确定是最大值。持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要较。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public void bubleSort(int[] arr) &#123;</span><br><span class="line">		for(int i=0;i&lt;arr.length-1;i++) &#123;</span><br><span class="line">			for(int j=0;j&lt;arr.length-1-i;j++) &#123;</span><br><span class="line">				if(arr[j]&gt;arr[j+1]) &#123;</span><br><span class="line">					int tmp = arr[j];</span><br><span class="line">					arr[j] = arr[j+1];</span><br><span class="line">					arr[j+1] = tmp;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Nothing:所有类的子类，可以将Nothing类型的值返回给任意变量或者函数</p>
+<h4 id="数据类型列表"><a href="#数据类型列表" class="headerlink" title="数据类型列表"></a>数据类型列表</h4><p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/scala/scala2.png" alt></p>
+</li>
+</ul>
+<h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">规则:</span><br><span class="line">	val/var vname:type = value</span><br><span class="line">var i 		//error 变量声明必须初始化</span><br><span class="line">var x = _	//error 需要明确具体的类型</span><br><span class="line">val y = _ 	//error val不可变，需要确定的值</span><br><span class="line">var i:int = 10</span><br><span class="line">val j:Char = &apos;a&apos;</span><br></pre></td></tr></table></figure>
 
-<h4 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h4><p>基本思想：</p>
-<ol>
-<li>先从数列中取出一个数作为基准数</li>
-<li>分区过程，将比这个数大的数全放到它的右边，小于或等于它的数全放到它的左边</li>
-<li>再对左右区间重复第二步，直到各区间只有一个数</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public void quickSort(int arr[],int left,int right) &#123;</span><br><span class="line">		if(right&gt;left) &#123;</span><br><span class="line">			int index = getIndex(arr,left,right);</span><br><span class="line">			quickSort(arr,left,index-1);</span><br><span class="line">			quickSort(arr,index+1,right);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	public int getIndex(int[] arr,int left,int right) &#123;</span><br><span class="line">		</span><br><span class="line">		int data = arr[left];</span><br><span class="line">		while(left&lt;right) &#123;</span><br><span class="line">			</span><br><span class="line">			while(left&lt;right&amp;&amp;arr[left]&lt;data) &#123;</span><br><span class="line">				left++;</span><br><span class="line">			&#125;</span><br><span class="line">			arr[right] = arr[left];</span><br><span class="line">			while(left&lt;right&amp;&amp;arr[right]&gt;data) &#123;</span><br><span class="line">				right--;</span><br><span class="line">			&#125;</span><br><span class="line">			arr[left] = arr[right];</span><br><span class="line">		&#125;</span><br><span class="line">		arr[left] = data;</span><br><span class="line">		return left;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>var和val的区别：</p>
+<p>var修饰的变量是可变的，val修饰的变量是不可变的，它底层其实是使用final关键字修饰</p>
+<h4 id="键盘输入语句"><a href="#键盘输入语句" class="headerlink" title="键盘输入语句"></a>键盘输入语句</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">println(&quot;请输入你的姓名&quot;)</span><br><span class="line">var name = StdIn.readLine()</span><br><span class="line"></span><br><span class="line">println(&quot;请输入你的证件号&quot;)</span><br><span class="line">var card = StdIn.readLine();</span><br></pre></td></tr></table></figure>
 
+<h2 id="二-程序流程控制"><a href="#二-程序流程控制" class="headerlink" title="二.程序流程控制"></a>二.程序流程控制</h2><h3 id="1-if-else"><a href="#1-if-else" class="headerlink" title="1. if-else"></a>1. if-else</h3><p>与java中的if-else 差不多</p>
+<h3 id="2-fo循环控制"><a href="#2-fo循环控制" class="headerlink" title="2.fo循环控制"></a>2.fo循环控制</h3><p>Scala为for循环这一常见的控制结果提供了非常多的特性，这些特性被成为for推导式或or表达式</p>
+<ul>
+<li>范围数据循环方式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//两边都是闭合的</span><br><span class="line">for(i&lt;-start to end)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">//左开右闭</span><br><span class="line">for(i&lt;-start until end)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">//对集合进行循环遍历</span><br><span class="line">var list = List(&quot;hello&quot;,&quot;world&quot;,&quot;good&quot;)</span><br><span class="line">for (i&lt;-list)&#123;</span><br><span class="line">  println(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>循环守卫</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> //条件为true的进入循环体内部　为false的则不进入</span><br><span class="line"> for (i&lt;-1 to 10 if i%2!=0 )&#123;</span><br><span class="line">      println(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>引入变量</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> for (i&lt;-1 to 10;j = 10-i )&#123;</span><br><span class="line">      println(i+&quot;:&quot;+j)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>嵌套循环</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  //嵌套循环</span><br><span class="line">    for (i&lt;-1 to 3;j&lt;-1 to 3)&#123;</span><br><span class="line">      println(&quot;xxx&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>循环返回值</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//y 是一个Vector集合　Vector(1, 2, 3)</span><br><span class="line">val y = for (i&lt;-1 to 3) yield i</span><br><span class="line"> println(y)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用花括号</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for &#123;</span><br><span class="line">         i&lt;-1 to 3 </span><br><span class="line">         j&lt;-1 to 3</span><br><span class="line">    &#125;</span><br><span class="line">    &#123;</span><br><span class="line">      println(&quot;xxx&quot;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>控制步长</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//使用range控制for循环的步长</span><br><span class="line">    var range = new Range(1,10,2)</span><br><span class="line">    for (i&lt;- range)&#123;</span><br><span class="line">      println(i)</span><br><span class="line">    &#125;</span><br><span class="line">    for (i&lt;-1 to 10 if i % 2 == 1)&#123;</span><br><span class="line">      println(i)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-while循环控制"><a href="#3-while循环控制" class="headerlink" title="3.while循环控制"></a>3.while循环控制</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">while()&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">do&#123;</span><br><span class="line">    </span><br><span class="line">&#125;while()</span><br><span class="line"></span><br><span class="line">两者区别:while先进行判断再执行　do while 先执行再判断</span><br></pre></td></tr></table></figure>
+
+<p>循环中断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">	var  i =1;</span><br><span class="line">    breakable&#123;</span><br><span class="line">      while (i&lt;20)&#123;</span><br><span class="line">        println(i)</span><br><span class="line">        if(i%4==0)&#123;</span><br><span class="line">          break;</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">//需要导包　import util.control.Breaks._</span><br></pre></td></tr></table></figure>
+
+<p>scala控制结构去掉了continue</p>
 
       
     </div>
@@ -382,13 +433,13 @@ var _hmt = _hmt || [];
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/07/10/交换排序/">交换排序</a></p>
+        <p><span>本文标题:</span><a href="/2019/07/22/scala/">scala</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HanderH</a></p>
-        <p><span>发布时间:</span>2019-07-10, 20:30:08</p>
-        <p><span>最后更新:</span>2019-07-11, 21:41:29</p>
+        <p><span>发布时间:</span>2019-07-22, 14:46:09</p>
+        <p><span>最后更新:</span>2019-07-22, 17:23:08</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/07/10/交换排序/" title="交换排序">http://www.handerh.top/2019/07/10/交换排序/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/07/10/交换排序/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/07/22/scala/" title="scala">http://www.handerh.top/2019/07/22/scala/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/07/22/scala/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -400,16 +451,10 @@ var _hmt = _hmt || [];
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/07/13/hadoop/">
-                    hadoop
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/07/10/hive/">
-                    hive
+                <a href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/">
+                    virtualbox虚拟机ubuntu无法上网
                 </a>
             </div>
         
@@ -421,7 +466,7 @@ var _hmt = _hmt || [];
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#交换排序的基本思想"><span class="toc-number">1.</span> <span class="toc-text">交换排序的基本思想</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#冒泡排序"><span class="toc-number">1.1.</span> <span class="toc-text">冒泡排序:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#快速排序"><span class="toc-number">1.2.</span> <span class="toc-text">快速排序</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-变量"><span class="toc-number">1.</span> <span class="toc-text">一.变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#scla的数据类型"><span class="toc-number">1.1.</span> <span class="toc-text">scla的数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据类型列表"><span class="toc-number">1.1.1.</span> <span class="toc-text">数据类型列表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量声明"><span class="toc-number">1.2.</span> <span class="toc-text">变量声明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#键盘输入语句"><span class="toc-number">1.2.1.</span> <span class="toc-text">键盘输入语句</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-程序流程控制"><span class="toc-number">2.</span> <span class="toc-text">二.程序流程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-if-else"><span class="toc-number">2.1.</span> <span class="toc-text">1. if-else</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-fo循环控制"><span class="toc-number">2.2.</span> <span class="toc-text">2.fo循环控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-while循环控制"><span class="toc-number">2.3.</span> <span class="toc-text">3.while循环控制</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -457,7 +502,7 @@ var _hmt = _hmt || [];
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"交换排序　| hsj的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"scala　| hsj的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -498,15 +543,13 @@ var _hmt = _hmt || [];
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/07/13/hadoop/" title="上一篇: hadoop">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/07/10/hive/" title="下一篇: hive">
+            <a href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/" title="下一篇: virtualbox虚拟机ubuntu无法上网">
                 <i class="fa fa-angle-right"></i>
             </a>
         
