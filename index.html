@@ -210,7 +210,7 @@ var _hmt = _hmt || [];
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flume/">Flume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hbase/">hbase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hive/">hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java多线程/">java多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java设计模式/">java设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scala/">scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu-linux/">ubuntu linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flume/">Flume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hbase/">hbase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hive/">hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java多线程/">java多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java设计模式/">java设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scala/">scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu-linux/">ubuntu linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目总结/">项目总结</a></li></ul>
                     </div>
                 </section>
                 
@@ -291,6 +291,113 @@ var _hmt = _hmt || [];
 </nav>
       <div class="body-wrap">
   
+    <article id="post-通信分析项目总结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      
+<a href="/2019/07/24/通信分析项目总结/" class="article-date">
+      <time datetime="2019-07-24T14:10:43.000Z" itemprop="datePublished">2019-07-24</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+       
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/24/通信分析项目总结/">通信分析项目总结</a>
+    </h1>
+  
+
+          <!--
+            
+                 <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">683字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">2分</span>
+      </span>
+    </span>
+</div>
+
+            
+           -->
+       </header>
+        
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>该项目是基于通话日志的分析，当前每时每刻都有很多人打电话，那么产生的通话记录也是一个非常大数据量，需求就是根据这个通话日志，统计出每天，每月，每年用户的通话次数以及通话时长。</p>
+<p>项目架构</p>
+<p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/project/calllog.png" alt></p>
+<p>项目中遇到的困难</p>
+<ol>
+<li>数据格式转化有点麻烦</li>
+</ol>
+<p>随机产生通话日志，要求数据遵循的格式一致，用到了一个新的api DecimalFormat，DecimalFormat主要是将数字格式化，它拥有两种占位符0 #</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 0 的用法</span><br><span class="line">//１．情况一　如果0的位数比要格式化的数字位数多 会在不足的位置用０补充</span><br><span class="line">new DecimalFormat(“00.00”).format(3.14) //结果：03.14 </span><br><span class="line">//２．情况二　如果0的位数比要格式化的数字位数少 整数位不变，小数部分四舍五入</span><br><span class="line">new DecimalFormat(“0.00”).format(13.146) //结果：13.15 </span><br><span class="line"></span><br><span class="line">// # 的用法</span><br><span class="line">//１．情况一　如果#的位数比要格式化的数字位数多 不变</span><br><span class="line">new DecimalFormat(“##.###”).format(3.14) //结果：3.14 </span><br><span class="line">//２．情况二　如果＃的位数比要格式化的数字位数少 整数位不变，小数部分四舍五入</span><br><span class="line">new DecimalFormat(“#.##”).format(13.146) //结果：13.15</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>hbase预分区以及rowkey的设计</li>
+</ol>
+<p>hbase建表时默认只有一个分区，所有数据都会写入到该分区，当数据越来越多时，region会进行split,分成两个reigon,之后，数据写入时会一直往一个region中写入数据，会造成数据热点问题，还有region进行split会消耗集群的io资源，所以需要进行预分区，控制数据的写入，在这个项目中，我总共分了6个分区，分区键为　0|, 1|, 2|, 3|, 4|, 5|.这样，在我往hbase插入数据的时候，就能有效的控制分区了。</p>
+<p>为了能够将数据随机插入到给个分区，rowKey设计至关重要，基于分区键的设计，rowkey需要以0<del>5这样的数字开头，所以为了可以能够随机的将数据插入到各个分区，在这里，使用了tel和date的hashcode的值，在对分区数进行取模，得到的是0</del>5的数字，这样就能够保证数据可以有效的插入到各个分区。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * rowKey的设计</span><br><span class="line">    *  1.长度原则：最大　64kb 推荐10-100byte,最好是8的倍数</span><br><span class="line">    *              rowKey如果太长，影响性能</span><br><span class="line">    *                  原因：rowKey如果太长，会占用MemStore,减少缓存的数据</span><br><span class="line">    *  2.唯一原则:</span><br><span class="line">    *  3.散列原则：</span><br><span class="line">    *      盐值散列：不能使用时间戳，在时间戳前面增加一些随机数</span><br><span class="line">    *      字符串反转（时间戳，电话号码）</span><br><span class="line">    *      计算分区号</span><br><span class="line">    */</span><br></pre></td></tr></table></figure>
+
+<p>3.</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/项目总结/">项目总结</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/项目总结/">项目总结</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-scala" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -323,7 +430,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">605字</span>
+        <span class="post-count">4.4k字</span>
       </span>
     </span>
 
@@ -332,7 +439,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
+        <span class="post-count">19分</span>
       </span>
     </span>
 </div>
@@ -346,12 +453,7 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h2 id="一-变量"><a href="#一-变量" class="headerlink" title="一.变量"></a>一.变量</h2><h3 id="scla的数据类型"><a href="#scla的数据类型" class="headerlink" title="scla的数据类型"></a>scla的数据类型</h3><p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/scala/scala1.png" alt></p>
-<ul>
-<li>Any:根类型，所有类的父类，它有两个直接子类，AnyValue,AnyRef</li>
-<li>AnyRef:所有Scala中引用类（reference class)的父类</li>
-<li>Null:所有引用类的子类，类似与java中的null</li>
-</ul>
+              <h2 id="一-变量"><a href="#一-变量" class="headerlink" title="一.变量"></a>一.变量</h2><h3 id="scla的数据类型"><a href="#scla的数据类型" class="headerlink" title="scla的数据类型"></a>scla的数据类型</h3>
           
       
     </div>
@@ -1155,96 +1257,6 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a href="/2019/07/04/工厂模式/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-代理模式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/07/03/代理模式/" class="article-date">
-      <time datetime="2019-07-03T12:06:35.000Z" itemprop="datePublished">2019-07-03</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/03/代理模式/">代理模式</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">661字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="java的静态代理和动态代理"><a href="#java的静态代理和动态代理" class="headerlink" title="java的静态代理和动态代理"></a>java的静态代理和动态代理</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>代理模式是一种常见的设计模式，分为静态代理，动态代理。代理提供了一种让我们间接访问目标对象的方法，以便我们对目标对象实现基本的功能外，还可以增加一些额外的功能。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java设计模式/">java设计模式</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/07/03/代理模式/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

@@ -15,18 +15,20 @@
 
 
 
-<meta name="description" content="java中的流的类型 按照流的方向：可以分为输入流(InpuStream)和输出流(OutputStream)  按照功能分类：节点流（从一个特定的地方读写数据）和处理流(对一个已经存在的流的封装)  按照数据的处理单位: 字节流和字符流">
-<meta name="keywords" content="java">
+<meta name="description" content="该项目是基于通话日志的分析，当前每时每刻都有很多人打电话，那么产生的通话记录也是一个非常大数据量，需求就是根据这个通话日志，统计出每天，每月，每年用户的通话次数以及通话时长。 项目架构  项目中遇到的困难  数据格式转化有点麻烦  随机产生通话日志，要求数据遵循的格式一致，用到了一个新的api DecimalFormat，DecimalFormat主要是将数字格式化，它拥有两种占位符0 # 123">
+<meta name="keywords" content="项目总结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java IO">
-<meta property="og:url" content="http://www.handerh.top/2019/06/30/java-IO/index.html">
+<meta property="og:title" content="通信分析项目总结">
+<meta property="og:url" content="http://www.handerh.top/2019/07/24/通信分析项目总结/index.html">
 <meta property="og:site_name" content="hsj的博客">
-<meta property="og:description" content="java中的流的类型 按照流的方向：可以分为输入流(InpuStream)和输出流(OutputStream)  按照功能分类：节点流（从一个特定的地方读写数据）和处理流(对一个已经存在的流的封装)  按照数据的处理单位: 字节流和字符流">
+<meta property="og:description" content="该项目是基于通话日志的分析，当前每时每刻都有很多人打电话，那么产生的通话记录也是一个非常大数据量，需求就是根据这个通话日志，统计出每天，每月，每年用户的通话次数以及通话时长。 项目架构  项目中遇到的困难  数据格式转化有点麻烦  随机产生通话日志，要求数据遵循的格式一致，用到了一个新的api DecimalFormat，DecimalFormat主要是将数字格式化，它拥有两种占位符0 # 123">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-10T12:16:53.358Z">
+<meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/project/calllog.png">
+<meta property="og:updated_time" content="2019-07-26T01:01:00.968Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java IO">
-<meta name="twitter:description" content="java中的流的类型 按照流的方向：可以分为输入流(InpuStream)和输出流(OutputStream)  按照功能分类：节点流（从一个特定的地方读写数据）和处理流(对一个已经存在的流的封装)  按照数据的处理单位: 字节流和字符流">
+<meta name="twitter:title" content="通信分析项目总结">
+<meta name="twitter:description" content="该项目是基于通话日志的分析，当前每时每刻都有很多人打电话，那么产生的通话记录也是一个非常大数据量，需求就是根据这个通话日志，统计出每天，每月，每年用户的通话次数以及通话时长。 项目架构  项目中遇到的困难  数据格式转化有点麻烦  随机产生通话日志，要求数据遵循的格式一致，用到了一个新的api DecimalFormat，DecimalFormat主要是将数字格式化，它拥有两种占位符0 # 123">
+<meta name="twitter:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/project/calllog.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -58,7 +60,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>java IO | hsj的博客</title>
+<title>通信分析项目总结 | hsj的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -285,7 +287,7 @@ var _hmt = _hmt || [];
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-java-IO" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-通信分析项目总结" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       
@@ -294,8 +296,8 @@ var _hmt = _hmt || [];
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2019/06/30/java-IO/" class="article-date">
-      <time datetime="2019-06-30T02:59:26.000Z" itemprop="datePublished">2019-06-30</time>
+<a href="/2019/07/24/通信分析项目总结/" class="article-date">
+      <time datetime="2019-07-24T14:10:43.000Z" itemprop="datePublished">2019-07-24</time>
 </a>
 
 
@@ -311,7 +313,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      java IO
+      通信分析项目总结
     </h1>
   
 
@@ -322,7 +324,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.5k字</span>
+        <span class="post-count">683字</span>
       </span>
     </span>
 
@@ -331,7 +333,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">5分</span>
+        <span class="post-count">2分</span>
       </span>
     </span>
 </div>
@@ -344,13 +346,13 @@ var _hmt = _hmt || [];
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/java/">java</a>
+    <a class="article-category-link" href="/categories/项目总结/">项目总结</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/项目总结/">项目总结</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -360,97 +362,24 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="java中的流的类型"><a href="#java中的流的类型" class="headerlink" title="java中的流的类型"></a>java中的流的类型</h3><ul>
-<li><p>按照流的方向：可以分为输入流(InpuStream)和输出流(OutputStream)</p>
-</li>
-<li><p>按照功能分类：节点流（从一个特定的地方读写数据）和处理流(对一个已经存在的流的封装)</p>
-</li>
-<li><p>按照数据的处理单位: 字节流和字符流</p>
-<a id="more"></a>
+        <p>该项目是基于通话日志的分析，当前每时每刻都有很多人打电话，那么产生的通话记录也是一个非常大数据量，需求就是根据这个通话日志，统计出每天，每月，每年用户的通话次数以及通话时长。</p>
+<p>项目架构</p>
+<p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/project/calllog.png" alt></p>
+<p>项目中遇到的困难</p>
+<ol>
+<li>数据格式转化有点麻烦</li>
+</ol>
+<p>随机产生通话日志，要求数据遵循的格式一致，用到了一个新的api DecimalFormat，DecimalFormat主要是将数字格式化，它拥有两种占位符0 #</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 0 的用法</span><br><span class="line">//１．情况一　如果0的位数比要格式化的数字位数多 会在不足的位置用０补充</span><br><span class="line">new DecimalFormat(“00.00”).format(3.14) //结果：03.14 </span><br><span class="line">//２．情况二　如果0的位数比要格式化的数字位数少 整数位不变，小数部分四舍五入</span><br><span class="line">new DecimalFormat(“0.00”).format(13.146) //结果：13.15 </span><br><span class="line"></span><br><span class="line">// # 的用法</span><br><span class="line">//１．情况一　如果#的位数比要格式化的数字位数多 不变</span><br><span class="line">new DecimalFormat(“##.###”).format(3.14) //结果：3.14 </span><br><span class="line">//２．情况二　如果＃的位数比要格式化的数字位数少 整数位不变，小数部分四舍五入</span><br><span class="line">new DecimalFormat(“#.##”).format(13.146) //结果：13.15</span><br></pre></td></tr></table></figure>
 
-<h3 id="流的分类"><a href="#流的分类" class="headerlink" title="流的分类"></a>流的分类</h3><h4 id="字节流："><a href="#字节流：" class="headerlink" title="字节流："></a>字节流：</h4><p><strong>节点流</strong>            </p>
-<p><strong>FileInputStream</strong>:从文件系统获得输入的文件。</p>
-<p>构造方法：</p>
-<p>​    FileInputStream(File file)　连接到一个实际的文件</p>
-<p>​    FileInputStream(String name)　根据路径连接到一个实际的文件</p>
-<p>方法：</p>
-<p>​    public int read(byte[] b)  throws IOException　将源文件的字节数据读到缓冲区              　　b，根据返回值判断文件数据是否已经读完，返回-1，代表文件数据已读完</p>
-<p>​    public int read(byte[] b,  int off, int len)  throws IOException,将源文件的字节数                                       　　b,从数组的偏移量off位置开始存放长度为len的字节数，如果len&gt;b.length-off,将会抛出　    </p>
-<pre><code>IndexOutOfBoundsException .</code></pre><p><strong>FileOutputStream</strong>：</p>
-<p>构造方法</p>
-<p>​    FileOutputStream(File file)　创建一个文件输出流写入指定的 File对象</p>
-<pre><code>FileOutputStream(File file, boolean append)创建一个文件输出流写入指定的 File对象，append表示拼接，不覆盖</code></pre><p><strong>ByteArrayInputStream</strong>： 把字节数组转换为输入流</p>
-<p>构造方法：</p>
-<p>​        ByteArrayInputStream(byte[] buf) :使用一个字节数组当中所有的数据做为数据源，程序        可以像输入流方式一样读取字节，可以看做一个虚拟的文件，用文件的方式去读取它里面的数据。</p>
-<p>​        ByteArrayInputStream(byte[] b,int offset,int length):从数组当中的第offset开始，一直取出length个这个字节做为数据源</p>
-<p><strong>ByteArrayOutputStream</strong>    ： 把字节数组转换为输出流</p>
-<p>构造方法：</p>
-<p>​    ByteArrayOutputStream()创建一个新的字节数组输出流</p>
-<p>​    ByteArrayOutputStream(int size)创建一个新的字节数组输出流，具有指定大小的缓冲容量，        　　以字节为单位的。</p>
-<p><strong>处理流</strong></p>
-<p><strong>BufferedInputStream</strong>: 缓冲输入流</p>
-<p>构造方法：BufferedInputStream(InputStream in)</p>
-<p>​        　BufferedInputStream(InputStream in, int size)　指定缓冲区的大小</p>
-<p><strong>BufferedOutputStream</strong>：缓冲输出流</p>
-<p>构造方法：</p>
-<p>​        BufferedOutputStream(OutputStream out)创建一个新的缓冲输出流，将数据入到　　指定的基本输出流中</p>
-<p>​        BufferedOutputStream(OutputStream out, int size)创建一个新的缓冲输出流，用指定的缓冲区大小写数据到指定的基本输出流中。</p>
-<p><strong>DataInputStream</strong>:数据输入流，读时提供更多的类型</p>
-<p>构造方法：DataInputStream(InputStream in)</p>
-<p>方法：</p>
-<p>​    readByte()——从输入流中读取1个字节，指它转换为byte类型的数据；<br>　　readLong()——从输入流中读取8个字节，指它转换为long类型的数据；<br>　　readFloat()——从输入流中读取4个字节，指它转换为float类型的数据；<br>　　readUTF()—— 从输入流中读取1到3个字节，指它转换为UTF-8字符编码的字符串；</p>
-<p><strong>DataOutputStream</strong>：数据输出流，读时提供更多的类型</p>
-<p>构造方法：</p>
-<p>​        DataOutputStream(OutputStream out)创建一个新的数据输出流，将数据写入到指定的基本输出流中。</p>
-<p>方法：</p>
-<p>​    writeByte(int v)——将byte作为字节流输出<br>　　writeLong(long v)——将long作为输出流输出<br>　　writeFloat(float v)——将float作为输出流输出<br>　　writeUTF(String str)—— 将String作为输出流输出</p>
-<p><strong>ObjectInputStream</strong>:对象输入流，主要用于对象序列化和反序列化</p>
-<p>构造方法：</p>
-<p>​    ObjectInputStream( )创建一个对象输入流</p>
-<p>​    ObjectInputStream(InputStream in)创建一个对象输入流读取指定的输入流。</p>
-<p><strong>ObjectOutputStream</strong>:对象输出流</p>
-<p>构造方法：</p>
-<p>​    ObjectOutputStream(OutputStream out)创建对象输出到指定的输出流</p>
-</li>
-</ul>
-<h4 id="字符流："><a href="#字符流：" class="headerlink" title="字符流："></a>字符流：</h4><p>  <strong>节点流</strong></p>
-<p>  <strong>CharArrayReader</strong> ：把字符数组转换为Reader，从字符数组中读取字符；</p>
-<p>  构造方法：</p>
-<p>  ​    CharArrayReader(char[] buf)创建从指定的字符数组的一个chararrayreader。<br>      CharArrayReader(char[] buf, int offset, int length创建从指定的字符数组的一个　chararrayreader。</p>
-<p>  <strong>CharArrayWriter</strong>：将字符数组有Writer写出</p>
-<p>  构造方法：</p>
-<p>  ​    CharArrayWriter()　        </p>
-<p>   <strong>StringReader</strong>  : 把字符串转换为Reader，从字符串中读取字符；</p>
-<p>  构造方法：</p>
-<p>  ​        StringReader(String s)</p>
-<p>  <strong>StringWriter</strong> :将字符串有Writer写出</p>
-<p>   <strong>FileReader</strong> : 从文件中读取字符；</p>
-<p>  构造方法：</p>
-<p>  ​    FileReader(File file)</p>
-<p>  <strong>FileWriter</strong>:将字符写入到指定文件</p>
-<p>  构造方法：</p>
-<p>  ​    FileWriter(File file)</p>
-<p>  ​    FileWriter(File file, boolean append)    </p>
-<p>  ​    FileWriter(String fileName)</p>
-<p>  ​    FileWriter(String fileName, boolean append)</p>
-<p>  <strong>处理流</strong></p>
-<p>  <strong>InputStreamReader</strong> : 过滤器，把InputStream转换为Reader，可以指定字符编码；</p>
-<p>  构造方法：</p>
-<p>  ​    InputStreamReader(InputStream in)创建一个inputstreamreader使用默认字符集。</p>
-<p>  ​    InputStreamReader(InputStream in, Charset cs)创建一个inputstreamreader使用给定的字符集。</p>
-<p>  ​    InputStreamReader(InputStream in, CharsetDecoder dec)创建一个inputstreamreader使用给定的字符集解码。<br>      InputStreamReader(InputStream in, String charsetName)创建一个inputstreamreader使用指定的字符集。</p>
-<p>   <strong>OutputStreamWriter</strong>:将字符流转为字节流输出，可以指定字符编码；</p>
-<p>  构造方法：</p>
-<p>  ​    OutputStreamWriter(OutputStream out)创建一个outputstreamwriter使用默认的字符编码。<br>  OutputStreamWriter(OutputStream out, Charset cs)创建一个outputstreamwriter使用给定的字符集。<br>  OutputStreamWriter(OutputStream out, CharsetEncoder enc)创建一个outputstreamwriter使用给定的字符集编码。<br>  OutputStreamWriter(OutputStream out, String charsetName)创建一个outputstreamwriter使用指定的字符集。</p>
-<p>   <strong>BufferedReader</strong>: 过滤器，为其他Reader提供读缓冲区，此外，它的readLine()方法能够读入一行字符串；</p>
-<p>  构造方法：</p>
-<p>  ​    BufferedReader(Reader in)创建一个使用默认大小输入缓冲区的缓冲字符输入流。<br>          BufferedReader(Reader in, int sz)创建一个使用指定大小的输入缓冲区的缓冲字符输入流。</p>
-<p>  <strong>BufferedWriter</strong>:            </p>
-<p>  构造方法：</p>
-<p>  ​    BufferedWriter(Writer out)创建一个使用默认大小输出缓冲区的缓冲字符输出流</p>
-<p>  ​    BufferedWriter(Writer out, int sz)创建一个新的缓冲字符输出流，该流使用给定大小的输出缓冲区。</p>
-<h3 id="序列化与反序列化"><a href="#序列化与反序列化" class="headerlink" title="序列化与反序列化"></a>序列化与反序列化</h3><p>序列化：将对象写到输出流中，便于在网络中进行传输或者存储到文件中</p>
-<p>反序列化:将输入流中的数据转化为对象，将从网络或文件中读取的字节数据转化为对象</p>
+<ol start="2">
+<li>hbase预分区以及rowkey的设计</li>
+</ol>
+<p>hbase建表时默认只有一个分区，所有数据都会写入到该分区，当数据越来越多时，region会进行split,分成两个reigon,之后，数据写入时会一直往一个region中写入数据，会造成数据热点问题，还有region进行split会消耗集群的io资源，所以需要进行预分区，控制数据的写入，在这个项目中，我总共分了6个分区，分区键为　0|, 1|, 2|, 3|, 4|, 5|.这样，在我往hbase插入数据的时候，就能有效的控制分区了。</p>
+<p>为了能够将数据随机插入到给个分区，rowKey设计至关重要，基于分区键的设计，rowkey需要以0<del>5这样的数字开头，所以为了可以能够随机的将数据插入到各个分区，在这里，使用了tel和date的hashcode的值，在对分区数进行取模，得到的是0</del>5的数字，这样就能够保证数据可以有效的插入到各个分区。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * rowKey的设计</span><br><span class="line">    *  1.长度原则：最大　64kb 推荐10-100byte,最好是8的倍数</span><br><span class="line">    *              rowKey如果太长，影响性能</span><br><span class="line">    *                  原因：rowKey如果太长，会占用MemStore,减少缓存的数据</span><br><span class="line">    *  2.唯一原则:</span><br><span class="line">    *  3.散列原则：</span><br><span class="line">    *      盐值散列：不能使用时间戳，在时间戳前面增加一些随机数</span><br><span class="line">    *      字符串反转（时间戳，电话号码）</span><br><span class="line">    *      计算分区号</span><br><span class="line">    */</span><br></pre></td></tr></table></figure>
+
+<p>3.</p>
 
       
     </div>
@@ -459,13 +388,13 @@ var _hmt = _hmt || [];
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/06/30/java-IO/">java IO</a></p>
+        <p><span>本文标题:</span><a href="/2019/07/24/通信分析项目总结/">通信分析项目总结</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HanderH</a></p>
-        <p><span>发布时间:</span>2019-06-30, 10:59:26</p>
-        <p><span>最后更新:</span>2019-07-10, 20:16:53</p>
+        <p><span>发布时间:</span>2019-07-24, 22:10:43</p>
+        <p><span>最后更新:</span>2019-07-26, 09:01:00</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/06/30/java-IO/" title="java IO">http://www.handerh.top/2019/06/30/java-IO/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/06/30/java-IO/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/07/24/通信分析项目总结/" title="通信分析项目总结">http://www.handerh.top/2019/07/24/通信分析项目总结/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/07/24/通信分析项目总结/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -477,16 +406,10 @@ var _hmt = _hmt || [];
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/07/01/谈谈synchronized/">
-                    谈谈synchronized
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/06/29/java的exception/">
-                    Exception
+                <a href="/2019/07/22/scala/">
+                    scala
                 </a>
             </div>
         
@@ -498,7 +421,7 @@ var _hmt = _hmt || [];
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#java中的流的类型"><span class="toc-number">1.</span> <span class="toc-text">java中的流的类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#流的分类"><span class="toc-number">2.</span> <span class="toc-text">流的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#字节流："><span class="toc-number">2.1.</span> <span class="toc-text">字节流：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符流："><span class="toc-number">2.2.</span> <span class="toc-text">字符流：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#序列化与反序列化"><span class="toc-number">3.</span> <span class="toc-text">序列化与反序列化</span></a></li></ol>
+            
         
     </div>
     <style>
@@ -534,7 +457,7 @@ var _hmt = _hmt || [];
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"java IO　| hsj的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"通信分析项目总结　| hsj的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -575,15 +498,13 @@ var _hmt = _hmt || [];
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/07/01/谈谈synchronized/" title="上一篇: 谈谈synchronized">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/06/29/java的exception/" title="下一篇: Exception">
+            <a href="/2019/07/22/scala/" title="下一篇: scala">
                 <i class="fa fa-angle-right"></i>
             </a>
         
