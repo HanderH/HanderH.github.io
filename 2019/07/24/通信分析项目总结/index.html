@@ -24,7 +24,7 @@
 <meta property="og:description" content="该项目是基于通话日志的分析，当前每时每刻都有很多人打电话，那么产生的通话记录也是一个非常大数据量，需求就是根据这个通话日志，统计出每天，每月，每年用户的通话次数以及通话时长。 项目架构  项目中遇到的困难  数据格式转化有点麻烦  随机产生通话日志，要求数据遵循的格式一致，用到了一个新的api DecimalFormat，DecimalFormat主要是将数字格式化，它拥有两种占位符0 # 123">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/project/calllog.png">
-<meta property="og:updated_time" content="2019-07-26T01:01:00.968Z">
+<meta property="og:updated_time" content="2019-07-26T13:24:32.479Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通信分析项目总结">
 <meta name="twitter:description" content="该项目是基于通话日志的分析，当前每时每刻都有很多人打电话，那么产生的通话记录也是一个非常大数据量，需求就是根据这个通话日志，统计出每天，每月，每年用户的通话次数以及通话时长。 项目架构  项目中遇到的困难  数据格式转化有点麻烦  随机产生通话日志，要求数据遵循的格式一致，用到了一个新的api DecimalFormat，DecimalFormat主要是将数字格式化，它拥有两种占位符0 # 123">
@@ -324,7 +324,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">683字</span>
+        <span class="post-count">848字</span>
       </span>
     </span>
 
@@ -333,7 +333,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
+        <span class="post-count">3分</span>
       </span>
     </span>
 </div>
@@ -379,7 +379,12 @@ var _hmt = _hmt || [];
 <p>为了能够将数据随机插入到给个分区，rowKey设计至关重要，基于分区键的设计，rowkey需要以0<del>5这样的数字开头，所以为了可以能够随机的将数据插入到各个分区，在这里，使用了tel和date的hashcode的值，在对分区数进行取模，得到的是0</del>5的数字，这样就能够保证数据可以有效的插入到各个分区。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * rowKey的设计</span><br><span class="line">    *  1.长度原则：最大　64kb 推荐10-100byte,最好是8的倍数</span><br><span class="line">    *              rowKey如果太长，影响性能</span><br><span class="line">    *                  原因：rowKey如果太长，会占用MemStore,减少缓存的数据</span><br><span class="line">    *  2.唯一原则:</span><br><span class="line">    *  3.散列原则：</span><br><span class="line">    *      盐值散列：不能使用时间戳，在时间戳前面增加一些随机数</span><br><span class="line">    *      字符串反转（时间戳，电话号码）</span><br><span class="line">    *      计算分区号</span><br><span class="line">    */</span><br></pre></td></tr></table></figure>
 
-<p>3.</p>
+<p>3.mysql表的设计</p>
+<p>设计了三张表，用户表，日期表，通话日志表</p>
+<p>用户表记录用户名　用户电话　</p>
+<p>日期表记录日期,包括xxxx年　xxxx年xx月 xxxx年xx月xx日，三种类型的日期，方便进行统计</p>
+<p>通话日志表有两个外键，一个外键指向用户表，主要是用于获取电话号码，一个外键指向日期表，用于获取具体的日期。</p>
+<p>当时是用一张表来解决的，将电话号码和日期都存在通话日志表中，后来看表中数据的时候感觉冗余数据太多，考虑将表拆分。</p>
 
       
     </div>
@@ -391,7 +396,7 @@ var _hmt = _hmt || [];
         <p><span>本文标题:</span><a href="/2019/07/24/通信分析项目总结/">通信分析项目总结</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HanderH</a></p>
         <p><span>发布时间:</span>2019-07-24, 22:10:43</p>
-        <p><span>最后更新:</span>2019-07-26, 09:01:00</p>
+        <p><span>最后更新:</span>2019-07-26, 21:24:32</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/07/24/通信分析项目总结/" title="通信分析项目总结">http://www.handerh.top/2019/07/24/通信分析项目总结/</a>
             <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/07/24/通信分析项目总结/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
