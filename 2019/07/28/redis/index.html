@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="HanderH">
+
+
+
+<meta name="description" content="一.概述redis基于内存持久化，高性能的NoSql的key-value数据库.redis支持数据的持久化，可以将数据保存在磁盘中，重启时可以加载使用。redis持久化策略包括RDB,AOF。redis提供key-value类型的数据，同时还提供list,set,zset.hash类型的数据，redis单个key可存储512M大小，默认端口6379 二.配置文件redis的配置文件为redis.c">
+<meta name="keywords" content="redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis">
+<meta property="og:url" content="http://www.handerh.top/2019/07/28/redis/index.html">
+<meta property="og:site_name" content="hsj的博客">
+<meta property="og:description" content="一.概述redis基于内存持久化，高性能的NoSql的key-value数据库.redis支持数据的持久化，可以将数据保存在磁盘中，重启时可以加载使用。redis持久化策略包括RDB,AOF。redis提供key-value类型的数据，同时还提供list,set,zset.hash类型的数据，redis单个key可存储512M大小，默认端口6379 二.配置文件redis的配置文件为redis.c">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-29T13:54:08.284Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redis">
+<meta name="twitter:description" content="一.概述redis基于内存持久化，高性能的NoSql的key-value数据库.redis支持数据的持久化，可以将数据保存在磁盘中，重启时可以加载使用。redis持久化策略包括RDB,AOF。redis提供key-value类型的数据，同时还提供list,set,zset.hash类型的数据，redis单个key可存储512M大小，默认端口6379 二.配置文件redis的配置文件为redis.c">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="hsj的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>redis | hsj的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+  
+<script type="text/javascript">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?4f798eed1a766f92447c385d4a7be8eb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/handerh.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">HanderH</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">life and work</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:husj0423@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/HanderH/" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa QQ" href="https://user.qzone.qq.com/1290449261" title="QQ"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flume/">Flume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hbase/">hbase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hive/">hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java多线程/">java多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java设计模式/">java设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scala/">scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu-linux/">ubuntu linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目总结/">项目总结</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">大数据的时代</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">HanderH</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/handerh.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">HanderH</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">life and work</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:husj0423@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/HanderH/" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa QQ" target="_blank" href="https://user.qzone.qq.com/1290449261" title="QQ"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-redis" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2019/07/28/redis/" class="article-date">
+      <time datetime="2019-07-28T10:51:31.000Z" itemprop="datePublished">2019-07-28</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+       
+        
+  
+    <h1 class="article-title" itemprop="name">
+      redis
+    </h1>
+  
+
+          <!--
+            
+                 <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">2.4k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">9分</span>
+      </span>
+    </span>
+</div>
+
+            
+           -->
+       </header>
+        
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/redis/">redis</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="一-概述"><a href="#一-概述" class="headerlink" title="一.概述"></a>一.概述</h2><p>redis基于内存持久化，高性能的NoSql的key-value数据库.redis支持数据的持久化，可以将数据保存在磁盘中，重启时可以加载使用。redis持久化策略包括RDB,AOF。redis提供key-value类型的数据，同时还提供list,set,zset.hash类型的数据，redis单个key可存储512M大小，默认端口6379</p>
+<h2 id="二-配置文件"><a href="#二-配置文件" class="headerlink" title="二.配置文件"></a>二.配置文件</h2><p>redis的配置文件为redis.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">daemonize yes # 以守护进程启动</span><br><span class="line">port 6379 # 指定端口</span><br><span class="line">bind 127.0.0.1 #绑定本机，只有本机可以访问</span><br><span class="line">databases 16 # 默认的数据库的个数</span><br><span class="line"># redis RDB持久化策略的持久化操作</span><br><span class="line">save 900 1 每900秒有一次更新操作，做持久化操作</span><br><span class="line">save 300 10</span><br><span class="line">save 60 10000</span><br><span class="line">dbfilename dump.rdb # RDB持久化的镜像文件</span><br><span class="line">slaveof &lt;masterip&gt; &lt;masterport&gt; #主从复制</span><br><span class="line">requirepass foobared　#设置密码</span><br><span class="line">maxclients 10000 # 允许客户端连接的最大线程数</span><br><span class="line">maxmemory　&lt;bytes&gt;　＃指定redis最大内存限制</span><br><span class="line">appendonly no #指定是否在每次更新操作后进行日志记录，redis默认情况是异步的将数据写入磁盘 </span><br><span class="line">appendfilename &quot;appendonly.aof&quot;：# 指定更新日志文件名</span><br></pre></td></tr></table></figure>
+
+<h2 id="三-数据类型"><a href="#三-数据类型" class="headerlink" title="三.数据类型"></a>三.数据类型</h2><ul>
+<li>客户端启动和关闭</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -h host -p port -a passwd</span><br><span class="line">redis-cli shutdown</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>string类型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">set key val # 设置key和val</span><br><span class="line">exists key # 判断key是否存在</span><br><span class="line">expire key seceonds # 设置key的过期时间</span><br><span class="line">ttl key # 查看key的过期时间</span><br><span class="line">persist key # 移除过期时间</span><br><span class="line">rename key newkey # 修改key的名字</span><br><span class="line">move key db # 将key移动到指定数据库</span><br><span class="line">type key # 查看key的数据类型</span><br><span class="line">strlen key # 查看key的长度</span><br><span class="line">setnx key val # 如果key不存在，则创建</span><br><span class="line">getrange key start end # 获取key的指定字符串</span><br><span class="line">incr key# 自增</span><br><span class="line">incrby key num # 自增num</span><br><span class="line">decr key # 自减</span><br><span class="line">decrby key num # 自减num</span><br></pre></td></tr></table></figure>
+
+<p>应用场景:计数，微博数，粉丝数</p>
+<ul>
+<li>hash类型:string类型的field和value映射表，可以用来存储java对象,内部实际是一个hashmap，每个 hash 可以存储 232 -1 键值对</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">hset key field value　# 设置key value</span><br><span class="line">hget key field #  获取 value</span><br><span class="line">hmset key f1 v1 f2 v2　＃　设置多个值</span><br><span class="line">hgetall key 　＃　获取hash表中key的所有字段</span><br><span class="line">hkeys key 获取hash表中key的所有字段</span><br><span class="line">hlen key 获取hash表中key的字段数</span><br><span class="line">hdel key field1 field2　＃　删除key中的属性</span><br><span class="line">hsetnx key field value　# 如果key不存在，则创建</span><br><span class="line">hincrby key field num  # 自增num </span><br><span class="line">hincrbyfloat key field num # 自增num </span><br><span class="line">hexists key field # 判断key中的属性是否存在</span><br></pre></td></tr></table></figure>
+
+<p>应用场景：存储对象</p>
+<ul>
+<li>list类型：列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边），list是一个双向链表。列表最多可存储 232 - 1 元素 (4294967295, 每个列表可存储40多亿)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">lpush key v1 v1 v3... #将一个或多个值插入列表头部</span><br><span class="line">rpush key v1 v2 v3... #将一个或多个值插入列表尾部</span><br><span class="line">lpushx key value #将一个值插入到已存在的列表头部，如果列表不存在，操作无效</span><br><span class="line">rpushx key value #将一个值插入到已存在的列表尾部，如果列表不存在，操作无效</span><br><span class="line">llen key //获取列表长度</span><br><span class="line">lindex key index //通过索引获取列表中的元素</span><br><span class="line">lrange key start stop //获取列表指定范围的元素</span><br><span class="line">lpop key 从左删除</span><br><span class="line">rpop key 从右删除</span><br><span class="line">blpop key timeout 移除并且获取列表第一个元素，如果列表没有元素会阻塞列表直到等待超时或发现可弹出数据为止</span><br><span class="line">brpop key timeout　移除并且获取列表最后一个元素，如果列表没有元素会阻塞列表直到等待超时或发现可弹出数据为止</span><br><span class="line">ltrim start end 保留指定下标的数据</span><br></pre></td></tr></table></figure>
+
+<p>应用场景：twitter的关注列表，粉丝列表，消息队列</p>
+<ul>
+<li>set:集合是通过hashtable实现的，概念和数学中的集合基本类似，可以交集，并集，差集等等，set中的元素是没有顺序的。所以添加，删除，查找的复杂度都是O(1)。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sadd key v1 v2 ...</span><br><span class="line">scard key 获取集合的成员数</span><br><span class="line">smembers key 返回集合中的所有成员</span><br><span class="line">sismember key member 判断member是不是集合key的成员</span><br><span class="line">srandmember key [count] 返回集合中一个或多个随机数</span><br><span class="line">srem key member1 member2...　移除集合一个或多个 成员</span><br><span class="line">smove source dest member将member元素从source移动到destnation集合</span><br><span class="line">sdiff k1 k2 返回给定集合的差集</span><br><span class="line">sdiffstore k12 k1 k2  将k1 k2的差集存储在k12</span><br><span class="line">sinter  k1 k2 交集</span><br><span class="line">sinterstore k12  k1 k2 将k1 k2的交集存储在k12</span><br><span class="line">sunion  k1 k2 并集</span><br><span class="line">sunionstore k12 k1 k2   将k1 k2的并集存储在k12</span><br></pre></td></tr></table></figure>
+
+<p>应用场景:存储一个列表数据，不希望有重复值。set具有求交集，差集，并集的功能，方便实现共同关注，共同好友</p>
+<ul>
+<li>sorted set(zset):有序集合,存储的也是string类型元素的集合，不允许有重复的成员，每个元素都会关联一个double类型的分数，redis通过分数为集合中的成员进行从小到大的排序,有序集合的成员是唯一的，但是分数可以重复，集合是通过hash来实现的，添加查找删除的时间复杂度都是1.<br>集合中最大成员数为2的32次方减1</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">zadd key score1 member1 score2 member2 添加多个成员</span><br><span class="line">zcard key 获取有序集合的成员数</span><br><span class="line">zcount key min max 返回有序集合指定期间分数的成员数</span><br><span class="line">zrank key member 返回有序集合中指定成员的索引</span><br><span class="line">zrange key start stop [withscores] 通过索引区间返回有序集合指定区间内的成员</span><br><span class="line">zrevrange key start stop [withscores] 通过索引区间返回有序集合指定区间内的成员，分数有高到低、</span><br><span class="line">zrem key member [member] 移除集合中一个或多个成员</span><br><span class="line">zremrangebyrank key start stop 移除有序集合给定的排名区间所有成员</span><br><span class="line">zremrangebyrange　key min max 移除有序集合中给定的分数区间的所有成员</span><br></pre></td></tr></table></figure>
+
+<p>应用场景：排行榜，带权重的消息队列</p>
+<ul>
+<li>flush</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flushdb 清除当前数据库所有的key</span><br><span class="line">flushall 清除整个redis的数据库所有key</span><br></pre></td></tr></table></figure>
+
+<h2 id="四-发布订阅"><a href="#四-发布订阅" class="headerlink" title="四.发布订阅"></a>四.发布订阅</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">subscribe channel [channel]　 订阅某个频道</span><br><span class="line">psubscribe pattern [pattern] 订阅一个或多个符合指定模式的频道</span><br><span class="line">publish channel message</span><br><span class="line">unsubscribe channel [channel] 退订频道</span><br><span class="line">punsubscribe pattern [pattern] 退订所有给定模式的频道</span><br></pre></td></tr></table></figure>
+
+<p>应用场景：构建实时消息系统，比如即时聊天，群聊，博客，公众号</p>
+<h2 id="五事物"><a href="#五事物" class="headerlink" title="五事物"></a>五事物</h2><p>redis批量操作在exex之前，被放入到队列缓存，收到exec命令后进入事物执行。如果事物中有任意命令执行失败，其它命令依然被执行.redis会将一个事物中的所有命令序列化，然后按顺序执行，执行过程中不会被其他命令插入.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">multi:标记一个事物的开始</span><br><span class="line">exec:执行命令</span><br><span class="line">discard 取消事物，放弃执行事物块内的所有命令</span><br><span class="line">watch:监视一个或多个key watch key [key]如果在事物执行之前这个key被其它命令所改动，那么事物将被打断</span><br><span class="line">unwatch:取消watch命令对key的监视</span><br></pre></td></tr></table></figure>
+
+<p>如果执行的某个命令报错，则只有报错的命令不会被执行，其它的命令会被执行<br>回滚：当队列中的某个命令出现报告错误，执行时整个队列的命令都被取消</p>
+<h2 id="六-redis持久化"><a href="#六-redis持久化" class="headerlink" title="六.redis持久化"></a>六.redis持久化</h2><p>redis数据存放在内存(高效，断电数据会丢失)当内存不足时，redis会根据配置的缓存策略淘汰部分key<br>以保证写入成功，当无淘汰策略时或没有找到合适的key时，redis直接返回out of memory</p>
+<p>淘汰策略</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">在redis中，允许用户设置最大使用内存大小　maxmemory 512G</span><br><span class="line">volatile-lru:从已设置过期时间的数据中挑选最近最少使用的数据淘汰</span><br><span class="line">volatile-lfu:从已设置过期时间的数据中，删除一段时间内使用次数最少</span><br><span class="line">volatile-ttl：从已设置过期时间的数据中,挑选最近要过期的</span><br><span class="line">volatile-random:从已设置过期时间的数据中随机淘汰一些数据</span><br><span class="line">allkeys-lru:从数据集中挑选最近最少使用的数据淘汰</span><br><span class="line">allkeys-lfu:从所有keys中，删除一段时间内最少使用的数据</span><br><span class="line">allkeys-random:从数据集中随机选择数据淘汰</span><br><span class="line">no-enviction(驱逐):禁止驱逐数据，不采用任何淘汰算法。默认的设置</span><br></pre></td></tr></table></figure>
+
+<p>redis持久化机制</p>
+<ul>
+<li><p>rdb:是redis的默认持久化机制，rdb相当于快照，保存的是一种状态.将内存中的数据一快照的方式写入到二进制文件中去，默认为dump.rdb</p>
+<p> 优点：快照保存数据极快，还原数据极快，适用于灾难备份</p>
+</li>
+<li><p>AOF(Append-only file):由于快照方式是在一定时间间隔，所有如果redis以为down掉的话，就会丢失最后一次快照后的所有修改，如果要求不能丢失任何修改的化，可以采用aof持久化方式.aof持久化方式:将每一个写命令都通过write函数追加到文件（appendonly.aof),当redis重启时会通过执行文件中的保存的写命令在内存中重建整个数据库.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">appendonly yes # 开启AOF</span><br><span class="line"># appendfsync always 收到写命令立即写入到磁盘，最慢，但是保证完全的持久化　</span><br><span class="line">appendfsync everysec　每秒钟写入到磁盘一次</span><br><span class="line"># appendfsync no    完全依赖os，性能好，持久化没保证</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/07/28/redis/">redis</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">HanderH</a></p>
+        <p><span>发布时间:</span>2019-07-28, 18:51:31</p>
+        <p><span>最后更新:</span>2019-07-29, 21:54:08</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/07/28/redis/" title="redis">http://www.handerh.top/2019/07/28/redis/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/07/28/redis/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2019/07/28/redis的基本操作/">
+                    redis
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/07/24/通信分析项目总结/">
+                    通信分析项目总结
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-概述"><span class="toc-number">1.</span> <span class="toc-text">一.概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-配置文件"><span class="toc-number">2.</span> <span class="toc-text">二.配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-数据类型"><span class="toc-number">3.</span> <span class="toc-text">三.数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四-发布订阅"><span class="toc-number">4.</span> <span class="toc-text">四.发布订阅</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五事物"><span class="toc-number">5.</span> <span class="toc-text">五事物</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六-redis持久化"><span class="toc-number">6.</span> <span class="toc-text">六.redis持久化</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-6 i,
+        .toc-level-6 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"redis　| hsj的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <section class="livere" id="comments">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NDk3My8yMTQ5Mw==">
+    <script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+    </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2019/07/28/redis的基本操作/" title="上一篇: redis">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/07/24/通信分析项目总结/" title="下一篇: 通信分析项目总结">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/mysql/">mysql</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/28/redis的基本操作/">redis</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/28/redis/">redis</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/24/通信分析项目总结/">通信分析项目总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/22/scala/">scala</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/">virtualbox虚拟机ubuntu无法上网</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/13/hadoop/">hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/交换排序/">交换排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/hive/">hive</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/插入排序/">插入排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/09/java类加载器/">java类加载器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/GC-垃圾回收机制/">GC-垃圾回收机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/工厂模式/">工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/代理模式/">代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/java类与类之间的关系/">java类与类之间的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/hbase基本操作/">hbase的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/简单了解一下zookeeper/">简单了解一下zookeeper</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/深入理解volatile/">深入理解volatile</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/谈谈synchronized/">谈谈synchronized</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/30/java-IO/">java IO</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/java的exception/">Exception</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/equals/">equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/clone-浅拷贝与深拷贝/">clone() 浅拷贝与深拷贝</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/27/Flume/">Flume</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/26/java设计模式-单例模式/">java设计模式(单例模式)</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2019 HanderH
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("02/14/2018 12:49:00");//此处修改你的建站时间或者网站上线时间 
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+setInterval("createtime()",250);
+</script>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
