@@ -210,7 +210,7 @@ var _hmt = _hmt || [];
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flume/">Flume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hbase/">hbase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hive/">hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java多线程/">java多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java设计模式/">java设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scala/">scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu-linux/">ubuntu linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目总结/">项目总结</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flume/">Flume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hbase/">hbase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hive/">hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java多线程/">java多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java设计模式/">java设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scala/">scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/">spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu-linux/">ubuntu linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目总结/">项目总结</a></li></ul>
                     </div>
                 </section>
                 
@@ -290,6 +290,293 @@ var _hmt = _hmt || [];
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-谈谈synchronized" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      
+<a href="/2019/07/01/谈谈synchronized/" class="article-date">
+      <time datetime="2019-07-01T07:11:22.000Z" itemprop="datePublished">2019-07-01</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+       
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/01/谈谈synchronized/">谈谈synchronized</a>
+    </h1>
+  
+
+          <!--
+            
+                 <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.2k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">5分</span>
+      </span>
+    </span>
+</div>
+
+            
+           -->
+       </header>
+        
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="一-线程安全问题"><a href="#一-线程安全问题" class="headerlink" title="一.线程安全问题"></a>一.线程安全问题</h2><p>​    在单线程的情况下不会出现线程安全问题，而在多线程中，有可能会出现同时访问一个共享可变资源的情况。共享意味着该资源可被多个线程共享，可变意味着资源可被多个线程修改，这样很可能出现线程安全问题。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/java/">java</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java多线程/">java多线程</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/07/01/谈谈synchronized/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-java-IO" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      
+<a href="/2019/06/30/java-IO/" class="article-date">
+      <time datetime="2019-06-30T02:59:26.000Z" itemprop="datePublished">2019-06-30</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+       
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/30/java-IO/">java IO</a>
+    </h1>
+  
+
+          <!--
+            
+                 <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.5k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">5分</span>
+      </span>
+    </span>
+</div>
+
+            
+           -->
+       </header>
+        
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="java中的流的类型"><a href="#java中的流的类型" class="headerlink" title="java中的流的类型"></a>java中的流的类型</h3><ul>
+<li><p>按照流的方向：可以分为输入流(InpuStream)和输出流(OutputStream)</p>
+</li>
+<li><p>按照功能分类：节点流（从一个特定的地方读写数据）和处理流(对一个已经存在的流的封装)</p>
+</li>
+<li><p>按照数据的处理单位: 字节流和字符流</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/java/">java</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/06/30/java-IO/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-java的exception" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      
+<a href="/2019/06/29/java的exception/" class="article-date">
+      <time datetime="2019-06-29T10:01:54.000Z" itemprop="datePublished">2019-06-29</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+       
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/29/java的exception/">Exception</a>
+    </h1>
+  
+
+          <!--
+            
+                 <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">494字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">1分</span>
+      </span>
+    </span>
+</div>
+
+            
+           -->
+       </header>
+        
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="java中的异常分为哪几类"><a href="#java中的异常分为哪几类" class="headerlink" title="java中的异常分为哪几类"></a>java中的异常分为哪几类</h3>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/java/">java</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/06/29/java的exception/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-equals" class="article article-type-post" itemscope itemprop="blogPost">
   
