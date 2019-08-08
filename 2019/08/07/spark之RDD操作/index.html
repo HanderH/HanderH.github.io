@@ -14,21 +14,19 @@
 <meta name="author" content="HanderH">
 
 
-    
-    
 
-
-<meta name="description" content="学习总结　思考感悟　知识管理">
-<meta name="keywords" content="java 大数据　IT">
-<meta property="og:type" content="website">
-<meta property="og:title" content="hsj的博客">
-<meta property="og:url" content="http://www.handerh.top/index.html">
+<meta name="description" content="1. RDD的基本概念RDD是弹性分布式数据集,是spark中最基本的数据抽象，它代表一个可变，可分区的数据集合。在spark中对数据的所有操作包括创建 RDD、转化已有RDD 以及调用 RDD 操作进行求值。每个 RDD 都被分为多个分区，这些分区运行在集群中的不同节点上。 RDD的属性 Partitions:一组分片，即数据集的基本组成单位.每个分片会被一个任务运行 Compute：分区计算函">
+<meta name="keywords" content="spark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spark之RDD操作">
+<meta property="og:url" content="http://www.handerh.top/2019/08/07/spark之RDD操作/index.html">
 <meta property="og:site_name" content="hsj的博客">
-<meta property="og:description" content="学习总结　思考感悟　知识管理">
+<meta property="og:description" content="1. RDD的基本概念RDD是弹性分布式数据集,是spark中最基本的数据抽象，它代表一个可变，可分区的数据集合。在spark中对数据的所有操作包括创建 RDD、转化已有RDD 以及调用 RDD 操作进行求值。每个 RDD 都被分为多个分区，这些分区运行在集群中的不同节点上。 RDD的属性 Partitions:一组分片，即数据集的基本组成单位.每个分片会被一个任务运行 Compute：分区计算函">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-07T12:18:43.350Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hsj的博客">
-<meta name="twitter:description" content="学习总结　思考感悟　知识管理">
+<meta name="twitter:title" content="spark之RDD操作">
+<meta name="twitter:description" content="1. RDD的基本概念RDD是弹性分布式数据集,是spark中最基本的数据抽象，它代表一个可变，可分区的数据集合。在spark中对数据的所有操作包括创建 RDD、转化已有RDD 以及调用 RDD 操作进行求值。每个 RDD 都被分为多个分区，这些分区运行在集群中的不同节点上。 RDD的属性 Partitions:一组分片，即数据集的基本组成单位.每个分片会被一个任务运行 Compute：分区计算函">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -56,13 +54,11 @@
 <link rel="stylesheet" href="/css/style.css">
 
 
-    <style> .article { opacity: 0;} </style>
-
 
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>hsj的博客</title>
+<title>spark之RDD操作 | hsj的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -71,8 +67,8 @@
     var yiliaConfig = {
         fancybox: true,
         animate: true,
-        isHome: true,
-        isPost: false,
+        isHome: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -289,12 +285,15 @@ var _hmt = _hmt || [];
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-spark之RDD操作" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-spark之RDD操作" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/2019/08/07/spark之RDD操作/" class="article-date">
       <time datetime="2019-08-07T07:44:39.000Z" itemprop="datePublished">2019-08-07</time>
 </a>
@@ -311,8 +310,8 @@ var _hmt = _hmt || [];
        
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/07/spark之RDD操作/">spark之RDD操作</a>
+    <h1 class="article-title" itemprop="name">
+      spark之RDD操作
     </h1>
   
 
@@ -341,6 +340,21 @@ var _hmt = _hmt || [];
            -->
        </header>
         
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/spark/">spark</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spark/">spark</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -511,1005 +525,140 @@ var _hmt = _hmt || [];
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/spark/">spark</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spark/">spark</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
   
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-spark基本架构与运行原理" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/08/05/spark基本架构与运行原理/" class="article-date">
-      <time datetime="2019-08-05T06:36:50.000Z" itemprop="datePublished">2019-08-05</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/05/spark基本架构与运行原理/">spark基本架构与运行原理</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">712字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h3 id="spark运行架构图"><a href="#spark运行架构图" class="headerlink" title="spark运行架构图"></a>spark运行架构图</h3><p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/spark/spark1.png" alt></p>
-<ul>
-<li>Cluster Manager：在standalone模式中即为Master主节点，控制整个集群，监控worker。在YARN模式中为ResourceManager</li>
-<li>Worker:从节点，负责控制计算节点，启动executor和Driver。在yarn集群中为nodemanager</li>
-<li>Driver:运行Application的main函数并且创建SparkContext.</li>
-<li>Executor:执行器,Application运行在worker节点上的一个进程，负责启动线程池运行任务(Task)</li>
-<li>RDD DAG:RDD组成的有向无环图，反应RDD之间的依赖关系。当RDD遇到遇到Action算子的时候，将之前所有算子形成一个有向无环图</li>
-<li>DAG Scheduler：根据job构造基于stage的DAG并将stage提交给TaskScheduler</li>
-<li>TaskScheduler:将task任务分发给Executor执行</li>
-<li>SparkEnv:线程级别的上下文，存储运行时中要组件的引用</li>
-</ul>
-<p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/spark/rdd.jpg" alt></p>
-<h3 id="Spark作业基本概念"><a href="#Spark作业基本概念" class="headerlink" title="Spark作业基本概念"></a>Spark作业基本概念</h3><ul>
-<li>Application:用户编写的Spark应用程序，其中包括一个Driver功能的代码和分布在集群中多个节点上运行的Executor代码</li>
-<li>Driver Program:运行Application的main函数并且创建SparkContext</li>
-<li>Job:一个RDD Graph 触发的作业，包含多个Task组成的并行计算</li>
-<li>Stage:每个job会根据RDD的宽依赖关系切分成多个stage,每个stage包含一组相同的Task,也叫TaskSet</li>
-<li>Task：被送到某个Executor上的工作单元，但hadoopMR中的MapTask和ReduceTask概念一样，是运行Application的基本单位，多个Task组成一个Stage，而Task的调度和管理等是由TaskScheduler负责</li>
-</ul>
-<h3 id="Spark运行机制"><a href="#Spark运行机制" class="headerlink" title="Spark运行机制"></a>Spark运行机制</h3><h4 id="spark运行流程"><a href="#spark运行流程" class="headerlink" title="spark运行流程"></a>spark运行流程</h4><p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/spark/spark3.png" alt></p>
-<ol>
-<li>用户在客户端将Application提交到ClusterManager</li>
-<li>ClusterManager收到Application后，找一个worker启动Driver,初始化一个SparkContext.</li>
-<li>SparkContext初始化时创建DAG Scheduler和Task Scheduler,向资源管理器申请Executors,并启动StandaloneExecutorBackend</li>
-<li>Executors向SparkContext申请Task,SparkContext中的每一个DAG Scheduler会根据依赖关系拆分成多个stage,每个stage提交给一个Task Scheduler，Task Scheduler会将这些Task任务分发到Executor</li>
-<li>Executor启动多线程，执行Task。</li>
-<li>所有Task完成后，SparkContext向Master注销</li>
-</ol>
-<h3 id="Spark运行模式"><a href="#Spark运行模式" class="headerlink" title="Spark运行模式"></a>Spark运行模式</h3><ul>
-<li>Standalone:Standalone模式使用Spark自带的资源调度框架,采用Master/Slaves的典型架构</li>
-</ul>
-<ol>
-<li>用户在客户端将Application提交到ClusterManager</li>
-<li>ClusterManager收到Application后，找一个worker启动Driver,初始化一个SparkContext.</li>
-<li>SparkContext初始化时创建DAG Scheduler和Task Scheduler,向资源管理器申请Executors,并启动StandaloneExecutorBackend</li>
-<li>Executors向SparkContext申请Task,SparkContext中的每一个DAG Scheduler会根据依赖关系拆分成多个stage,每个stage提交给一个Task Scheduler，Task Scheduler会将这些Task任务分发到Executor</li>
-<li>Executor启动多线程，执行Task。</li>
-<li>所有Task完成后，SparkContext向Master注销</li>
-</ol>
-<ul>
-<li><p>YARN Client</p>
-<p>Driver在客户端本地运行，这种模式可以使得Spark Application和客户端进行交互，此时driver负责RDD生成、task生成和分发，向AM申请资源。</p>
-</li>
-<li><p>YARN Cluster：client将application提交到spark集群中就与spark集群断开联系，此时client将不会发挥其他任何作用，仅仅负责提交，此时可以将driver与Application Master是一个东西</p>
-</li>
-</ul>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/spark/">spark</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spark/">spark</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hadoop优化配置" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/08/04/hadoop优化配置/" class="article-date">
-      <time datetime="2019-08-04T07:08:41.000Z" itemprop="datePublished">2019-08-04</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/04/hadoop优化配置/">hadoop优化配置</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">864字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">4分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h3 id="1-历史服务器的配置"><a href="#1-历史服务器的配置" class="headerlink" title="1. 历史服务器的配置"></a>1. 历史服务器的配置</h3><p>为了查看程序的历史运行情况，需要配置一下历史服务器。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> vi mapred-site.xml</span><br><span class="line"> &lt;!-- 历史服务器端地址 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;mapreduce.jobhistory.address&lt;/name&gt;</span><br><span class="line">&lt;value&gt;hadoop01:10020&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;!-- 历史服务器web端地址 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;mapreduce.jobhistory.webapp.address&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;hadoop01:19888&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
-
-<p>启动历史服务器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mr-jobhistory-daemon.sh start historyserver</span><br></pre></td></tr></table></figure>
-
-<p>查看JobHistory</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://hadoop01:19888/jobhistory</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-日志聚集"><a href="#2-日志聚集" class="headerlink" title="2.日志聚集"></a>2.日志聚集</h3><p>应用运行完成以后，将程序运行日志信息上传到HDFS系统上，可以方便的查看到程序运行详情，方便开发调试。开启日志聚集功能，需要重新启动NodeManager 、ResourceManager和HistoryManager。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">vi yarn-site.xml</span><br><span class="line"></span><br><span class="line">&lt;!-- 日志聚集功能使能 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;yarn.log-aggregation-enable&lt;/name&gt;</span><br><span class="line">&lt;value&gt;true&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 日志保留时间设置7天 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;yarn.log-aggregation.retain-seconds&lt;/name&gt;</span><br><span class="line">&lt;value&gt;604800&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-默认的配置文件"><a href="#3-默认的配置文件" class="headerlink" title="3.默认的配置文件"></a>3.默认的配置文件</h3><table>
-<thead>
-<tr>
-<th>要获取的默认文件</th>
-<th>文件存放在Hadoop的jar包中的位置</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>[core-default.xml]</td>
-<td>hadoop-common-2.7.2.jar/ core-default.xml</td>
-</tr>
-<tr>
-<td>[hdfs-default.xml]</td>
-<td>hadoop-hdfs-2.7.2.jar/ hdfs-default.xml</td>
-</tr>
-<tr>
-<td>[yarn-default.xml]</td>
-<td>hadoop-yarn-common-2.7.2.jar/ yarn-default.xml</td>
-</tr>
-<tr>
-<td>[mapred-default.xml]</td>
-<td>hadoop-mapreduce-client-core-2.7.2.jar/ mapred-default.xml</td>
-</tr>
-</tbody></table>
-<h3 id="4-CheckPoint时间设置"><a href="#4-CheckPoint时间设置" class="headerlink" title="4.CheckPoint时间设置"></a>4.CheckPoint时间设置</h3><p>通常情况下，SecondaryNameNode每隔一小时执行一次。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[hdfs-default.xml]</span><br><span class="line">&lt;property&gt;</span><br><span class="line">  &lt;name&gt;dfs.namenode.checkpoint.period&lt;/name&gt;</span><br><span class="line">  &lt;value&gt;3600&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
-
-<p>一分钟检查一次操作次数，当操作次数达到1百万时，SecondaryNameNode执行一次。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">  &lt;name&gt;dfs.namenode.checkpoint.txns&lt;/name&gt;</span><br><span class="line">  &lt;value&gt;1000000&lt;/value&gt;</span><br><span class="line">&lt;description&gt;操作动作次数&lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;property&gt;</span><br><span class="line">  &lt;name&gt;dfs.namenode.checkpoint.check.period&lt;/name&gt;</span><br><span class="line">  &lt;value&gt;60&lt;/value&gt;</span><br><span class="line">&lt;description&gt; 1分钟检查一次操作次数&lt;/description&gt;</span><br><span class="line">&lt;/property &gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-namenode故障处理"><a href="#5-namenode故障处理" class="headerlink" title="5.namenode故障处理"></a>5.namenode故障处理</h3><p> 将SecondaryNameNode中数据拷贝到NameNode存储数据的目录；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 1. 删除NameNode存储的数据</span><br><span class="line">rm -rf /opt/module/hadoop/data/tmp/dfs/name/*</span><br><span class="line">// 2. 拷贝SecondaryNameNode中数据到原NameNode存储数据目录</span><br><span class="line">scp -r atguigu@hadoop104:/opt/module/hadoop/data/tmp/dfs/namesecondary/* ./name/</span><br></pre></td></tr></table></figure>
-
-<h3 id="6-服役新节点"><a href="#6-服役新节点" class="headerlink" title="6.服役新节点"></a>6.服役新节点</h3><ol>
-<li>克隆一台主机，配置ip和hostname</li>
-<li>删除克隆后的主机的一些数据</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">opt/module/hadoop/data和log）</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>启动datanode</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hadoop-daemon.sh start datanode</span><br><span class="line">yarn-daemin.sh start nodemanager</span><br><span class="line"></span><br><span class="line"># 如果数据不平衡 可以使用命令实现集群的再平衡</span><br><span class="line">start-balancer.sh</span><br></pre></td></tr></table></figure>
-
-<h3 id="7-配置白名单"><a href="#7-配置白名单" class="headerlink" title="7.配置白名单"></a>7.配置白名单</h3><ol>
-<li>在namenode的hadoop/etc/hadoop目录下新建dfs.hosts文件,添加主机名,添加到白名单的主机节点，都允许访问NameNode，不在白名单的主机节点，都会被退出。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hadoop01</span><br><span class="line">hadoop02</span><br><span class="line">hadoop03</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>在hdfs-site.xml配置文件中添加dfs.hosts属性</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;dfs.hosts&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;/opt/module/hadoop/etc/hadoop/dfs.hosts&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>刷新NameNode</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfsadmin -refreshNodes</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>更新ResourceManager节点</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn rmadmin -refreshNodes</span><br></pre></td></tr></table></figure>
-
-<h3 id="8-配置黑名单"><a href="#8-配置黑名单" class="headerlink" title="8.配置黑名单"></a>8.配置黑名单</h3><ol>
-<li>在namenode的hadoop/etc/hadoop目录下新建dfs.hosts.exclude文件，添加要退役主机名称</li>
-<li>在NameNode的hdfs-site.xml配置文件中增加dfs.hosts.exclude属性</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">	&lt;name&gt;dfs.hosts.exclude&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;/opt/module/hadoop-2.7.2/etc/hadoop/dfs.hosts.exclude&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>刷新namenode,ResourceManager</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfsadmin -refreshNodes</span><br><span class="line">yarn rmadmin -refreshNodes</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>等到退役节点的数据块成功复制到其它节点，停止该节点</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hadoop-daemon.sh stop datanode</span><br><span class="line">yarn-daemon.sh stop nodemanager</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-异常笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/08/02/异常笔记/" class="article-date">
-      <time datetime="2019-08-02T06:28:17.000Z" itemprop="datePublished">2019-08-02</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/02/异常笔记/">异常笔记</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">0字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-mysql基础" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/07/29/mysql基础/" class="article-date">
-      <time datetime="2019-07-29T11:12:14.000Z" itemprop="datePublished">2019-07-29</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/29/mysql基础/">mysql</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">2.6k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">11分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="1-mysql常见函数"><a href="#1-mysql常见函数" class="headerlink" title="1.mysql常见函数"></a>1.mysql常见函数</h2><h3 id="字符函数"><a href="#字符函数" class="headerlink" title="字符函数"></a>字符函数</h3>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/mysql/">mysql</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/07/29/mysql基础/#more">more >></a>
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/08/07/spark之RDD操作/">spark之RDD操作</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">HanderH</a></p>
+        <p><span>发布时间:</span>2019-08-07, 15:44:39</p>
+        <p><span>最后更新:</span>2019-08-07, 20:18:43</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/08/07/spark之RDD操作/" title="spark之RDD操作">http://www.handerh.top/2019/08/07/spark之RDD操作/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/08/07/spark之RDD操作/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-redis" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/07/28/redis/" class="article-date">
-      <time datetime="2019-07-28T10:51:31.000Z" itemprop="datePublished">2019-07-28</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/28/redis/">redis</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">2.4k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">9分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="一-概述"><a href="#一-概述" class="headerlink" title="一.概述"></a>一.概述</h2><p>redis基于内存持久化，高性能的NoSql的key-value数据库.redis支持数据的持久化，可以将数据保存在磁盘中，重启时可以加载使用。redis持久化策略包括RDB,AOF。redis提供key-value类型的数据，同时还提供list,set,zset.hash类型的数据，redis单个key可存储512M大小，默认端口6379</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/redis/">redis</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/07/28/redis/#more">more >></a>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
         </p>
-      
-      <div class="clearfix"></div>
     </div>
-    
-  </div>
-  
-</article>
 
 
 
-
-
-
-
-
-
-  
-    <article id="post-通信分析项目总结" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/07/24/通信分析项目总结/" class="article-date">
-      <time datetime="2019-07-24T14:10:43.000Z" itemprop="datePublished">2019-07-24</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
+    <nav id="article-nav">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/24/通信分析项目总结/">通信分析项目总结</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">848字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">3分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
         
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>该项目是基于通话日志的分析，当前每时每刻都有很多人打电话，那么产生的通话记录也是一个非常大数据量，需求就是根据这个通话日志，统计出每天，每月，每年用户的通话次数以及通话时长。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/项目总结/">项目总结</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/项目总结/">项目总结</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/07/24/通信分析项目总结/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-scala" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/07/22/scala/" class="article-date">
-      <time datetime="2019-07-22T06:46:09.000Z" itemprop="datePublished">2019-07-22</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/08/05/spark基本架构与运行原理/">
+                    spark基本架构与运行原理
+                </a>
+            </div>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/22/scala/">scala</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">8.3k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">39分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="一-变量"><a href="#一-变量" class="headerlink" title="一.变量"></a>一.变量</h2><h3 id="scala的数据类型"><a href="#scala的数据类型" class="headerlink" title="scala的数据类型"></a>scala的数据类型</h3>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/scala/">scala</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scala/">scala</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/07/22/scala/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-virtualbox虚拟机ubuntu无法上网" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/" class="article-date">
-      <time datetime="2019-07-21T03:37:06.000Z" itemprop="datePublished">2019-07-21</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/">virtualbox虚拟机ubuntu无法上网</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">311字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>今天想要在虚拟机上安装redis，结果尽然发现虚拟机不能上网，根据网上的一顿操作，差点把自己心态搞崩，不过，最后还是集百家智慧，重要搞定了。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/linux/">linux</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu-linux/">ubuntu linux</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hadoop" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/07/13/hadoop/" class="article-date">
-      <time datetime="2019-07-13T07:43:02.000Z" itemprop="datePublished">2019-07-13</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/13/hadoop/">hadoop</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">3.5k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">13分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="1-hadoop的优势"><a href="#1-hadoop的优势" class="headerlink" title="1.hadoop的优势"></a>1.hadoop的优势</h2><ol>
-<li><p>高可靠：维护多个副本，数据不易丢失</p>
-</li>
-<li><p>高扩展：集群方便添加节点</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/07/13/hadoop/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
+
   
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-RDD的基本概念"><span class="toc-number">1.</span> <span class="toc-text">1. RDD的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RDD的属性"><span class="toc-number">1.1.</span> <span class="toc-text">RDD的属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RDD的弹性"><span class="toc-number">1.2.</span> <span class="toc-text">RDD的弹性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#２-RDD编程"><span class="toc-number">2.</span> <span class="toc-text">２.RDD编程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RDD创建"><span class="toc-number">2.1.</span> <span class="toc-text">RDD创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RDD的转换"><span class="toc-number">2.2.</span> <span class="toc-text">RDD的转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RDD执行操作"><span class="toc-number">2.3.</span> <span class="toc-text">RDD执行操作</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-6 i,
+        .toc-level-6 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"spark之RDD操作　| hsj的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <section class="livere" id="comments">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NDk3My8yMTQ5Mw==">
+    <script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+    </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/08/05/spark基本架构与运行原理/" title="下一篇: spark基本架构与运行原理">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/08/07/spark之RDD操作/">spark之RDD操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/05/spark基本架构与运行原理/">spark基本架构与运行原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/04/hadoop优化配置/">hadoop优化配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/02/异常笔记/">异常笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/mysql基础/">mysql</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/28/redis/">redis</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/24/通信分析项目总结/">通信分析项目总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/22/scala/">scala</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/">virtualbox虚拟机ubuntu无法上网</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/13/hadoop/">hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/交换排序/">交换排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/hive/">hive</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/插入排序/">插入排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/09/java类加载器/">java类加载器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/GC-垃圾回收机制/">GC-垃圾回收机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/工厂模式/">工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/代理模式/">代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/java类与类之间的关系/">java类与类之间的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/hbase基本操作/">hbase的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/简单了解一下zookeeper/">简单了解一下zookeeper</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/深入理解volatile/">深入理解volatile</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/谈谈synchronized/">谈谈synchronized</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/30/java-IO/">java IO</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/java的exception/">Exception</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/equals/">equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/clone-浅拷贝与深拷贝/">clone() 浅拷贝与深拷贝</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/27/Flume/">Flume</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/26/java设计模式-单例模式/">java设计模式(单例模式)</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
@@ -1581,10 +730,6 @@ setInterval("createtime()",250);
         })
     </script>
 
-
-    
-
-     
 
 
 
