@@ -15,18 +15,18 @@
 
 
 
-<meta name="description" content="一.线程安全问题​    在单线程的情况下不会出现线程安全问题，而在多线程中，有可能会出现同时访问一个共享可变资源的情况。共享意味着该资源可被多个线程共享，可变意味着资源可被多个线程修改，这样很可能出现线程安全问题。">
-<meta name="keywords" content="java多线程">
+<meta name="description" content="spark sql的概念spark sql是 是spark用来处理结构化数据的一个模块，提供了DataFrame和DataSet两个新的抽象概念。与RDD类似，DataSet和DataFrame都是分布式数据容器，DataFrame更像穿透数据库的二位表格，出克记录数据之外，还记录数据的结构信息。而DataSet是DataFrame的一个扩展，它是强类型的，DataFrame只是知道字段，但是不知">
+<meta name="keywords" content="spark">
 <meta property="og:type" content="article">
-<meta property="og:title" content="谈谈synchronized">
-<meta property="og:url" content="http://www.handerh.top/2019/07/01/谈谈synchronized/index.html">
+<meta property="og:title" content="spark sql">
+<meta property="og:url" content="http://www.handerh.top/2019/08/09/spark-sql/index.html">
 <meta property="og:site_name" content="hsj的博客">
-<meta property="og:description" content="一.线程安全问题​    在单线程的情况下不会出现线程安全问题，而在多线程中，有可能会出现同时访问一个共享可变资源的情况。共享意味着该资源可被多个线程共享，可变意味着资源可被多个线程修改，这样很可能出现线程安全问题。">
+<meta property="og:description" content="spark sql的概念spark sql是 是spark用来处理结构化数据的一个模块，提供了DataFrame和DataSet两个新的抽象概念。与RDD类似，DataSet和DataFrame都是分布式数据容器，DataFrame更像穿透数据库的二位表格，出克记录数据之外，还记录数据的结构信息。而DataSet是DataFrame的一个扩展，它是强类型的，DataFrame只是知道字段，但是不知">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-10T12:26:02.120Z">
+<meta property="og:updated_time" content="2019-08-09T15:12:17.437Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="谈谈synchronized">
-<meta name="twitter:description" content="一.线程安全问题​    在单线程的情况下不会出现线程安全问题，而在多线程中，有可能会出现同时访问一个共享可变资源的情况。共享意味着该资源可被多个线程共享，可变意味着资源可被多个线程修改，这样很可能出现线程安全问题。">
+<meta name="twitter:title" content="spark sql">
+<meta name="twitter:description" content="spark sql的概念spark sql是 是spark用来处理结构化数据的一个模块，提供了DataFrame和DataSet两个新的抽象概念。与RDD类似，DataSet和DataFrame都是分布式数据容器，DataFrame更像穿透数据库的二位表格，出克记录数据之外，还记录数据的结构信息。而DataSet是DataFrame的一个扩展，它是强类型的，DataFrame只是知道字段，但是不知">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -58,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>谈谈synchronized | hsj的博客</title>
+<title>spark sql | hsj的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -285,7 +285,7 @@ var _hmt = _hmt || [];
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-谈谈synchronized" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-spark-sql" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       
@@ -294,8 +294,8 @@ var _hmt = _hmt || [];
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2019/07/01/谈谈synchronized/" class="article-date">
-      <time datetime="2019-07-01T07:11:22.000Z" itemprop="datePublished">2019-07-01</time>
+<a href="/2019/08/09/spark-sql/" class="article-date">
+      <time datetime="2019-08-09T12:49:49.000Z" itemprop="datePublished">2019-08-09</time>
 </a>
 
 
@@ -311,7 +311,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      谈谈synchronized
+      spark sql
     </h1>
   
 
@@ -322,7 +322,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.2k字</span>
+        <span class="post-count">194字</span>
       </span>
     </span>
 
@@ -331,7 +331,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">5分</span>
+        <span class="post-count">1分</span>
       </span>
     </span>
 </div>
@@ -344,13 +344,13 @@ var _hmt = _hmt || [];
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/java/">java</a>
+    <a class="article-category-link" href="/categories/spark/">spark</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java多线程/">java多线程</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spark/">spark</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -360,54 +360,11 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="一-线程安全问题"><a href="#一-线程安全问题" class="headerlink" title="一.线程安全问题"></a>一.线程安全问题</h2><p>​    在单线程的情况下不会出现线程安全问题，而在多线程中，有可能会出现同时访问一个共享可变资源的情况。共享意味着该资源可被多个线程共享，可变意味着资源可被多个线程修改，这样很可能出现线程安全问题。</p>
-<a id="more"></a>
-
-<p>看一段线程安全的代码:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class SynchronizedTest1 &#123;</span><br><span class="line">	private int count = 0;</span><br><span class="line">	public void synchronizedTest1() &#123;</span><br><span class="line">		for(int i=0;i&lt;1000;i++) &#123;</span><br><span class="line">			count++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SynchronizedTest1 t1 = new SynchronizedTest1();</span><br><span class="line">		for(int i=0;i&lt;10;i++) &#123;</span><br><span class="line">			new Thread(new Runnable() &#123;</span><br><span class="line">				@Override</span><br><span class="line">				public void run() &#123;</span><br><span class="line">					t1.synchronizedTest1();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;).start();</span><br><span class="line">		&#125;</span><br><span class="line">		try &#123;</span><br><span class="line">			Thread.sleep(3000);</span><br><span class="line">		&#125; catch (InterruptedException e) &#123;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(t1.count);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在这里我开启了10个线程，每个线程我都将它们累加1000，结果应该是10*1000=10000,但是运行程序之后发现，结果count是小于10000,这是为什么呢？</p>
-<p>这是由于count++不是原子操作，它由三步组成，首先要获取count的值，再对它进行加１，最后更新count.假设有两个线程，线程一先读到count=10;线程二这时候也读到count=10;线程二对count加１，</p>
-<p>count=11,这时候线程二被阻塞，线程一开始执行，进行加１操作，并成功更新值，count=11,线程一执行完成后，线程二开始执行，由于线程二在之前已经进行了加１操作，这时候只需要将count写回到主存，最后count=11,两个线程在执行自增操作的时候，只加了１，这就是共享变量带来的并发问题。</p>
-<h2 id="二-synchronized解决线程不安全"><a href="#二-synchronized解决线程不安全" class="headerlink" title="二.synchronized解决线程不安全"></a>二.synchronized解决线程不安全</h2><p>要解决上述的线程不安全问题，可以使用synchronized解决,我们只需要在方法上添加synchronized</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public synchronized void synchronizedTest1() &#123;</span><br><span class="line">		for(int i=0;i&lt;1000;i++) &#123;</span><br><span class="line">			count++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<p>synchronized是一种对象锁，用它来对某个方法或者代码块进行标记后，当某个线程对这个方法或者对象进行访问的时候，这个线程便获得了这把锁，别的线程只能等待该线程将锁释放，才能访问这个方法或者代码块。</p>
-<h2 id="三-synchronized的实现机制"><a href="#三-synchronized的实现机制" class="headerlink" title="三.synchronized的实现机制"></a>三.synchronized的实现机制</h2><p>编写一个简单的同步代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class SynchronizedTest2 &#123;</span><br><span class="line">	public  void test2() &#123;</span><br><span class="line">		synchronized (this) &#123;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>通过javap -v SynchronizedTest2.class,获取字节码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Code:</span><br><span class="line">     stack=2, locals=3, args_size=1</span><br><span class="line">        0: aload_0</span><br><span class="line">        1: dup</span><br><span class="line">        2: astore_1</span><br><span class="line">        3: monitorenter</span><br><span class="line">        4: aload_1</span><br><span class="line">        5: monitorexit</span><br><span class="line">        6: goto          14</span><br><span class="line">        9: astore_2</span><br><span class="line">       10: aload_1</span><br><span class="line">       11: monitorexit</span><br><span class="line">       12: aload_2</span><br><span class="line">       13: athrow</span><br><span class="line">       14: return</span><br></pre></td></tr></table></figure>
-
-<p>可以看到,使用synchronized进行同步操作，关键是需要对对象的monitor 进行获取，monitorenter让对象的锁计数器加１，monitorexit会让对象的锁计数器减一。</p>
-<p>##　四.synchronized实现同步的方式</p>
-<h3 id="同步方法"><a href="#同步方法" class="headerlink" title="同步方法"></a>同步方法</h3><p>添加在非静态方法的同步:获取的是实例对象的锁</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public synchronized void synchronizedTest1() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>添加在静态方法的同步：获取的是类对象的锁</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public synchronized static void synchronizedTest2() &#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="同步代码块"><a href="#同步代码块" class="headerlink" title="同步代码块"></a>同步代码块</h3><p>非静态方法中的代码块</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public void synchronizedTest4() &#123;</span><br><span class="line">		synchronized(this) &#123;　//实例对象的锁</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>静态方法中的代码块</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static void synchronizedTest3() &#123;</span><br><span class="line">    synchronized(SynchronizedTest1.class) &#123; //类对象的锁</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-使用synchronized需要注意的地方"><a href="#5-使用synchronized需要注意的地方" class="headerlink" title="5.使用synchronized需要注意的地方"></a>5.使用synchronized需要注意的地方</h2><ol>
-<li><strong>对于 synchronized方法 或者 synchronized代码块，当出现异常时，JVM会自动释放当前线程占用的锁，因此不会由于异常导致出现死锁现象。</strong>　　</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">public class TestException &#123;</span><br><span class="line"></span><br><span class="line">	public synchronized void t1() &#123;</span><br><span class="line">		while(true) &#123;</span><br><span class="line">			int i = 10/0; // java.lang.ArithmeticException: / by zero 释放锁</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	public synchronized void t2() &#123;</span><br><span class="line">		System.out.println(&quot;我是t2，我正在执行&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		TestException t = new TestException();</span><br><span class="line">		new Thread(new Thread() &#123;</span><br><span class="line">			@Override</span><br><span class="line">			public void run() &#123;</span><br><span class="line">				t.t1();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;).start();</span><br><span class="line">		try &#123;</span><br><span class="line">			Thread.sleep(1000);</span><br><span class="line">		&#125; catch (InterruptedException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		new Thread(new Thread() &#123;</span><br><span class="line">			@Override</span><br><span class="line">			public void run() &#123;</span><br><span class="line">				t.t2();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;).start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><strong>当一个对象的synchronized的方法正在被一个线程访问，其它线程不能访问该对象的其它synchronized方法，但是可以访问其它非synchronized的方法。这应该很好理解，一个对象就一把锁，被一个线程占用后，其它线程必须等带该锁被释放。</strong></li>
-<li><strong>synchronized锁住的是对象</strong></li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">public class TestObject &#123;</span><br><span class="line">	</span><br><span class="line">	private Object obj = new Object();</span><br><span class="line">	public void t1()  &#123;</span><br><span class="line">		synchronized(obj) &#123;</span><br><span class="line">			System.out.println(Thread.currentThread().getName());</span><br><span class="line">			obj = new Object(); //改变obj,指向另外一个对象</span><br><span class="line">			try &#123;</span><br><span class="line">				Thread.sleep(2000);</span><br><span class="line">			&#125; catch (InterruptedException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println(Thread.currentThread().getName());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		TestObject t = new TestObject();</span><br><span class="line">		new Thread(new Runnable() &#123;</span><br><span class="line">			@Override</span><br><span class="line">			public void run() &#123;</span><br><span class="line">				t.t1();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;).start();</span><br><span class="line">		try &#123;</span><br><span class="line">			Thread.sleep(500);</span><br><span class="line">		&#125; catch (InterruptedException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		new Thread(new Runnable() &#123;</span><br><span class="line">			@Override</span><br><span class="line">			public void run() &#123;</span><br><span class="line">				t.t1();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;).start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>线程１先执行，将obj = new Object(); 指向另外一个对象，这时候阻塞两秒，线程２执行，获取锁，由于obj是一个新对象所以获取锁成功,线程１和线程２交替执行</p>
-<p>运行结果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Thread-0</span><br><span class="line">Thread-1</span><br><span class="line">Thread-0</span><br><span class="line">Thread-1</span><br></pre></td></tr></table></figure>
-
+        <h3 id="spark-sql的概念"><a href="#spark-sql的概念" class="headerlink" title="spark sql的概念"></a>spark sql的概念</h3><p>spark sql是 是spark用来处理结构化数据的一个模块，提供了DataFrame和DataSet两个新的抽象概念。与RDD类似，DataSet和DataFrame都是分布式数据容器，DataFrame更像穿透数据库的二位表格，出克记录数据之外，还记录数据的结构信息。而DataSet是DataFrame的一个扩展，它是强类型的，DataFrame只是知道字段，但是不知道字段的类型，但是DataSet不仅知道字段，而且知道字段的类型。</p>
+<p>RDD，DataSet和DataFram的共同点：三者都是分布式的弹性数据集，三者都有惰性机制，都有partition机制，有许多共同函数。三者可以相互转化</p>
+<h4 id="RDD，DataSet和DataFram互相转换"><a href="#RDD，DataSet和DataFram互相转换" class="headerlink" title="RDD，DataSet和DataFram互相转换"></a>RDD，DataSet和DataFram互相转换</h4><p>rdd =》ds，df</p>
+<p>df =》 rdd，ds</p>
+<p>ds =》 rdd，df</p>
 
       
     </div>
@@ -416,13 +373,13 @@ var _hmt = _hmt || [];
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/07/01/谈谈synchronized/">谈谈synchronized</a></p>
+        <p><span>本文标题:</span><a href="/2019/08/09/spark-sql/">spark sql</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HanderH</a></p>
-        <p><span>发布时间:</span>2019-07-01, 15:11:22</p>
-        <p><span>最后更新:</span>2019-07-10, 20:26:02</p>
+        <p><span>发布时间:</span>2019-08-09, 20:49:49</p>
+        <p><span>最后更新:</span>2019-08-09, 23:12:17</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/07/01/谈谈synchronized/" title="谈谈synchronized">http://www.handerh.top/2019/07/01/谈谈synchronized/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/07/01/谈谈synchronized/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/08/09/spark-sql/" title="spark sql">http://www.handerh.top/2019/08/09/spark-sql/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/08/09/spark-sql/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -434,16 +391,10 @@ var _hmt = _hmt || [];
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/07/01/深入理解volatile/">
-                    深入理解volatile
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/06/30/java-IO/">
-                    java IO
+                <a href="/2019/08/07/spark之RDD操作/">
+                    spark之RDD操作
                 </a>
             </div>
         
@@ -455,7 +406,7 @@ var _hmt = _hmt || [];
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-线程安全问题"><span class="toc-number">1.</span> <span class="toc-text">一.线程安全问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-synchronized解决线程不安全"><span class="toc-number">2.</span> <span class="toc-text">二.synchronized解决线程不安全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-synchronized的实现机制"><span class="toc-number">3.</span> <span class="toc-text">三.synchronized的实现机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#同步方法"><span class="toc-number">3.1.</span> <span class="toc-text">同步方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同步代码块"><span class="toc-number">3.2.</span> <span class="toc-text">同步代码块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-使用synchronized需要注意的地方"><span class="toc-number">4.</span> <span class="toc-text">5.使用synchronized需要注意的地方</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#spark-sql的概念"><span class="toc-number">1.</span> <span class="toc-text">spark sql的概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RDD，DataSet和DataFram互相转换"><span class="toc-number">1.1.</span> <span class="toc-text">RDD，DataSet和DataFram互相转换</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -491,7 +442,7 @@ var _hmt = _hmt || [];
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"谈谈synchronized　| hsj的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"spark sql　| hsj的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -532,15 +483,13 @@ var _hmt = _hmt || [];
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/07/01/深入理解volatile/" title="上一篇: 深入理解volatile">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/06/30/java-IO/" title="下一篇: java IO">
+            <a href="/2019/08/07/spark之RDD操作/" title="下一篇: spark之RDD操作">
                 <i class="fa fa-angle-right"></i>
             </a>
         

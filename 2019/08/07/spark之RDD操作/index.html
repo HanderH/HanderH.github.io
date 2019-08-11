@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="hsj的博客">
 <meta property="og:description" content="1. RDD的基本概念RDD是弹性分布式数据集,是spark中最基本的数据抽象，它代表一个可变，可分区的数据集合。在spark中对数据的所有操作包括创建 RDD、转化已有RDD 以及调用 RDD 操作进行求值。每个 RDD 都被分为多个分区，这些分区运行在集群中的不同节点上。 RDD的属性 Partitions:一组分片，即数据集的基本组成单位.每个分片会被一个任务运行 Compute：分区计算函">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-07T12:18:43.350Z">
+<meta property="og:updated_time" content="2019-08-09T09:13:10.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spark之RDD操作">
 <meta name="twitter:description" content="1. RDD的基本概念RDD是弹性分布式数据集,是spark中最基本的数据抽象，它代表一个可变，可分区的数据集合。在spark中对数据的所有操作包括创建 RDD、转化已有RDD 以及调用 RDD 操作进行求值。每个 RDD 都被分为多个分区，这些分区运行在集群中的不同节点上。 RDD的属性 Partitions:一组分片，即数据集的基本组成单位.每个分片会被一个任务运行 Compute：分区计算函">
@@ -322,7 +322,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">2.3k字</span>
+        <span class="post-count">2.5k字</span>
       </span>
     </span>
 
@@ -331,7 +331,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">11分</span>
+        <span class="post-count">12分</span>
       </span>
     </span>
 </div>
@@ -521,6 +521,21 @@ var _hmt = _hmt || [];
 <ol start="13">
 <li>foreach</li>
 </ol>
+<h4 id="RDD的文件操作"><a href="#RDD的文件操作" class="headerlink" title="RDD的文件操作"></a>RDD的文件操作</h4><ul>
+<li>saveAsObject File:底层调用其实是saveAsSequenceFile</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">val rdd =  sc.parallelize(Array((&quot;zs&quot;,18),(&quot;lisi&quot;,20),(&quot;ww&quot;,17),(&quot;zl&quot;,30)))</span><br><span class="line"></span><br><span class="line">rdd.saveAsObjectFile(&quot;write_dile&quot;)</span><br><span class="line"></span><br><span class="line">val rdd2: RDD[(String, Int)] = sc.objectFile[(String,Int)](&quot;write_dile&quot;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>saveAsSequenceFile</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">al rdd =  sc.parallelize(Array((&quot;zs&quot;,18),(&quot;lisi&quot;,20),(&quot;ww&quot;,17),(&quot;zl&quot;,30)))</span><br><span class="line"></span><br><span class="line">rdd.saveAsSequenceFile(&quot;write_dile&quot;)</span><br><span class="line"></span><br><span class="line">val rdd2: RDD[(String, Int)] = sc.sequenceFile[String,Int](&quot;write_dile&quot;,classOf[String],classOf[Int])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>hdfs</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">val rdd =  sc.parallelize(Array((&quot;zs&quot;,18),(&quot;lisi&quot;,20),(&quot;ww&quot;,17),(&quot;zl&quot;,30)))</span><br><span class="line">  rdd.saveAsNewAPIHadoopFile(&quot;write_dile&quot;,classOf[Text],classOf[Text],classOf[TextOutputFormat[Text,Text]])</span><br><span class="line">  </span><br><span class="line">val rdd2 = sc.newAPIHadoopFile[Text,Text,KeyValueTextInputFormat](&quot;write_dile&quot;)</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -532,7 +547,7 @@ var _hmt = _hmt || [];
         <p><span>本文标题:</span><a href="/2019/08/07/spark之RDD操作/">spark之RDD操作</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HanderH</a></p>
         <p><span>发布时间:</span>2019-08-07, 15:44:39</p>
-        <p><span>最后更新:</span>2019-08-07, 20:18:43</p>
+        <p><span>最后更新:</span>2019-08-09, 17:13:10</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/08/07/spark之RDD操作/" title="spark之RDD操作">http://www.handerh.top/2019/08/07/spark之RDD操作/</a>
             <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/08/07/spark之RDD操作/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -546,6 +561,12 @@ var _hmt = _hmt || [];
 
 
     <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2019/08/09/spark-sql/">
+                    spark sql
+                </a>
+            </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
@@ -562,7 +583,7 @@ var _hmt = _hmt || [];
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-RDD的基本概念"><span class="toc-number">1.</span> <span class="toc-text">1. RDD的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RDD的属性"><span class="toc-number">1.1.</span> <span class="toc-text">RDD的属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RDD的弹性"><span class="toc-number">1.2.</span> <span class="toc-text">RDD的弹性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#２-RDD编程"><span class="toc-number">2.</span> <span class="toc-text">２.RDD编程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RDD创建"><span class="toc-number">2.1.</span> <span class="toc-text">RDD创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RDD的转换"><span class="toc-number">2.2.</span> <span class="toc-text">RDD的转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RDD执行操作"><span class="toc-number">2.3.</span> <span class="toc-text">RDD执行操作</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-RDD的基本概念"><span class="toc-number">1.</span> <span class="toc-text">1. RDD的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RDD的属性"><span class="toc-number">1.1.</span> <span class="toc-text">RDD的属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RDD的弹性"><span class="toc-number">1.2.</span> <span class="toc-text">RDD的弹性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#２-RDD编程"><span class="toc-number">2.</span> <span class="toc-text">２.RDD编程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RDD创建"><span class="toc-number">2.1.</span> <span class="toc-text">RDD创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RDD的转换"><span class="toc-number">2.2.</span> <span class="toc-text">RDD的转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RDD执行操作"><span class="toc-number">2.3.</span> <span class="toc-text">RDD执行操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RDD的文件操作"><span class="toc-number">2.4.</span> <span class="toc-text">RDD的文件操作</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -639,7 +660,9 @@ var _hmt = _hmt || [];
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2019/08/09/spark-sql/" title="上一篇: spark sql">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -651,7 +674,7 @@ var _hmt = _hmt || [];
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/08/07/spark之RDD操作/">spark之RDD操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/05/spark基本架构与运行原理/">spark基本架构与运行原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/04/hadoop优化配置/">hadoop优化配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/02/异常笔记/">异常笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/mysql基础/">mysql</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/28/redis/">redis</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/24/通信分析项目总结/">通信分析项目总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/22/scala/">scala</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/">virtualbox虚拟机ubuntu无法上网</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/13/hadoop/">hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/交换排序/">交换排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/hive/">hive</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/插入排序/">插入排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/09/java类加载器/">java类加载器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/GC-垃圾回收机制/">GC-垃圾回收机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/工厂模式/">工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/代理模式/">代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/java类与类之间的关系/">java类与类之间的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/hbase基本操作/">hbase的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/简单了解一下zookeeper/">简单了解一下zookeeper</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/深入理解volatile/">深入理解volatile</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/谈谈synchronized/">谈谈synchronized</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/30/java-IO/">java IO</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/java的exception/">Exception</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/equals/">equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/clone-浅拷贝与深拷贝/">clone() 浅拷贝与深拷贝</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/27/Flume/">Flume</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/26/java设计模式-单例模式/">java设计模式(单例模式)</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/08/09/spark-sql/">spark sql</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/07/spark之RDD操作/">spark之RDD操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/05/spark基本架构与运行原理/">spark基本架构与运行原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/04/hadoop优化配置/">hadoop优化配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/02/异常笔记/">异常笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/mysql基础/">mysql</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/28/redis/">redis</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/24/通信分析项目总结/">通信分析项目总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/22/scala/">scala</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/">virtualbox虚拟机ubuntu无法上网</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/13/hadoop/">hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/交换排序/">交换排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/hive/">hive</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/插入排序/">插入排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/09/java类加载器/">java类加载器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/GC-垃圾回收机制/">GC-垃圾回收机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/工厂模式/">工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/代理模式/">代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/java类与类之间的关系/">java类与类之间的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/hbase基本操作/">hbase的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/简单了解一下zookeeper/">简单了解一下zookeeper</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/深入理解volatile/">深入理解volatile</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/谈谈synchronized/">谈谈synchronized</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/30/java-IO/">java IO</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/java的exception/">Exception</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/equals/">equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/clone-浅拷贝与深拷贝/">clone() 浅拷贝与深拷贝</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/27/Flume/">Flume</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/26/java设计模式-单例模式/">java设计模式(单例模式)</a></li></ul>
 
 
 

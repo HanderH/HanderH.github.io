@@ -291,6 +291,100 @@ var _hmt = _hmt || [];
 </nav>
       <div class="body-wrap">
   
+    <article id="post-spark-sql" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      
+<a href="/2019/08/09/spark-sql/" class="article-date">
+      <time datetime="2019-08-09T12:49:49.000Z" itemprop="datePublished">2019-08-09</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+       
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/09/spark-sql/">spark sql</a>
+    </h1>
+  
+
+          <!--
+            
+                 <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">194字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">1分</span>
+      </span>
+    </span>
+</div>
+
+            
+           -->
+       </header>
+        
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="spark-sql的概念"><a href="#spark-sql的概念" class="headerlink" title="spark sql的概念"></a>spark sql的概念</h3><p>spark sql是 是spark用来处理结构化数据的一个模块，提供了DataFrame和DataSet两个新的抽象概念。与RDD类似，DataSet和DataFrame都是分布式数据容器，DataFrame更像穿透数据库的二位表格，出克记录数据之外，还记录数据的结构信息。而DataSet是DataFrame的一个扩展，它是强类型的，DataFrame只是知道字段，但是不知道字段的类型，但是DataSet不仅知道字段，而且知道字段的类型。</p>
+<p>RDD，DataSet和DataFram的共同点：三者都是分布式的弹性数据集，三者都有惰性机制，都有partition机制，有许多共同函数。三者可以相互转化</p>
+<h4 id="RDD，DataSet和DataFram互相转换"><a href="#RDD，DataSet和DataFram互相转换" class="headerlink" title="RDD，DataSet和DataFram互相转换"></a>RDD，DataSet和DataFram互相转换</h4><p>rdd =》ds，df</p>
+<p>df =》 rdd，ds</p>
+<p>ds =》 rdd，df</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/spark/">spark</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spark/">spark</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-spark之RDD操作" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -323,7 +417,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">2.3k字</span>
+        <span class="post-count">2.5k字</span>
       </span>
     </span>
 
@@ -332,7 +426,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">11分</span>
+        <span class="post-count">12分</span>
       </span>
     </span>
 </div>
@@ -507,6 +601,21 @@ var _hmt = _hmt || [];
 <ol start="13">
 <li>foreach</li>
 </ol>
+<h4 id="RDD的文件操作"><a href="#RDD的文件操作" class="headerlink" title="RDD的文件操作"></a>RDD的文件操作</h4><ul>
+<li>saveAsObject File:底层调用其实是saveAsSequenceFile</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">val rdd =  sc.parallelize(Array((&quot;zs&quot;,18),(&quot;lisi&quot;,20),(&quot;ww&quot;,17),(&quot;zl&quot;,30)))</span><br><span class="line"></span><br><span class="line">rdd.saveAsObjectFile(&quot;write_dile&quot;)</span><br><span class="line"></span><br><span class="line">val rdd2: RDD[(String, Int)] = sc.objectFile[(String,Int)](&quot;write_dile&quot;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>saveAsSequenceFile</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">al rdd =  sc.parallelize(Array((&quot;zs&quot;,18),(&quot;lisi&quot;,20),(&quot;ww&quot;,17),(&quot;zl&quot;,30)))</span><br><span class="line"></span><br><span class="line">rdd.saveAsSequenceFile(&quot;write_dile&quot;)</span><br><span class="line"></span><br><span class="line">val rdd2: RDD[(String, Int)] = sc.sequenceFile[String,Int](&quot;write_dile&quot;,classOf[String],classOf[Int])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>hdfs</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">val rdd =  sc.parallelize(Array((&quot;zs&quot;,18),(&quot;lisi&quot;,20),(&quot;ww&quot;,17),(&quot;zl&quot;,30)))</span><br><span class="line">  rdd.saveAsNewAPIHadoopFile(&quot;write_dile&quot;,classOf[Text],classOf[Text],classOf[TextOutputFormat[Text,Text]])</span><br><span class="line">  </span><br><span class="line">val rdd2 = sc.newAPIHadoopFile[Text,Text,KeyValueTextInputFormat](&quot;write_dile&quot;)</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -1390,103 +1499,6 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hadoop" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/07/13/hadoop/" class="article-date">
-      <time datetime="2019-07-13T07:43:02.000Z" itemprop="datePublished">2019-07-13</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/13/hadoop/">hadoop</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">3.5k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">13分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="1-hadoop的优势"><a href="#1-hadoop的优势" class="headerlink" title="1.hadoop的优势"></a>1.hadoop的优势</h2><ol>
-<li><p>高可靠：维护多个副本，数据不易丢失</p>
-</li>
-<li><p>高扩展：集群方便添加节点</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/07/13/hadoop/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

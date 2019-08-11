@@ -291,6 +291,100 @@ var _hmt = _hmt || [];
 </nav>
       <div class="body-wrap">
   
+    <article id="post-简单了解一下zookeeper" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      
+<a href="/2019/07/02/简单了解一下zookeeper/" class="article-date">
+      <time datetime="2019-07-02T06:23:50.000Z" itemprop="datePublished">2019-07-02</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+       
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/02/简单了解一下zookeeper/">简单了解一下zookeeper</a>
+    </h1>
+  
+
+          <!--
+            
+                 <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">3分</span>
+      </span>
+    </span>
+</div>
+
+            
+           -->
+       </header>
+        
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="一-Zookeeper是什么"><a href="#一-Zookeeper是什么" class="headerlink" title="一.Zookeeper是什么"></a>一.Zookeeper是什么</h2><p>Zookeeper是一个开源的分布式服务管理框架。它负责管理数据，接受观察者的注册，一旦数据的状态发生变化，Zookeeper负责通知观察者做出相应的反应。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/zookeeper/">zookeeper</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zookeeper/">zookeeper</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/07/02/简单了解一下zookeeper/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-深入理解volatile" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -895,7 +989,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.8k字</span>
+        <span class="post-count">2.3k字</span>
       </span>
     </span>
 
@@ -904,7 +998,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">8分</span>
+        <span class="post-count">11分</span>
       </span>
     </span>
 </div>
@@ -918,14 +1012,9 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h2 id="一-Flume是什么"><a href="#一-Flume是什么" class="headerlink" title="一.Flume是什么"></a>一.Flume是什么</h2><p>Flume是一个分布式的，可靠的，高可用的海量日志采集系统，以Event为单位进行传输</p>
-<h2 id="二-Flume的三大组件"><a href="#二-Flume的三大组件" class="headerlink" title="二.Flume的三大组件"></a>二.Flume的三大组件</h2><h3 id="source数据输入端的常见类型"><a href="#source数据输入端的常见类型" class="headerlink" title="source数据输入端的常见类型"></a>source数据输入端的常见类型</h3><ul>
-<li>spooling directory :文件中的数据</li>
-<li>exec :执行linux的命令，监控文件数据</li>
-<li>syslog:文件日志</li>
-<li>avro:序列化框架</li>
-<li>netcat:监听端口</li>
-</ul>
+              <h2 id="一-Flume是什么"><a href="#一-Flume是什么" class="headerlink" title="一.Flume是什么"></a>一.Flume是什么</h2><p>Flume是一个分布式的，可靠的，高可用的海量日志采集,聚合，传输系统，以Event为单位进行数据传输。当Source捕获事件后进行特定格式的转换，然后source将事件推入channel中，channel可以看做是一个缓冲区，它将保存事件直到Sink处理完该事件.Sink负责持久化日志或者把事件推向另一个Source.</p>
+<h2 id="二-Flume的三大组件"><a href="#二-Flume的三大组件" class="headerlink" title="二.Flume的三大组件"></a>二.Flume的三大组件</h2><h3 id="source"><a href="#source" class="headerlink" title="source"></a>source</h3><p>Source是数据的收集端，负责将数据捕获后进行特殊的格式化，将数据封装到事件（event） 里，然后将事件推入Channel中。 Flume提供了很多内置的Source</p>
+<p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/flume/flume1.png" alt></p>
           
       
     </div>
