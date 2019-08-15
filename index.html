@@ -210,7 +210,7 @@ var _hmt = _hmt || [];
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flume/">Flume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hbase/">hbase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hive/">hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java多线程/">java多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java设计模式/">java设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scala/">scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/">spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu-linux/">ubuntu linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目总结/">项目总结</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flume/">Flume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hbase/">hbase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hive/">hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java多线程/">java多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java设计模式/">java设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/">kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scala/">scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/">spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu-linux/">ubuntu linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目总结/">项目总结</a></li></ul>
                     </div>
                 </section>
                 
@@ -291,6 +291,205 @@ var _hmt = _hmt || [];
 </nav>
       <div class="body-wrap">
   
+    <article id="post-kafka学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      
+<a href="/2019/08/13/kafka学习笔记/" class="article-date">
+      <time datetime="2019-08-13T06:35:24.000Z" itemprop="datePublished">2019-08-13</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+       
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/13/kafka学习笔记/">kafka学习笔记</a>
+    </h1>
+  
+
+          <!--
+            
+                 <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.8k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">8分</span>
+      </span>
+    </span>
+</div>
+
+            
+           -->
+       </header>
+        
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="kafka的安装"><a href="#kafka的安装" class="headerlink" title="kafka的安装"></a>kafka的安装</h3>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/kafka/">kafka</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kafka/">kafka</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/08/13/kafka学习笔记/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Spark-Streaming" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      
+<a href="/2019/08/12/Spark-Streaming/" class="article-date">
+      <time datetime="2019-08-12T07:56:09.000Z" itemprop="datePublished">2019-08-12</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+       
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/12/Spark-Streaming/">Spark Streaming</a>
+    </h1>
+  
+
+          <!--
+            
+                 <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">401字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">2分</span>
+      </span>
+    </span>
+</div>
+
+            
+           -->
+       </header>
+        
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>Spark Streaming基于流式数据的处理，具有高吞吐量和容错能力能力强的特点。Spark Streaming支持的数据输入源很多，例如：Kafka、Flume、Twitter、ZeroMQ和简单的TCP套接字等。和Spark Core类似，Spark Streaming也有一种抽象的数据集合，叫做DStream。DStream是随时间推移而收到的数据序列，每个时间区间收到的数据都作为RDD存在。DStream提供了两种操作，一种是转化操作，一种的输出操作</p>
+<h3 id="Kafka数据源"><a href="#Kafka数据源" class="headerlink" title="Kafka数据源"></a>Kafka数据源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">val conf = new SparkConf().setAppName(&quot;kafka&quot;).setMaster(&quot;local[*]&quot;)</span><br><span class="line">  val ssc =  new StreamingContext(conf,Seconds(5))</span><br><span class="line">  //kafka集群</span><br><span class="line">  val brokers = &quot;hadoop03:9092&quot;</span><br><span class="line">  // 订阅主题</span><br><span class="line">  val sourceTopic = &quot;source&quot;</span><br><span class="line">  // 消费者组</span><br><span class="line">  val consumerGroup = &quot;Test&quot;</span><br><span class="line">  // 配置参数</span><br><span class="line">  val kafkaParams = Map[String,String](</span><br><span class="line">    ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG -&gt; brokers,</span><br><span class="line">    ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG -&gt; &quot;org.apache.kafka.common.serialization.StringDeserializer&quot;,</span><br><span class="line">    ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG -&gt; &quot;org.apache.kafka.common.serialization.StringDeserializer&quot;,</span><br><span class="line">    ConsumerConfig.GROUP_ID_CONFIG -&gt; consumerGroup</span><br><span class="line">  )</span><br><span class="line">  //从kafka中读取数据</span><br><span class="line">  val kfaKaStreaming: InputDStream[(String, String)] = KafkaUtils.createDirectStream[String,String,StringDecoder,StringDecoder](ssc,kafkaParams,Set(sourceTopic))</span><br><span class="line">  kfaKaStreaming.print()</span><br><span class="line">  ssc.start()</span><br><span class="line">  ssc.awaitTermination()</span><br></pre></td></tr></table></figure>
+
+<h3 id="Dstream有状态转换"><a href="#Dstream有状态转换" class="headerlink" title="Dstream有状态转换"></a>Dstream有状态转换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">	val conf = new SparkConf().setAppName(&quot;test&quot;).setMaster(&quot;local[*]&quot;)</span><br><span class="line"></span><br><span class="line">    val ssc = new StreamingContext(conf,Milliseconds(5000))</span><br><span class="line">    //设置保存数据的目录</span><br><span class="line">    ssc.checkpoint(&quot;./check&quot;)</span><br><span class="line">    val lineStream: DStream[String] = ssc.textFileStream(&quot;/home/husj/test/&quot;)</span><br><span class="line">    val m = lineStream.flatMap(line=&gt;&#123;line.split(&quot; &quot;)&#125;).map(x =&gt;(x,1))</span><br><span class="line">    val updataFun = (values:Seq[Int],state:Option[Int])=&gt;&#123;</span><br><span class="line">      val v  = state.getOrElse(0)</span><br><span class="line">      val sum = values.sum</span><br><span class="line">      Some(v+sum)</span><br><span class="line">    &#125;</span><br><span class="line">    val res: DStream[(String, Int)] = m.updateStateByKey(updataFun)</span><br><span class="line">//  val res = m.reduceByKey(_+_).print()</span><br><span class="line">    res.print()</span><br><span class="line">    ssc.start()</span><br><span class="line">    ssc.awaitTermination()</span><br></pre></td></tr></table></figure>
+
+<p>Spark 源码解析</p>
+<ol>
+<li>Yarn部署流程</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SparkSubmit -》SparkSubmitArguments(parse(args.asJava)-&gt;doSubmit-&gt; appArgs.action</span><br><span class="line">--&gt;runMain(classForName(childMainClass),mainMethod.invoke(null, args))==&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">args.mainClass:client</span><br><span class="line"> &quot;org.apache.spark.deploy.yarn.YarnClusterApplication&quot;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>Spark组件</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/spark/">spark</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spark/">spark</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-spark-sql" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -323,7 +522,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">194字</span>
+        <span class="post-count">2k字</span>
       </span>
     </span>
 
@@ -332,7 +531,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">9分</span>
       </span>
     </span>
 </div>
@@ -346,11 +545,173 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="spark-sql的概念"><a href="#spark-sql的概念" class="headerlink" title="spark sql的概念"></a>spark sql的概念</h3><p>spark sql是 是spark用来处理结构化数据的一个模块，提供了DataFrame和DataSet两个新的抽象概念。与RDD类似，DataSet和DataFrame都是分布式数据容器，DataFrame更像穿透数据库的二位表格，出克记录数据之外，还记录数据的结构信息。而DataSet是DataFrame的一个扩展，它是强类型的，DataFrame只是知道字段，但是不知道字段的类型，但是DataSet不仅知道字段，而且知道字段的类型。</p>
-<p>RDD，DataSet和DataFram的共同点：三者都是分布式的弹性数据集，三者都有惰性机制，都有partition机制，有许多共同函数。三者可以相互转化</p>
-<h4 id="RDD，DataSet和DataFram互相转换"><a href="#RDD，DataSet和DataFram互相转换" class="headerlink" title="RDD，DataSet和DataFram互相转换"></a>RDD，DataSet和DataFram互相转换</h4><p>rdd =》ds，df</p>
-<p>df =》 rdd，ds</p>
-<p>ds =》 rdd，df</p>
+        <h3 id="spark-sql的概念"><a href="#spark-sql的概念" class="headerlink" title="spark sql的概念"></a>spark sql的概念</h3><p>spark sql是 是spark用来处理结构化数据的一个模块，提供了DataFrame和DataSet两个新的抽象概念。与RDD类似，DataSet和DataFrame都是分布式数据容器，DataFrame更像穿透数据库二维表格，除了记录数据之外，还记录数据的结构信息。DataFrame是Row对象的集合，而DataSet是DataFrame的一个扩展，DataSet每一个record存储的是一个强类型值而不是一个Row。RDD，DataSet和DataFram的共同点：三者都是分布式的弹性数据集，三者都有惰性机制，都有partition机制，有许多共同函数。三者可以相互转化</p>
+<h3 id="DataFrame的创建"><a href="#DataFrame的创建" class="headerlink" title="DataFrame的创建"></a>DataFrame的创建</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">val spark = SparkSession.builder().appName(&quot;test1&quot;).master(&quot;local[*]&quot;).getOrCreate()</span><br><span class="line">//1. 从文件中读取</span><br><span class="line">val df = spark.read.json(&quot;people.json&quot;)</span><br><span class="line"></span><br><span class="line">//2. createDataFrame[A &lt;: Product : TypeTag](data: Seq[A])</span><br><span class="line">import  spark.implicits</span><br><span class="line">// A &lt;: Product  :case class 或者 元组</span><br><span class="line">val df = spark.createDataFrame[Persion](Seq(Persion(&quot;zs&quot;,18),Persion(&quot;lisi&quot;,20)))</span><br><span class="line">// 需要一个样例类</span><br><span class="line">case class Persion(name:String,age:Int)</span><br><span class="line"></span><br><span class="line">//3.createDataFrame(rowRDD: RDD[Row], schema: StructType)</span><br><span class="line">val rdd: RDD[Row] =  sc.parallelize(Seq(Row(&quot;zs&quot;,19),Row(&quot;lisi&quot;,14)))</span><br><span class="line">val schemal = StructType(Seq(StructField(&quot;name&quot;,StringType),StructField(&quot;age&quot;,IntegerType)))</span><br><span class="line">val df = spark.createDataFrame(rdd,schemal)</span><br></pre></td></tr></table></figure>
+
+<h3 id="RDD，DataSet和DatDaFram互相转换"><a href="#RDD，DataSet和DatDaFram互相转换" class="headerlink" title="RDD，DataSet和DatDaFram互相转换"></a>RDD，DataSet和DatDaFram互相转换</h3><ul>
+<li>RDD =》DataFrame</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">case class People(var name:String,var age:Int)</span><br><span class="line"></span><br><span class="line">val rdd = spark.sparkContext.textFile(&quot;people.txt&quot;)</span><br><span class="line">val rdd2: RDD[People] = rdd.map(line =&gt; (People(line.split(&quot;,&quot;)(0),line.split(&quot;,&quot;)(1).trim.toInt)))</span><br><span class="line">val rdd3:RDD[(String,Int)] = rdd.map(line =&gt; ((line.split(&quot;,&quot;)(0),line.split(&quot;,&quot;)(1).trim.toInt)))</span><br><span class="line">// rdd2 =&gt; df 样例类</span><br><span class="line">val dataf: DataFrame = rdd2.toDF()</span><br><span class="line">dataf.foreach(row =&gt; println(row.getString(0)+&quot; &quot;+row.getInt(1)))</span><br><span class="line">// rdd3 =&gt; df 元组</span><br><span class="line">val dataf: DataFrame = rdd3.toDF()</span><br><span class="line">dataf.foreach(row =&gt; println(row.getString(0)+&quot; &quot;+row.getInt(1)))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>RDD =》DataSet</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 样例类 可以看出DataSet是一种强类型</span><br><span class="line">val dataS: Dataset[People] = rdd2.toDS()</span><br><span class="line">dataS.foreach(peo =&gt; println(peo.name +&quot; &quot;+peo.age))</span><br><span class="line">// 元组</span><br><span class="line">val dataS: Dataset[(String, Int)] = rdd3.toDS()</span><br><span class="line">dataS.foreach(line=&gt;(println(line._1+&quot; &quot;+line._2)))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>DataFrame =》 RDD</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val dfRdd: RDD[Row] = dataf.rdd</span><br><span class="line">dfRdd.foreach(row =&gt; println(row.getString(0)+&quot;: &quot;+row.getInt(1)))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>DataFrame =》 DataSet</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 注意：DF转DS的时候，转换到DF的类型需要与DS的类型一致，如果这里的DF是由RDD[People]转来的</span><br><span class="line">// 所以Dataset只能为Dataset[People]</span><br><span class="line">val dfDs: Dataset[People] = dataf.as[People]</span><br><span class="line">dfDs.foreach(peo =&gt; println(peo.name+&quot;: &quot;+peo.age))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>DataSet =》 RDD</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val dsRdd: RDD[People] = dataS.rdd</span><br><span class="line">dsRdd.foreach(peo =&gt; println(peo.name+&quot;: &quot;+peo.age))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>DataSet =》 DataFrame</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val dsDF: DataFrame = dataS.toDF()</span><br><span class="line">dsDF.foreach(row =&gt; println(row.getString(0)+&quot; &quot;+row.getInt(1)))</span><br></pre></td></tr></table></figure>
+
+<h3 id="udf与udaf"><a href="#udf与udaf" class="headerlink" title="udf与udaf"></a>udf与udaf</h3><ul>
+<li>udf:用户自定义函数，单行函数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spark.udf.register(&quot;addName&quot;,(x:String)=&gt;(&quot;name:&quot;+x))</span><br><span class="line"></span><br><span class="line">spark.sql(&quot;select addName(name) as name from persion&quot;).show()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>udaf：用户自定义聚集函数，多行函数，多对一</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">class MyUdaf extends UserDefinedAggregateFunction&#123;</span><br><span class="line">   //输入值的类型</span><br><span class="line">  override def inputSchema: StructType = StructType(Seq(StructField(&quot;input&quot;,DoubleType)))</span><br><span class="line">  // 缓存的值的类型</span><br><span class="line">  override def bufferSchema: StructType = StructType(Seq(StructField(&quot;sum&quot;,DoubleType),StructField(&quot;count&quot;,IntegerType)))</span><br><span class="line">  //返回值的类型</span><br><span class="line">  override def dataType: DataType = DoubleType</span><br><span class="line"></span><br><span class="line">  override def deterministic: Boolean = true</span><br><span class="line">  //初始值</span><br><span class="line">  override def initialize(buffer: MutableAggregationBuffer): Unit = &#123;</span><br><span class="line">    buffer(0) = 0.0</span><br><span class="line">    buffer(1) = 0</span><br><span class="line">  &#125;</span><br><span class="line">  override def update(buffer: MutableAggregationBuffer, input: Row): Unit = &#123;</span><br><span class="line">    buffer(0) = buffer.getDouble(0)+input.getDouble(0)</span><br><span class="line">    buffer(1) = buffer.getInt(1)+1</span><br><span class="line">  &#125;</span><br><span class="line">  // 分区合并</span><br><span class="line">  override def merge(buffer1: MutableAggregationBuffer, buffer2: Row): Unit = &#123;</span><br><span class="line">    buffer1(0) = buffer1.getDouble(0)+buffer2.getDouble(0)</span><br><span class="line">    buffer1(1) = buffer1.getInt(1)+buffer2.getInt(1)</span><br><span class="line">  &#125;</span><br><span class="line">  // 结果</span><br><span class="line">  override def evaluate(buffer: Row): Double = &#123;</span><br><span class="line">    buffer.getDouble(0)/buffer.getInt(1)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">spark.udf.register(&quot;mu&quot;,new MyUdaf)</span><br><span class="line">spark.sql(&quot;select mu(age) from persion&quot;).show()</span><br></pre></td></tr></table></figure>
+
+<h3 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> @Test</span><br><span class="line">  def test1(): Unit =&#123;</span><br><span class="line"></span><br><span class="line">    val spark = SparkSession.builder().appName(&quot;jdbc&quot;).master(&quot;local[*]&quot;).getOrCreate()</span><br><span class="line">    val properties = new Properties()</span><br><span class="line">    properties.setProperty(&quot;user&quot;,&quot;root&quot;)</span><br><span class="line">    properties.setProperty(&quot;password&quot;,&quot;husaijian123&quot;)</span><br><span class="line">    val jdbcDF= spark.read.jdbc(&quot;jdbc:mysql://localhost:3306/interview&quot;,&quot;student&quot;,properties)</span><br><span class="line">    jdbcDF.show()</span><br><span class="line"></span><br><span class="line">    val jdbcDF2 = spark.read.format(&quot;jdbc&quot;).</span><br><span class="line"> option(&quot;url&quot;,&quot;jdbc:mysql://localhost:3306/interview&quot;).option(&quot;dbtable&quot;,&quot;student&quot;).option(&quot;user&quot;,&quot;root&quot;).option(&quot;password&quot;,&quot;husaijian123&quot;).load()</span><br><span class="line">    jdbcDF2.show()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Spark-Sql运行架构"><a href="#Spark-Sql运行架构" class="headerlink" title="Spark Sql运行架构"></a>Spark Sql运行架构</h3><p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/spark/spark_sql1.png" alt></p>
+<ol>
+<li>在解析Sql之前会创建SparkSession,SparkSession会将元数据保存到SessionCatelog,包括表名，字段名，字段类型。</li>
+<li>使用SparkSqlParser进行解析SQL,构建语法树</li>
+<li>使用分析器Analysiser绑定逻辑计划</li>
+<li>使用优化器Optimizer优化逻辑计划</li>
+<li>私用SparkPlanner生成物理计划</li>
+<li>使用QueryExecution执行物理计划</li>
+</ol>
+<h3 id="窗口函数"><a href="#窗口函数" class="headerlink" title="窗口函数"></a>窗口函数</h3><p>窗口函数计算的一组行，被称为Frame。每一个被处理的行都有一个唯一的frame相关联。</p>
+<p>窗口函数分为三类，ranking（排名），analystic（分析），aggregate（聚合）</p>
+<table>
+<thead>
+<tr>
+<th><strong>Function Type</strong></th>
+<th><strong>SQL</strong></th>
+<th><strong>DataFrame API</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ranking</td>
+<td>rank</td>
+<td>rank</td>
+<td>rank值可能是不连续的</td>
+</tr>
+<tr>
+<td>Ranking</td>
+<td>dense_rank</td>
+<td>denseRank</td>
+<td>rank值一定是连续的</td>
+</tr>
+<tr>
+<td>Ranking</td>
+<td>percent_rank</td>
+<td>percentRank</td>
+<td>相同的分组中 (rank -1) / ( count(score) - 1 )</td>
+</tr>
+<tr>
+<td>Ranking</td>
+<td>ntile</td>
+<td>ntile</td>
+<td>将同一组数据循环的往n个桶中放，返回对应的桶的index，index从1开始</td>
+</tr>
+<tr>
+<td>Ranking</td>
+<td>row_number</td>
+<td>rowNumber</td>
+<td>很单纯的行号，类似excel的行号</td>
+</tr>
+<tr>
+<td>Analytic</td>
+<td>cume_dist</td>
+<td>cumeDist</td>
+<td></td>
+</tr>
+<tr>
+<td>Analytic</td>
+<td>first_value</td>
+<td>firstValue</td>
+<td>相同的分组中第一个值</td>
+</tr>
+<tr>
+<td>Analytic</td>
+<td>last_value</td>
+<td>lastValue</td>
+<td>相同的分组中最后一个值</td>
+</tr>
+<tr>
+<td>Analytic</td>
+<td>lag</td>
+<td>lag</td>
+<td>取前n行数据</td>
+</tr>
+<tr>
+<td>Analytic</td>
+<td>lead</td>
+<td>lead</td>
+<td>取后n行数据</td>
+</tr>
+<tr>
+<td>Aggregate</td>
+<td>min</td>
+<td>min</td>
+<td>最小值</td>
+</tr>
+<tr>
+<td>Aggregate</td>
+<td>max</td>
+<td>max</td>
+<td>最大值</td>
+</tr>
+<tr>
+<td>Aggregate</td>
+<td>sum</td>
+<td>sum</td>
+<td>求和</td>
+</tr>
+<tr>
+<td>Aggregate</td>
+<td>avg</td>
+<td>avg</td>
+<td>求平均</td>
+</tr>
+</tbody></table>
+<p>用法：函数名 over(分区 排序 范围)</p>
+<p>当一个函数被窗口函数使用时，需要为该窗口函数定义相关的窗口规范,窗口规范包括三个部分</p>
+<p>分区（PARTITION BY）</p>
+<p>排序（order by)</p>
+<p>帧规范：指定哪些行会被当前输入行的帧包括，通过其他行对于当前行的相对位置实现。定义帧规范需要定义帧的类型，开始边界，结束边界。一共有五种边界：UNBOUNDED PRECEDING(分区第一行)，UNBOUNDED FOLLOWING(分区最后一行)，CURRENT ROW，n PRECEDING(当前行的前n行）,n FOLLOWING(当前行后n行)。有两种帧类型：ROW帧和RANGE帧。</p>
+<p>ROW帧是基于当前输入行的位置的物理偏移量,如：BETWEEN 1 PRECEDING AND 1 FOLLOWING表示一个包括当前行、当前行之前1行和之后1行的帧</p>
+<p>RANGE帧是基于当前行位置的逻辑偏移。逻辑偏移为当前输入行的排序表达式的值和帧边界行的排序表达式的值之差。如：RANGE BETWEEN 2000 PRECEDING AND 1000 FOLLOWING，则边界为[current revenue value - 2000, current revenue value + 1000]。</p>
+<ol>
+<li>rank,dense_rank,percent_rank，row_number</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">## rank 排名时有重复，排序不连续，但是最大名次不变</span><br><span class="line">select id,name,classId,score, dense_rank() over(partition by classId order by score)rank from scores</span><br><span class="line"></span><br><span class="line">+---+-----+-------+-----+----+</span><br><span class="line">| id| name|classId|score|rank|</span><br><span class="line">+---+-----+-------+-----+----+</span><br><span class="line">|  3|张三3|      1| 79.0|   1|</span><br><span class="line">|  8|张三8|      1| 87.0|   2|</span><br><span class="line">|  1|张三1|      1| 88.0|   3|</span><br><span class="line">|  6|张三6|      1| 89.0|   4|</span><br><span class="line">|  4|张三4|      2| 78.0|   1|</span><br><span class="line">|  5|张三5|      2| 85.0|   2| </span><br><span class="line">|  2|张三2|      2| 85.0|   2|</span><br><span class="line">|  7|张三7|      2| 90.0|   4|</span><br><span class="line">+---+-----+-------+-----+----+</span><br><span class="line"></span><br><span class="line">## dense_rank 排名时有重复，排序连续，最大值减小</span><br><span class="line">select id,name,classId,score, dense_rank() over(partition by classId order by score)rank from scores</span><br><span class="line">+---+-----+-------+-----+----+</span><br><span class="line">| id| name|classId|score|rank|</span><br><span class="line">+---+-----+-------+-----+----+</span><br><span class="line">|  3|张三3|      1| 79.0|   1|</span><br><span class="line">|  8|张三8|      1| 87.0|   2|</span><br><span class="line">|  1|张三1|      1| 88.0|   3|</span><br><span class="line">|  6|张三6|      1| 89.0|   4|</span><br><span class="line">|  4|张三4|      2| 78.0|   1|</span><br><span class="line">|  5|张三5|      2| 85.0|   2|</span><br><span class="line">|  2|张三2|      2| 85.0|   2|</span><br><span class="line">|  7|张三7|      2| 90.0|   3|</span><br><span class="line">+---+-----+-------+-----+----+</span><br><span class="line"></span><br><span class="line">## percent_rank (rank -1) / ( count(score) - 1 )</span><br><span class="line">select id,name,classId,score, percent_rank() over(partition by classId order by score)rank from scores</span><br><span class="line">+---+-----+-------+-----+------------------+</span><br><span class="line">| id| name|classId|score|              rank|</span><br><span class="line">+---+-----+-------+-----+------------------+</span><br><span class="line">|  3|张三3|      1| 79.0|               0.0|</span><br><span class="line">|  8|张三8|      1| 87.0|0.3333333333333333|</span><br><span class="line">|  1|张三1|      1| 88.0|0.6666666666666666|</span><br><span class="line">|  6|张三6|      1| 89.0|               1.0|</span><br><span class="line">|  4|张三4|      2| 78.0|               0.0|</span><br><span class="line">|  5|张三5|      2| 85.0|0.3333333333333333|</span><br><span class="line">|  2|张三2|      2| 85.0|0.3333333333333333|</span><br><span class="line">|  7|张三7|      2| 90.0|               1.0|</span><br><span class="line">+---+-----+-------+-----+------------------+</span><br><span class="line">## row_number 按顺序排序 无重复排名</span><br><span class="line">select id,name,classId,score, row_number() over(partition by classId order by score)rank from scores</span><br><span class="line">---+-----+-------+-----+----+</span><br><span class="line">| id| name|classId|score|rank|</span><br><span class="line">+---+-----+-------+-----+----+</span><br><span class="line">|  3|张三3|      1| 79.0|   1|</span><br><span class="line">|  8|张三8|      1| 87.0|   2|</span><br><span class="line">|  1|张三1|      1| 88.0|   3|</span><br><span class="line">|  6|张三6|      1| 89.0|   4|</span><br><span class="line">|  4|张三4|      2| 78.0|   1|</span><br><span class="line">|  5|张三5|      2| 85.0|   2|</span><br><span class="line">|  2|张三2|      2| 85.0|   3|</span><br><span class="line">|  7|张三7|      2| 90.0|   4|</span><br><span class="line">+---+-----+-------+-----+----+</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>aggregate函数统计的结果在排序后的结果是不一样的</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">avg(score) over(partition by classId) avg # 每个分组加起来求平均值</span><br><span class="line">avg(score) over(partition by classId order by score) # r1=r1 r2=(r1+r2)/2 ...</span><br><span class="line">avg(score) over(partition by classId  rows between 1 preceding and 1 following) avg_row  #当前行的前一行+当前行+后一行的平均值</span><br><span class="line">avg(score) over(partition by classId order by score range between 1 preceding and 1 following # score+(是否存在score+或-1)的平均值</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -1329,197 +1690,9 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-scala" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/07/22/scala/" class="article-date">
-      <time datetime="2019-07-22T06:46:09.000Z" itemprop="datePublished">2019-07-22</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/22/scala/">scala</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">8.3k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">39分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="一-变量"><a href="#一-变量" class="headerlink" title="一.变量"></a>一.变量</h2><h3 id="scala的数据类型"><a href="#scala的数据类型" class="headerlink" title="scala的数据类型"></a>scala的数据类型</h3>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/scala/">scala</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scala/">scala</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/07/22/scala/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-virtualbox虚拟机ubuntu无法上网" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/" class="article-date">
-      <time datetime="2019-07-21T03:37:06.000Z" itemprop="datePublished">2019-07-21</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/">virtualbox虚拟机ubuntu无法上网</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">311字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>今天想要在虚拟机上安装redis，结果尽然发现虚拟机不能上网，根据网上的一顿操作，差点把自己心态搞崩，不过，最后还是集百家智慧，重要搞定了。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/linux/">linux</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu-linux/">ubuntu linux</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>
