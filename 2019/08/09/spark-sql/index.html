@@ -24,7 +24,7 @@
 <meta property="og:description" content="spark sql的概念spark sql是 是spark用来处理结构化数据的一个模块，提供了DataFrame和DataSet两个新的抽象概念。与RDD类似，DataSet和DataFrame都是分布式数据容器，DataFrame更像穿透数据库二维表格，除了记录数据之外，还记录数据的结构信息。DataFrame是Row对象的集合，而DataSet是DataFrame的一个扩展，DataSet每一">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/spark/spark_sql1.png">
-<meta property="og:updated_time" content="2019-08-14T06:52:08.477Z">
+<meta property="og:updated_time" content="2019-08-19T05:41:49.093Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spark sql">
 <meta name="twitter:description" content="spark sql的概念spark sql是 是spark用来处理结构化数据的一个模块，提供了DataFrame和DataSet两个新的抽象概念。与RDD类似，DataSet和DataFrame都是分布式数据容器，DataFrame更像穿透数据库二维表格，除了记录数据之外，还记录数据的结构信息。DataFrame是Row对象的集合，而DataSet是DataFrame的一个扩展，DataSet每一">
@@ -378,7 +378,7 @@ var _hmt = _hmt || [];
 <ul>
 <li>DataFrame =》 RDD</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val dfRdd: RDD[Row] = dataf.rdd</span><br><span class="line">dfRdd.foreach(row =&gt; println(row.getString(0)+&quot;: &quot;+row.getInt(1)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val dfRdd: RDD[Row] =  .rdd</span><br><span class="line">dfRdd.foreach(row =&gt; println(row.getString(0)+&quot;: &quot;+row.getInt(1)))</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>DataFrame =》 DataSet</li>
@@ -527,7 +527,7 @@ var _hmt = _hmt || [];
 <ol start="2">
 <li>aggregate函数统计的结果在排序后的结果是不一样的</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">avg(score) over(partition by classId) avg # 每个分组加起来求平均值</span><br><span class="line">avg(score) over(partition by classId order by score) # r1=r1 r2=(r1+r2)/2 ...</span><br><span class="line">avg(score) over(partition by classId  rows between 1 preceding and 1 following) avg_row  #当前行的前一行+当前行+后一行的平均值</span><br><span class="line">avg(score) over(partition by classId order by score range between 1 preceding and 1 following # score+(是否存在score+或-1)的平均值</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">avg(score) over(partition by `) avg # 每个分组加起来求平均值</span><br><span class="line">avg(score) over(partition by classId order by score) # r1=r1 r2=(r1+r2)/2 ...</span><br><span class="line">avg(score) over(partition by classId  rows between 1 preceding and 1 following) avg_row  #当前行的前一行+当前行+后一行的平均值</span><br><span class="line">avg(score) over(partition by classId order by score range between 1 preceding and 1 following # score+(是否存在score+或-1)的平均值</span><br></pre></td></tr></table></figure>
 
 
       
@@ -540,7 +540,7 @@ var _hmt = _hmt || [];
         <p><span>本文标题:</span><a href="/2019/08/09/spark-sql/">spark sql</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HanderH</a></p>
         <p><span>发布时间:</span>2019-08-09, 20:49:49</p>
-        <p><span>最后更新:</span>2019-08-14, 14:52:08</p>
+        <p><span>最后更新:</span>2019-08-19, 13:41:49</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/08/09/spark-sql/" title="spark sql">http://www.handerh.top/2019/08/09/spark-sql/</a>
             <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/08/09/spark-sql/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

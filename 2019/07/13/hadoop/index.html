@@ -24,7 +24,7 @@
 <meta property="og:description" content="1.hadoop的优势 高可靠：维护多个副本，数据不易丢失  高扩展：集群方便添加节点">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/shuffle.png">
-<meta property="og:updated_time" content="2019-07-14T08:48:53.798Z">
+<meta property="og:updated_time" content="2019-08-15T06:01:29.567Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hadoop">
 <meta name="twitter:description" content="1.hadoop的优势 高可靠：维护多个副本，数据不易丢失  高扩展：集群方便添加节点">
@@ -324,7 +324,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">3.5k字</span>
+        <span class="post-count">3.7k字</span>
       </span>
     </span>
 
@@ -333,7 +333,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">13分</span>
+        <span class="post-count">14分</span>
       </span>
     </span>
 </div>
@@ -503,6 +503,9 @@ var _hmt = _hmt || [];
 <h2 id="五-Yarn"><a href="#五-Yarn" class="headerlink" title="五.Yarn"></a>五.Yarn</h2><p>Yarn主要由ResourceManager,NodeManager,ApplicationMaster和Container等组件构成。<br>ReourceManager:处理客户端请求，监控NodeManager,启动或监控ApplicationMaster,资源的调度和分配<br>NodeManager:管理单个节点的资源，处理来自ReourceManager命令,处理来自ApplicationMaster的命令<br>ApplicationMaster:负责数据的切分，为应用程序申请并且分配资源<br>Container:封装资源，如cpu,内存</p>
 <p>yarn运行机制</p>
 <p>　1).Client调用job.waitForCompletion方法，向整个集群提交MR作业<br>    2).Client向RM请求job<br>    3).RM返回job资源提交的路径和id<br>    4).Client提交资源(文件分片信息，配置文件信息)<br>    5).资源提交完毕后，向RM申请MRAppMaster<br>    6).RM收到请求，初始化Task,将job添加到容量调度器（任务调度器）<br>    7).空闲的NM领取到该job<br>    8).NM创建一个Container,并产生MRAppMaster,下载client提交的资源<br>    9).MRAppMaster向RM申请多个MapTask.<br>    10).RM将MapTask分配给其它NM<br>    11).MapTask开始运行，进行分区排序等操作<br>    12).MRAppMaster在所有的MapTask任务完成后，向RM申请ReduceTask<br>    13)ReduceTask获取MapTask分区的数据<br>    14)程序运行完毕，MR会自动向RM申请注销自己</p>
+<h2 id="六-任务调度器"><a href="#六-任务调度器" class="headerlink" title="六.任务调度器"></a>六.任务调度器</h2><p>FIFO调度器:按照作业的优先级高低,再按照作业的到达时间先后选择被执行.</p>
+<p>容量调度器(Capacity Scheduler):支持多个队列,每个队列分配一定的资源量,每个队列采用FIFO调度策略,为了防止同一个用户作业独占队列中的资源,该调度器会对同一用户提交的作业占资源量进行限定,调度时,首先按以下策略选择一个合适队列, ：计算每个队列中正在运行的任务数与其应该分得的计算资源之间的比值，选择一个该比值最小的队列.</p>
+<p>公平调度器(Fair Scheduler):支持多个队列,每个队列分配一定的资源量,每个队列的job都会按照优先级分配一定的资源,公平调度器job的优先级是根据差额来计算的,差额是指理想状态下获得的资源与实际获得的资源的差额,差额越小,优先级越高</p>
 
       
     </div>
@@ -514,7 +517,7 @@ var _hmt = _hmt || [];
         <p><span>本文标题:</span><a href="/2019/07/13/hadoop/">hadoop</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HanderH</a></p>
         <p><span>发布时间:</span>2019-07-13, 15:43:02</p>
-        <p><span>最后更新:</span>2019-07-14, 16:48:53</p>
+        <p><span>最后更新:</span>2019-08-15, 14:01:29</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/07/13/hadoop/" title="hadoop">http://www.handerh.top/2019/07/13/hadoop/</a>
             <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/07/13/hadoop/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -550,7 +553,7 @@ var _hmt = _hmt || [];
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-hadoop的优势"><span class="toc-number">1.</span> <span class="toc-text">1.hadoop的优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-hadoop的组成"><span class="toc-number">2.</span> <span class="toc-text">2.hadoop的组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-Hdfs"><span class="toc-number">3.</span> <span class="toc-text">三.Hdfs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1hdfs的读写流程"><span class="toc-number">3.1.</span> <span class="toc-text">3.1hdfs的读写流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-副本节点选择"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 副本节点选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-数据完整性"><span class="toc-number">3.3.</span> <span class="toc-text">3.3.数据完整性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四-MapReduce"><span class="toc-number">4.</span> <span class="toc-text">四.MapReduce</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-MapReduce进程"><span class="toc-number">4.1.</span> <span class="toc-text">4.1.MapReduce进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-文件切片"><span class="toc-number">4.2.</span> <span class="toc-text">4.2.文件切片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-Shuffle机制"><span class="toc-number">4.3.</span> <span class="toc-text">4.3.Shuffle机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-Partition-分区"><span class="toc-number">4.4.</span> <span class="toc-text">4.4.Partition 分区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5排序"><span class="toc-number">4.5.</span> <span class="toc-text">4.5排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-Combiner-合并"><span class="toc-number">4.6.</span> <span class="toc-text">4.6 Combiner 合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-MapTask-ReduceTask工作机制"><span class="toc-number">4.7.</span> <span class="toc-text">4.7.MapTask,ReduceTask工作机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-8-join操作"><span class="toc-number">4.8.</span> <span class="toc-text">4.8.join操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五-Yarn"><span class="toc-number">5.</span> <span class="toc-text">五.Yarn</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-hadoop的优势"><span class="toc-number">1.</span> <span class="toc-text">1.hadoop的优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-hadoop的组成"><span class="toc-number">2.</span> <span class="toc-text">2.hadoop的组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-Hdfs"><span class="toc-number">3.</span> <span class="toc-text">三.Hdfs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1hdfs的读写流程"><span class="toc-number">3.1.</span> <span class="toc-text">3.1hdfs的读写流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-副本节点选择"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 副本节点选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-数据完整性"><span class="toc-number">3.3.</span> <span class="toc-text">3.3.数据完整性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四-MapReduce"><span class="toc-number">4.</span> <span class="toc-text">四.MapReduce</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-MapReduce进程"><span class="toc-number">4.1.</span> <span class="toc-text">4.1.MapReduce进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-文件切片"><span class="toc-number">4.2.</span> <span class="toc-text">4.2.文件切片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-Shuffle机制"><span class="toc-number">4.3.</span> <span class="toc-text">4.3.Shuffle机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-Partition-分区"><span class="toc-number">4.4.</span> <span class="toc-text">4.4.Partition 分区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5排序"><span class="toc-number">4.5.</span> <span class="toc-text">4.5排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-Combiner-合并"><span class="toc-number">4.6.</span> <span class="toc-text">4.6 Combiner 合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-MapTask-ReduceTask工作机制"><span class="toc-number">4.7.</span> <span class="toc-text">4.7.MapTask,ReduceTask工作机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-8-join操作"><span class="toc-number">4.8.</span> <span class="toc-text">4.8.join操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五-Yarn"><span class="toc-number">5.</span> <span class="toc-text">五.Yarn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六-任务调度器"><span class="toc-number">6.</span> <span class="toc-text">六.任务调度器</span></a></li></ol>
         
     </div>
     <style>

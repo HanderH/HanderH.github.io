@@ -15,21 +15,21 @@
 
 
 
-<meta name="description" content="spark运行架构图  Cluster Manager：在standalone模式中即为Master主节点，控制整个集群，监控worker。在YARN模式中为ResourceManager Worker:从节点，负责控制计算节点，启动executor和Driver。在yarn集群中为nodemanager Driver:运行Application的main函数并且创建SparkContext. E">
+<meta name="description" content="spark运行架构图  Cluster Manager：在standalone模式中即为Master主节点，控制整个集群，监控worker。在YARN模式中为ResourceManager Worker:从节点，负责控制计算节点，启动executor。在yarn集群中为nodemanager Driver:运行Application的main函数并且创建SparkContext. Executor">
 <meta name="keywords" content="spark">
 <meta property="og:type" content="article">
 <meta property="og:title" content="spark基本架构与运行原理">
 <meta property="og:url" content="http://www.handerh.top/2019/08/05/spark基本架构与运行原理/index.html">
 <meta property="og:site_name" content="hsj的博客">
-<meta property="og:description" content="spark运行架构图  Cluster Manager：在standalone模式中即为Master主节点，控制整个集群，监控worker。在YARN模式中为ResourceManager Worker:从节点，负责控制计算节点，启动executor和Driver。在yarn集群中为nodemanager Driver:运行Application的main函数并且创建SparkContext. E">
+<meta property="og:description" content="spark运行架构图  Cluster Manager：在standalone模式中即为Master主节点，控制整个集群，监控worker。在YARN模式中为ResourceManager Worker:从节点，负责控制计算节点，启动executor。在yarn集群中为nodemanager Driver:运行Application的main函数并且创建SparkContext. Executor">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/spark/spark1.png">
 <meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/spark/rdd.jpg">
 <meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/spark/spark3.png">
-<meta property="og:updated_time" content="2019-08-05T08:45:24.591Z">
+<meta property="og:updated_time" content="2019-08-19T08:23:27.160Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spark基本架构与运行原理">
-<meta name="twitter:description" content="spark运行架构图  Cluster Manager：在standalone模式中即为Master主节点，控制整个集群，监控worker。在YARN模式中为ResourceManager Worker:从节点，负责控制计算节点，启动executor和Driver。在yarn集群中为nodemanager Driver:运行Application的main函数并且创建SparkContext. E">
+<meta name="twitter:description" content="spark运行架构图  Cluster Manager：在standalone模式中即为Master主节点，控制整个集群，监控worker。在YARN模式中为ResourceManager Worker:从节点，负责控制计算节点，启动executor。在yarn集群中为nodemanager Driver:运行Application的main函数并且创建SparkContext. Executor">
 <meta name="twitter:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/spark/spark1.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -326,7 +326,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">712字</span>
+        <span class="post-count">1.1k字</span>
       </span>
     </span>
 
@@ -335,7 +335,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
+        <span class="post-count">4分</span>
       </span>
     </span>
 </div>
@@ -367,7 +367,7 @@ var _hmt = _hmt || [];
         <h3 id="spark运行架构图"><a href="#spark运行架构图" class="headerlink" title="spark运行架构图"></a>spark运行架构图</h3><p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/spark/spark1.png" alt></p>
 <ul>
 <li>Cluster Manager：在standalone模式中即为Master主节点，控制整个集群，监控worker。在YARN模式中为ResourceManager</li>
-<li>Worker:从节点，负责控制计算节点，启动executor和Driver。在yarn集群中为nodemanager</li>
+<li>Worker:从节点，负责控制计算节点，启动executor。在yarn集群中为nodemanager</li>
 <li>Driver:运行Application的main函数并且创建SparkContext.</li>
 <li>Executor:执行器,Application运行在worker节点上的一个进程，负责启动线程池运行任务(Task)</li>
 <li>RDD DAG:RDD组成的有向无环图，反应RDD之间的依赖关系。当RDD遇到遇到Action算子的时候，将之前所有算子形成一个有向无环图</li>
@@ -387,8 +387,8 @@ var _hmt = _hmt || [];
 <ol>
 <li>用户在客户端将Application提交到ClusterManager</li>
 <li>ClusterManager收到Application后，找一个worker启动Driver,初始化一个SparkContext.</li>
-<li>SparkContext初始化时创建DAG Scheduler和Task Scheduler,向资源管理器申请Executors,并启动StandaloneExecutorBackend</li>
-<li>Executors向SparkContext申请Task,SparkContext中的每一个DAG Scheduler会根据依赖关系拆分成多个stage,每个stage提交给一个Task Scheduler，Task Scheduler会将这些Task任务分发到Executor</li>
+<li>SparkContext向资源管理器申请Executors,并启动StandaloneExecutorBackend</li>
+<li>Executors向SparkContext申请Task,SparkContext中的DAG Scheduler会根据依赖关系拆分成多个stage,每个stage提交给一个Task Scheduler，Task Scheduler会将这些Task任务分发到Executor</li>
 <li>Executor启动多线程，执行Task。</li>
 <li>所有Task完成后，SparkContext向Master注销</li>
 </ol>
@@ -404,10 +404,43 @@ var _hmt = _hmt || [];
 <li>所有Task完成后，SparkContext向Master注销</li>
 </ol>
 <ul>
-<li><p>YARN Client</p>
-<p>Driver在客户端本地运行，这种模式可以使得Spark Application和客户端进行交互，此时driver负责RDD生成、task生成和分发，向AM申请资源。</p>
+<li>Yarn Client:</li>
+</ul>
+<ol>
+<li>Driver在本地提交任务的机器运行,Driver启动后向ResourceManager申请ApplicationMaster</li>
+<li>ResourceManager找到一个NodeManager分配conainer,并且创建ApplicationMaster</li>
+<li>AM创建后,向ResourceManager申请启动Executor,Executor启动后向Driver注册.</li>
+<li>Driver注册完成后,Driver开始执行main方法,执行算子时,执行一个job,每个job会根据宽依赖划分为多个stage,每个stage,每个stage对应多个TaskSet,经过TaskSchedule分发到Executor执行.</li>
+</ol>
+<ul>
+<li>Yarn Cluster</li>
+</ul>
+<ol>
+<li>任务提交后,向ResourceManager申请ApplcationMaster</li>
+<li>ResourceManager找到一个NodeManager分配conainer,并且创建ApplicationMaster,AM创建后,启动Driver,此时的AM就是一个Driver</li>
+<li>AM向ResourceManager申请启动Executor,Executor启动后向Driver注册</li>
+<li>Driver注册完成后,Driver开始执行main方法,执行算子时,执行一个job,每个job会根据宽依赖划分为多个stage,每个stage,每个stage对应多个TaskSet,经过TaskSchedule分发到Executor执行.</li>
+</ol>
+<h3 id="Spark-Shuffle阶段"><a href="#Spark-Shuffle阶段" class="headerlink" title="Spark Shuffle阶段"></a>Spark Shuffle阶段</h3><p>Spark Shuffle分为Map和Reduce阶段,它与stage阶段的划分有关,在一个job中如果碰到宽依赖,会被划分为多个stage,最终每个stage都会被划分为ResultStage和ShuffleMapStage,对应ReduceTask和ShuffleMapTask.ShuffleMapTask会根据partitioner对数据进行分组,并且进行持久化.</p>
+<ul>
+<li><p>未优化HashShuffle</p>
+<p>HashShuffle在没有优化之前,每一个ShuffleMapTask会为每一个ReduceTask创建一个bucket(经过partitioner后对用的bucket),并且为每一个bucket创建一个文件.ReduceTask会去对应bucket中获取数据.但是这样有很大缺点就是生成的文件数量太多,这对于磁盘IO影响很大</p>
 </li>
-<li><p>YARN Cluster：client将application提交到spark集群中就与spark集群断开联系，此时client将不会发挥其他任何作用，仅仅负责提交，此时可以将driver与Application Master是一个东西</p>
+</ul>
+<p><img src alt></p>
+<ul>
+<li><p>优化后的HashShuffle:</p>
+<p>设置参数 spark.shuffle.consolidateFiles=true,在中间过程生成的文件数为cpu核数*reduceTask个数</p>
+</li>
+<li><p>Sorted-Based Shuffle:</p>
+<ol>
+<li><p>SortShuffleWriter运行机制:类似hadoop的shuffle过程,在ShuffleMapTask阶段,每个Task将所有数据写到一个文件中,并且生成一个索引文件.然后在由ReduceTask去文件中拉取对应分区的数据.</p>
+</li>
+<li><p>bypass运行机制:用于处理数据量小不需要排序和聚合的Shuffle操作</p>
+<p>触发条件:1. shuffle map task的数量小于200(spark.shuffle.sort.bypassMergeThreshold )</p>
+<p>​        2. 不是聚合类的shuffle算子</p>
+</li>
+</ol>
 </li>
 </ul>
 
@@ -421,7 +454,7 @@ var _hmt = _hmt || [];
         <p><span>本文标题:</span><a href="/2019/08/05/spark基本架构与运行原理/">spark基本架构与运行原理</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HanderH</a></p>
         <p><span>发布时间:</span>2019-08-05, 14:36:50</p>
-        <p><span>最后更新:</span>2019-08-05, 16:45:24</p>
+        <p><span>最后更新:</span>2019-08-19, 16:23:27</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/08/05/spark基本架构与运行原理/" title="spark基本架构与运行原理">http://www.handerh.top/2019/08/05/spark基本架构与运行原理/</a>
             <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/08/05/spark基本架构与运行原理/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -457,7 +490,7 @@ var _hmt = _hmt || [];
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#spark运行架构图"><span class="toc-number">1.</span> <span class="toc-text">spark运行架构图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spark作业基本概念"><span class="toc-number">2.</span> <span class="toc-text">Spark作业基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spark运行机制"><span class="toc-number">3.</span> <span class="toc-text">Spark运行机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#spark运行流程"><span class="toc-number">3.1.</span> <span class="toc-text">spark运行流程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spark运行模式"><span class="toc-number">4.</span> <span class="toc-text">Spark运行模式</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#spark运行架构图"><span class="toc-number">1.</span> <span class="toc-text">spark运行架构图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spark作业基本概念"><span class="toc-number">2.</span> <span class="toc-text">Spark作业基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spark运行机制"><span class="toc-number">3.</span> <span class="toc-text">Spark运行机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#spark运行流程"><span class="toc-number">3.1.</span> <span class="toc-text">spark运行流程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spark运行模式"><span class="toc-number">4.</span> <span class="toc-text">Spark运行模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spark-Shuffle阶段"><span class="toc-number">5.</span> <span class="toc-text">Spark Shuffle阶段</span></a></li></ol>
         
     </div>
     <style>

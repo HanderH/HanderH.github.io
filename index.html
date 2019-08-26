@@ -323,7 +323,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.8k字</span>
+        <span class="post-count">1.7k字</span>
       </span>
     </span>
 
@@ -417,7 +417,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">401字</span>
+        <span class="post-count">1.2k字</span>
       </span>
     </span>
 
@@ -426,7 +426,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
+        <span class="post-count">6分</span>
       </span>
     </span>
 </div>
@@ -441,21 +441,36 @@ var _hmt = _hmt || [];
       
           
         <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>Spark Streaming基于流式数据的处理，具有高吞吐量和容错能力能力强的特点。Spark Streaming支持的数据输入源很多，例如：Kafka、Flume、Twitter、ZeroMQ和简单的TCP套接字等。和Spark Core类似，Spark Streaming也有一种抽象的数据集合，叫做DStream。DStream是随时间推移而收到的数据序列，每个时间区间收到的数据都作为RDD存在。DStream提供了两种操作，一种是转化操作，一种的输出操作</p>
-<h3 id="Kafka数据源"><a href="#Kafka数据源" class="headerlink" title="Kafka数据源"></a>Kafka数据源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">val conf = new SparkConf().setAppName(&quot;kafka&quot;).setMaster(&quot;local[*]&quot;)</span><br><span class="line">  val ssc =  new StreamingContext(conf,Seconds(5))</span><br><span class="line">  //kafka集群</span><br><span class="line">  val brokers = &quot;hadoop03:9092&quot;</span><br><span class="line">  // 订阅主题</span><br><span class="line">  val sourceTopic = &quot;source&quot;</span><br><span class="line">  // 消费者组</span><br><span class="line">  val consumerGroup = &quot;Test&quot;</span><br><span class="line">  // 配置参数</span><br><span class="line">  val kafkaParams = Map[String,String](</span><br><span class="line">    ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG -&gt; brokers,</span><br><span class="line">    ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG -&gt; &quot;org.apache.kafka.common.serialization.StringDeserializer&quot;,</span><br><span class="line">    ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG -&gt; &quot;org.apache.kafka.common.serialization.StringDeserializer&quot;,</span><br><span class="line">    ConsumerConfig.GROUP_ID_CONFIG -&gt; consumerGroup</span><br><span class="line">  )</span><br><span class="line">  //从kafka中读取数据</span><br><span class="line">  val kfaKaStreaming: InputDStream[(String, String)] = KafkaUtils.createDirectStream[String,String,StringDecoder,StringDecoder](ssc,kafkaParams,Set(sourceTopic))</span><br><span class="line">  kfaKaStreaming.print()</span><br><span class="line">  ssc.start()</span><br><span class="line">  ssc.awaitTermination()</span><br></pre></td></tr></table></figure>
+<h3 id="Kafka数据源"><a href="#Kafka数据源" class="headerlink" title="Kafka数据源"></a>Kafka数据源</h3><p>Spark Streaming读取kafka数据源有两种方式</p>
+<p>一种是Receiver,这种方法使用一个 Receiver 来接收数据。在该 Receiver 的实现中使用了 Kafka high-level consumer API。Receiver 从 kafka 接收的数据将被存储到 Spark executor 中，随后启动的 job 将处理这些数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Logger.getLogger(&quot;org.apache.spark&quot;).setLevel(Level.ERROR)</span><br><span class="line">    Logger.getLogger(&quot;org.eclipse.jetty.server&quot;).setLevel(Level.OFF)</span><br><span class="line">    val conf = new SparkConf().setAppName(&quot;SparkFlumeNGWordCount&quot;).setMaster(&quot;local[2]&quot;)</span><br><span class="line">    val ssc = new StreamingContext(conf, Seconds(5))</span><br><span class="line">    ssc.checkpoint(&quot;hdfs://hadoop03:9000/checkpoint&quot;)</span><br><span class="line">    //创建kafka对象   生产者 和消费者 </span><br><span class="line">    //模式1 采取的是 receiver 方式  reciver 每次只能读取一条记录</span><br><span class="line">    val topic = Map(&quot;mydemo2&quot; -&gt; 1)</span><br><span class="line">    //直接读取的方式  由于kafka 是分布式消息系统需要依赖Zookeeper</span><br><span class="line">    val data = KafkaUtils.createStream(ssc, &quot;hadoop03:2181&quot;, &quot;mygroup&quot;, topic, StorageLevel.MEMORY_AND_DISK)</span><br><span class="line">    //数据累计计算</span><br><span class="line">    val updateFunc =(curVal:Seq[Int],preVal:Option[Int])=&gt;&#123;</span><br><span class="line">    //进行数据统计当前值加上之前的值</span><br><span class="line">    var total = curVal.sum</span><br><span class="line">    //最初的值应该是0</span><br><span class="line">    var previous = preVal.getOrElse(0)</span><br><span class="line">    //Some 代表最终的返回值</span><br><span class="line">    Some(total+previous)</span><br><span class="line">  &#125;</span><br><span class="line">   val result = data.map(_._2).flatMap(_.split(&quot; &quot;)).map(word=&gt;(word,1)).updateStateByKey(updateFunc).print()</span><br><span class="line">   //启动ssc</span><br><span class="line">   ssc.start()</span><br><span class="line">   ssc.awaitTermination()</span><br></pre></td></tr></table></figure>
+
+<p>一种是不需要 Receiver 的方法。替代了使用 receivers 来接收数据，该方法定期查询每个 topic+partition 的 lastest offset，并据此决定每个 batch 要接收的 offsets 范围。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">val conf = new SparkConf().setAppName(&quot;kafka&quot;).setMaster(&quot;local[*]&quot;)</span><br><span class="line">  val ssc =  new StreamingContext(conf,Seconds(5))</span><br><span class="line">  //kafka集群</span><br><span class="line">  val brokers = &quot;hadoop03:9092&quot;</span><br><span class="line">  // 订阅主题</span><br><span class="line">  val sourceTopic = &quot;source&quot;</span><br><span class="line">  // 消费者组</span><br><span class="line">  val consumerGroup = &quot;Test&quot;</span><br><span class="line">  // 配置参数</span><br><span class="line">  val kafkaParams = Map[String,String](</span><br><span class="line">    ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG -&gt; brokers,</span><br><span class="line">    ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG -&gt; &quot;org.apache.kafka.common.serialization.StringDeserializer&quot;,</span><br><span class="line">    ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG -&gt; &quot;org.apache.kafka.common.serialization.StringDeserializer&quot;,</span><br><span class="line">    ConsumerConfig.GROUP_ID_CONFIG -&gt; consumerGroup</span><br><span class="line">  )</span><br><span class="line">  //从kafka中读取数据</span><br><span class="line">  val kfaKaStreaming: InputDStream[(String, String)] = KafkaUtils.createDirectStream[String,String,StringDecoder,StringDecoder](ssc,kafkaParams,Set(sourceTopic))</span><br><span class="line">  kfaKaStreaming.print()</span><br><span class="line">  ssc.start()</span><br><span class="line">  ssc.awaitTermination()</span><br></pre></td></tr></table></figure>
 
 <h3 id="Dstream有状态转换"><a href="#Dstream有状态转换" class="headerlink" title="Dstream有状态转换"></a>Dstream有状态转换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">	val conf = new SparkConf().setAppName(&quot;test&quot;).setMaster(&quot;local[*]&quot;)</span><br><span class="line"></span><br><span class="line">    val ssc = new StreamingContext(conf,Milliseconds(5000))</span><br><span class="line">    //设置保存数据的目录</span><br><span class="line">    ssc.checkpoint(&quot;./check&quot;)</span><br><span class="line">    val lineStream: DStream[String] = ssc.textFileStream(&quot;/home/husj/test/&quot;)</span><br><span class="line">    val m = lineStream.flatMap(line=&gt;&#123;line.split(&quot; &quot;)&#125;).map(x =&gt;(x,1))</span><br><span class="line">    val updataFun = (values:Seq[Int],state:Option[Int])=&gt;&#123;</span><br><span class="line">      val v  = state.getOrElse(0)</span><br><span class="line">      val sum = values.sum</span><br><span class="line">      Some(v+sum)</span><br><span class="line">    &#125;</span><br><span class="line">    val res: DStream[(String, Int)] = m.updateStateByKey(updataFun)</span><br><span class="line">//  val res = m.reduceByKey(_+_).print()</span><br><span class="line">    res.print()</span><br><span class="line">    ssc.start()</span><br><span class="line">    ssc.awaitTermination()</span><br></pre></td></tr></table></figure>
 
-<p>Spark 源码解析</p>
+<h3 id="流式DataFrame"><a href="#流式DataFrame" class="headerlink" title="流式DataFrame"></a>流式DataFrame</h3><p>数据源:socket file kafka</p>
 <ol>
-<li>Yarn部署流程</li>
+<li>socket</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SparkSubmit -》SparkSubmitArguments(parse(args.asJava)-&gt;doSubmit-&gt; appArgs.action</span><br><span class="line">--&gt;runMain(classForName(childMainClass),mainMethod.invoke(null, args))==&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">object MassageServer &#123;</span><br><span class="line"></span><br><span class="line">  // 定义随机获取整数的方法</span><br><span class="line">  def index(length: Int) = &#123;</span><br><span class="line">    import java.util.Random</span><br><span class="line">    val rdm = new Random</span><br><span class="line">    rdm.nextInt(length)</span><br><span class="line">  &#125;</span><br><span class="line">  def main(args: Array[String]) &#123;</span><br><span class="line">    println(&quot;模拟数据器启动！！！&quot;)</span><br><span class="line">    // 获取指定文件总的行数</span><br><span class="line">    val filename =&quot;/home/husj/software/spark/examples/src/main/resources/people.txt&quot;</span><br><span class="line">    val lines = Source.fromFile(filename).getLines.toList</span><br><span class="line">    val filerow = lines.length</span><br><span class="line">    // 指定监听某端口，当外部程序请求时建立连接</span><br><span class="line">    val serversocket = new ServerSocket(9999)</span><br><span class="line">    while (true) &#123;</span><br><span class="line">      //监听9999端口，获取socket对象</span><br><span class="line">      val socket = serversocket.accept()</span><br><span class="line">      //      println(socket)</span><br><span class="line">      new Thread() &#123;</span><br><span class="line">        override def run = &#123;</span><br><span class="line">          println(&quot;Got client co nnected from: &quot; + socket.getInetAddress)</span><br><span class="line">          val out = new PrintWriter(socket.getOutputStream(), true)</span><br><span class="line">          while (true) &#123;</span><br><span class="line">            Thread.sleep(1000)</span><br><span class="line">            // 当该端口接受请求时，随机获取某行数据发送给对方</span><br><span class="line">            val content = lines(index(filerow))</span><br><span class="line">            println (content)</span><br><span class="line">            out.write(content + &apos;\n&apos;)</span><br><span class="line">            out.flush()</span><br><span class="line">          &#125;</span><br><span class="line">          socket.close()</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;.start()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">args.mainClass:client</span><br><span class="line"> &quot;org.apache.spark.deploy.yarn.YarnClusterApplication&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">val spark = 					SparkSession.builder().appName(&quot;socket&quot;).master(&quot;local[*]&quot;).getOrCreate()</span><br><span class="line"></span><br><span class="line">import spark.implicits._</span><br><span class="line"></span><br><span class="line">val df: DataFrame = spark.readStream.format(&quot;socket&quot;).option(&quot;host&quot;,&quot;127.0.0.1&quot;).</span><br><span class="line">  option(&quot;port&quot;,9999).option(&quot;includeTimestamp&quot;,false).load()</span><br><span class="line">val dds: Dataset[(String, Int)] = df.flatMap(row =&gt; row.getAs[String](0).split(&quot; &quot;)).map(x =&gt;(x,1))</span><br><span class="line"></span><br><span class="line">val res: DataFrame = dds.toDF(&quot;word&quot;,&quot;num&quot;).groupBy(&quot;word&quot;).count()</span><br><span class="line">   </span><br><span class="line">val sq =  res.writeStream.outputMode(&quot;Complete&quot;).format(&quot;console&quot;).start()</span><br><span class="line"></span><br><span class="line">sq.awaitTermination()</span><br><span class="line"></span><br><span class="line">spark.close()</span><br></pre></td></tr></table></figure>
 
-<ol>
-<li>Spark组件</li>
+<p>参数说明:option(“includeTimestamp”,false),是否加载时间戳 </p>
+<p>​        outmode:输出模式,有三种,Append,Complete,Update</p>
+<p>​        Append:支持查询但是不支持aggregate运算</p>
+<p>​        Complete:支持查询并且支持aggregate运算</p>
+<p>​        Update:某些更新的行将会被写出</p>
+<ol start="2">
+<li><p>file:普通文件没什么好说的,主要是json格式的数据,spark streaming默认不识别json中的结构信息</p>
+<p>,需要自己指定结构信息,或者开启自动识别json信息的选项</p>
+</li>
 </ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> val spark = SparkSession.builder().appName(&quot;file&quot;).master(&quot;local[*]&quot;).config(&quot;spark.sql.streaming.schemaInference&quot;,true)</span><br><span class="line">      .getOrCreate()</span><br><span class="line">    import spark.implicits._</span><br><span class="line">//    val df = spark.readStream.format(&quot;text&quot;).option(&quot;path&quot;,&quot;/home/husj/test&quot;).load()</span><br><span class="line">//    val struct = new StructType().add(&quot;properties&quot;,new StructType().add(&quot;ip&quot;,&quot;string&quot;).add(&quot;port&quot;,&quot;int&quot;).add(&quot;httpMethod&quot;,&quot;string&quot;))</span><br><span class="line">    val df = spark.readStream.format(&quot;json&quot;).option(&quot;multiline&quot;,true).option(&quot;path&quot;,&quot;spark-sql/jsonFile&quot;).load()</span><br><span class="line">    val query = df.writeStream.format(&quot;console&quot;).option(&quot;truncate&quot;,false).start()</span><br><span class="line"></span><br><span class="line">    query.awaitTermination()</span><br><span class="line"></span><br><span class="line">    spark.close()</span><br></pre></td></tr></table></figure>
+
+<p>​            </p>
 
       
     </div>
@@ -561,7 +576,7 @@ var _hmt = _hmt || [];
 <ul>
 <li>DataFrame =》 RDD</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val dfRdd: RDD[Row] = dataf.rdd</span><br><span class="line">dfRdd.foreach(row =&gt; println(row.getString(0)+&quot;: &quot;+row.getInt(1)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val dfRdd: RDD[Row] =  .rdd</span><br><span class="line">dfRdd.foreach(row =&gt; println(row.getString(0)+&quot;: &quot;+row.getInt(1)))</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>DataFrame =》 DataSet</li>
@@ -710,7 +725,7 @@ var _hmt = _hmt || [];
 <ol start="2">
 <li>aggregate函数统计的结果在排序后的结果是不一样的</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">avg(score) over(partition by classId) avg # 每个分组加起来求平均值</span><br><span class="line">avg(score) over(partition by classId order by score) # r1=r1 r2=(r1+r2)/2 ...</span><br><span class="line">avg(score) over(partition by classId  rows between 1 preceding and 1 following) avg_row  #当前行的前一行+当前行+后一行的平均值</span><br><span class="line">avg(score) over(partition by classId order by score range between 1 preceding and 1 following # score+(是否存在score+或-1)的平均值</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">avg(score) over(partition by `) avg # 每个分组加起来求平均值</span><br><span class="line">avg(score) over(partition by classId order by score) # r1=r1 r2=(r1+r2)/2 ...</span><br><span class="line">avg(score) over(partition by classId  rows between 1 preceding and 1 following) avg_row  #当前行的前一行+当前行+后一行的平均值</span><br><span class="line">avg(score) over(partition by classId order by score range between 1 preceding and 1 following # score+(是否存在score+或-1)的平均值</span><br></pre></td></tr></table></figure>
 
 
       
@@ -1043,7 +1058,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">712字</span>
+        <span class="post-count">1.1k字</span>
       </span>
     </span>
 
@@ -1052,7 +1067,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
+        <span class="post-count">4分</span>
       </span>
     </span>
 </div>
@@ -1069,7 +1084,7 @@ var _hmt = _hmt || [];
         <h3 id="spark运行架构图"><a href="#spark运行架构图" class="headerlink" title="spark运行架构图"></a>spark运行架构图</h3><p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/spark/spark1.png" alt></p>
 <ul>
 <li>Cluster Manager：在standalone模式中即为Master主节点，控制整个集群，监控worker。在YARN模式中为ResourceManager</li>
-<li>Worker:从节点，负责控制计算节点，启动executor和Driver。在yarn集群中为nodemanager</li>
+<li>Worker:从节点，负责控制计算节点，启动executor。在yarn集群中为nodemanager</li>
 <li>Driver:运行Application的main函数并且创建SparkContext.</li>
 <li>Executor:执行器,Application运行在worker节点上的一个进程，负责启动线程池运行任务(Task)</li>
 <li>RDD DAG:RDD组成的有向无环图，反应RDD之间的依赖关系。当RDD遇到遇到Action算子的时候，将之前所有算子形成一个有向无环图</li>
@@ -1089,8 +1104,8 @@ var _hmt = _hmt || [];
 <ol>
 <li>用户在客户端将Application提交到ClusterManager</li>
 <li>ClusterManager收到Application后，找一个worker启动Driver,初始化一个SparkContext.</li>
-<li>SparkContext初始化时创建DAG Scheduler和Task Scheduler,向资源管理器申请Executors,并启动StandaloneExecutorBackend</li>
-<li>Executors向SparkContext申请Task,SparkContext中的每一个DAG Scheduler会根据依赖关系拆分成多个stage,每个stage提交给一个Task Scheduler，Task Scheduler会将这些Task任务分发到Executor</li>
+<li>SparkContext向资源管理器申请Executors,并启动StandaloneExecutorBackend</li>
+<li>Executors向SparkContext申请Task,SparkContext中的DAG Scheduler会根据依赖关系拆分成多个stage,每个stage提交给一个Task Scheduler，Task Scheduler会将这些Task任务分发到Executor</li>
 <li>Executor启动多线程，执行Task。</li>
 <li>所有Task完成后，SparkContext向Master注销</li>
 </ol>
@@ -1106,10 +1121,43 @@ var _hmt = _hmt || [];
 <li>所有Task完成后，SparkContext向Master注销</li>
 </ol>
 <ul>
-<li><p>YARN Client</p>
-<p>Driver在客户端本地运行，这种模式可以使得Spark Application和客户端进行交互，此时driver负责RDD生成、task生成和分发，向AM申请资源。</p>
+<li>Yarn Client:</li>
+</ul>
+<ol>
+<li>Driver在本地提交任务的机器运行,Driver启动后向ResourceManager申请ApplicationMaster</li>
+<li>ResourceManager找到一个NodeManager分配conainer,并且创建ApplicationMaster</li>
+<li>AM创建后,向ResourceManager申请启动Executor,Executor启动后向Driver注册.</li>
+<li>Driver注册完成后,Driver开始执行main方法,执行算子时,执行一个job,每个job会根据宽依赖划分为多个stage,每个stage,每个stage对应多个TaskSet,经过TaskSchedule分发到Executor执行.</li>
+</ol>
+<ul>
+<li>Yarn Cluster</li>
+</ul>
+<ol>
+<li>任务提交后,向ResourceManager申请ApplcationMaster</li>
+<li>ResourceManager找到一个NodeManager分配conainer,并且创建ApplicationMaster,AM创建后,启动Driver,此时的AM就是一个Driver</li>
+<li>AM向ResourceManager申请启动Executor,Executor启动后向Driver注册</li>
+<li>Driver注册完成后,Driver开始执行main方法,执行算子时,执行一个job,每个job会根据宽依赖划分为多个stage,每个stage,每个stage对应多个TaskSet,经过TaskSchedule分发到Executor执行.</li>
+</ol>
+<h3 id="Spark-Shuffle阶段"><a href="#Spark-Shuffle阶段" class="headerlink" title="Spark Shuffle阶段"></a>Spark Shuffle阶段</h3><p>Spark Shuffle分为Map和Reduce阶段,它与stage阶段的划分有关,在一个job中如果碰到宽依赖,会被划分为多个stage,最终每个stage都会被划分为ResultStage和ShuffleMapStage,对应ReduceTask和ShuffleMapTask.ShuffleMapTask会根据partitioner对数据进行分组,并且进行持久化.</p>
+<ul>
+<li><p>未优化HashShuffle</p>
+<p>HashShuffle在没有优化之前,每一个ShuffleMapTask会为每一个ReduceTask创建一个bucket(经过partitioner后对用的bucket),并且为每一个bucket创建一个文件.ReduceTask会去对应bucket中获取数据.但是这样有很大缺点就是生成的文件数量太多,这对于磁盘IO影响很大</p>
 </li>
-<li><p>YARN Cluster：client将application提交到spark集群中就与spark集群断开联系，此时client将不会发挥其他任何作用，仅仅负责提交，此时可以将driver与Application Master是一个东西</p>
+</ul>
+<p><img src alt></p>
+<ul>
+<li><p>优化后的HashShuffle:</p>
+<p>设置参数 spark.shuffle.consolidateFiles=true,在中间过程生成的文件数为cpu核数*reduceTask个数</p>
+</li>
+<li><p>Sorted-Based Shuffle:</p>
+<ol>
+<li><p>SortShuffleWriter运行机制:类似hadoop的shuffle过程,在ShuffleMapTask阶段,每个Task将所有数据写到一个文件中,并且生成一个索引文件.然后在由ReduceTask去文件中拉取对应分区的数据.</p>
+</li>
+<li><p>bypass运行机制:用于处理数据量小不需要排序和聚合的Shuffle操作</p>
+<p>触发条件:1. shuffle map task的数量小于200(spark.shuffle.sort.bypassMergeThreshold )</p>
+<p>​        2. 不是聚合类的shuffle算子</p>
+</li>
+</ol>
 </li>
 </ul>
 
