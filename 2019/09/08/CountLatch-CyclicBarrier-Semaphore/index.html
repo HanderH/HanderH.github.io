@@ -15,21 +15,18 @@
 
 
 
-<meta name="description" content="一.java类加载器的种类 启动类加载器(Bootstrap):加载 java_home/jre/lib下面的类库 扩展类加载器(Extension):加载 java_home/jre/lib/ext下面的类库 系统类加载器(System/App):加载classpath下的类">
-<meta name="keywords" content="jvm">
+<meta name="description" content="CountDownLatch">
+<meta name="keywords" content="java高并发编程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java类加载器">
-<meta property="og:url" content="http://www.handerh.top/2019/07/09/java类加载器/index.html">
+<meta property="og:title" content="CountLatch CyclicBarrier Semaphore">
+<meta property="og:url" content="http://www.handerh.top/2019/09/08/CountLatch-CyclicBarrier-Semaphore/index.html">
 <meta property="og:site_name" content="hsj的博客">
-<meta property="og:description" content="一.java类加载器的种类 启动类加载器(Bootstrap):加载 java_home/jre/lib下面的类库 扩展类加载器(Extension):加载 java_home/jre/lib/ext下面的类库 系统类加载器(System/App):加载classpath下的类">
+<meta property="og:description" content="CountDownLatch">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://handerh-1259550163.cos.apshanghai.myqcloud.com/java/jvm/classload.png">
-<meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/jvm/classload2.png">
-<meta property="og:updated_time" content="2019-09-02T08:39:35.294Z">
+<meta property="og:updated_time" content="2019-09-08T02:07:02.218Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java类加载器">
-<meta name="twitter:description" content="一.java类加载器的种类 启动类加载器(Bootstrap):加载 java_home/jre/lib下面的类库 扩展类加载器(Extension):加载 java_home/jre/lib/ext下面的类库 系统类加载器(System/App):加载classpath下的类">
-<meta name="twitter:image" content="https://handerh-1259550163.cos.apshanghai.myqcloud.com/java/jvm/classload.png">
+<meta name="twitter:title" content="CountLatch CyclicBarrier Semaphore">
+<meta name="twitter:description" content="CountDownLatch">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -61,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>java类加载器 | hsj的博客</title>
+<title>CountLatch CyclicBarrier Semaphore | hsj的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -288,7 +285,7 @@ var _hmt = _hmt || [];
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-java类加载器" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-CountLatch-CyclicBarrier-Semaphore" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       
@@ -297,8 +294,8 @@ var _hmt = _hmt || [];
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2019/07/09/java类加载器/" class="article-date">
-      <time datetime="2019-07-09T09:13:37.000Z" itemprop="datePublished">2019-07-09</time>
+<a href="/2019/09/08/CountLatch-CyclicBarrier-Semaphore/" class="article-date">
+      <time datetime="2019-09-08T02:05:14.000Z" itemprop="datePublished">2019-09-08</time>
 </a>
 
 
@@ -314,7 +311,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      java类加载器
+      CountLatch CyclicBarrier Semaphore
     </h1>
   
 
@@ -325,7 +322,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">714字</span>
+        <span class="post-count">1字</span>
       </span>
     </span>
 
@@ -334,7 +331,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
+        <span class="post-count">1分</span>
       </span>
     </span>
 </div>
@@ -347,13 +344,13 @@ var _hmt = _hmt || [];
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/jvm/">jvm</a>
+    <a class="article-category-link" href="/categories/java/">java</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jvm/">jvm</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java高并发编程/">java高并发编程</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -363,49 +360,7 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="一-java类加载器的种类"><a href="#一-java类加载器的种类" class="headerlink" title="一.java类加载器的种类"></a>一.java类加载器的种类</h2><ol>
-<li>启动类加载器(Bootstrap):加载 java_home/jre/lib下面的类库</li>
-<li>扩展类加载器(Extension):加载 java_home/jre/lib/ext下面的类库</li>
-<li>系统类加载器(System/App):加载classpath下的类</li>
-</ol>
-<a id="more"></a>
-
-<h2 id="二-java类加载体系之双亲委托机制"><a href="#二-java类加载体系之双亲委托机制" class="headerlink" title="二. java类加载体系之双亲委托机制"></a>二. java类加载体系之双亲委托机制</h2><p>BootStrapClassLoader ： 启 动 类 加 载 器 ， 该 ClassLoader 是 jvm 在 启 动 时 创 建 的 ， 用 于 加<br>载 $JAVA_HOME$/jre/lib 下面的类库</p>
-<p>ExtClassLoader：扩展类加载器,加载 $JAVA_HOME/jre/lib/ext 下的类 库</p>
-<p>AppClassLoader：应用程序类加载器,AppClassLoader 会加载 java 环境变量CLASSPATH 所 指 定 的 路 径 下 的 类 库 ,可 以 通 过System.getProperty(“java.class.path”)获取.</p>
-<p>双亲委派体系是这样的：</p>
-<p>​    1）当 AppClassLoader 加载一个 class 时，它首先不会自己去尝试加载这个类，而是把类加载请求委派给父类加载器 ExtClassLoader 去完成。<br>    2）当 ExtClassLoader 加载一个 class 时，它首先也不会自己去尝试加载这个类，而是把类加载请求委派给BootStrapClassLoader 去完成。<br>    3）如果 BootStrapClassLoader 加载失败（例如在$JAVA_HOME$/jre/lib 里未查找到该 class），会使用ExtClassLoader 来尝试加载；<br>    4）若 ExtClassLoader 也加载失败，则会使用 AppClassLoader 来加载，如果 AppClassLoader 也加载失败，则会报出异常 ClassNotFoundException。</p>
-<p><img src="https://handerh-1259550163.cos.apshanghai.myqcloud.com/java/jvm/classload.png" alt></p>
-<p>为什么说双亲委派机制是安全的？</p>
-<p>ClassLoader 加载的 class 文件来源很多，比如编译器编译生成的 class、或者网络下载的字节码。</p>
-<p>有一些class文件是不可靠的，比如我可以自定义一个 java.lang.Integer 类来覆盖 jdk 中默认的 Integer<br>类</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class Integer &#123;</span><br><span class="line"> 	public Integer(int value) &#123;</span><br><span class="line">	 	 System.exit(0);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果没有双亲委派机制，当我们使用Integer　a = new Integer(１);的时候，会加载我们使用的这个类，</p>
-<p>那么程序就会退出。如果使用双亲委派机制，类加载器加载的是jdk的Integer。</p>
-<h2 id="三-类加载过程"><a href="#三-类加载过程" class="headerlink" title="三.类加载过程"></a>三.类加载过程</h2><p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/jvm/classload2.png" alt></p>
-<p>加载：将类的字节码加载到内存，生成代表这个类的java.lang.class对象</p>
-<p>验证：验证这个字节码是否符合虚拟机的规范</p>
-<p>准备：为类变量分配内存</p>
-<p>解析：将符号引用解析为直接引用</p>
-<p>初始化：对静态变量和静态代码块进行初始化操作</p>
-<p>触发类初始化的条件</p>
-<ul>
-<li><p>创建类的实例，new 一个对象</p>
-</li>
-<li><p>访问某个类的静态方法或这静态变量</p>
-</li>
-<li><p>使用反射创建一个类对象</p>
-</li>
-<li><p>初始化一个类的子类（会先初始化子类的父类)</p>
-<p>总结：类的初始化步骤</p>
-<p>​        １. 如果该类还没有被加载和链接，首先执行类的加载和链接</p>
-<p>​        ２．加入这个类存在直接父类，先出初始化直接父类（在一个类加载器中，类只能初始化一次）；</p>
-<p>​        ３．初始化静态变量以及静态代码块</p>
-<p>​    </p>
-</li>
-</ul>
-
+        <h3 id="CountDownLatch"><a href="#CountDownLatch" class="headerlink" title="CountDownLatch"></a>CountDownLatch</h3>
       
     </div>
     
@@ -413,13 +368,13 @@ var _hmt = _hmt || [];
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/07/09/java类加载器/">java类加载器</a></p>
+        <p><span>本文标题:</span><a href="/2019/09/08/CountLatch-CyclicBarrier-Semaphore/">CountLatch CyclicBarrier Semaphore</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">HanderH</a></p>
-        <p><span>发布时间:</span>2019-07-09, 17:13:37</p>
-        <p><span>最后更新:</span>2019-09-02, 16:39:35</p>
+        <p><span>发布时间:</span>2019-09-08, 10:05:14</p>
+        <p><span>最后更新:</span>2019-09-08, 10:07:02</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/07/09/java类加载器/" title="java类加载器">http://www.handerh.top/2019/07/09/java类加载器/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/07/09/java类加载器/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/09/08/CountLatch-CyclicBarrier-Semaphore/" title="CountLatch CyclicBarrier Semaphore">http://www.handerh.top/2019/09/08/CountLatch-CyclicBarrier-Semaphore/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/09/08/CountLatch-CyclicBarrier-Semaphore/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -431,16 +386,10 @@ var _hmt = _hmt || [];
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/07/10/插入排序/">
-                    插入排序
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/07/04/GC-垃圾回收机制/">
-                    GC-垃圾回收机制
+                <a href="/2019/09/08/CountoDownLatch-CyclicBarrier-Semaphore/">
+                    CountDownLatch CyclicBarrier Semaphore
                 </a>
             </div>
         
@@ -452,7 +401,7 @@ var _hmt = _hmt || [];
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-java类加载器的种类"><span class="toc-number">1.</span> <span class="toc-text">一.java类加载器的种类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-java类加载体系之双亲委托机制"><span class="toc-number">2.</span> <span class="toc-text">二. java类加载体系之双亲委托机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-类加载过程"><span class="toc-number">3.</span> <span class="toc-text">三.类加载过程</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#CountDownLatch"><span class="toc-number">1.</span> <span class="toc-text">CountDownLatch</span></a></li></ol>
         
     </div>
     <style>
@@ -488,7 +437,7 @@ var _hmt = _hmt || [];
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"java类加载器　| hsj的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"CountLatch CyclicBarrier Semaphore　| hsj的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -529,15 +478,13 @@ var _hmt = _hmt || [];
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/07/10/插入排序/" title="上一篇: 插入排序">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/07/04/GC-垃圾回收机制/" title="下一篇: GC-垃圾回收机制">
+            <a href="/2019/09/08/CountoDownLatch-CyclicBarrier-Semaphore/" title="下一篇: CountDownLatch CyclicBarrier Semaphore">
                 <i class="fa fa-angle-right"></i>
             </a>
         
