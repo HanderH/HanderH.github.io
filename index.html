@@ -291,6 +291,221 @@ var _hmt = _hmt || [];
 </nav>
       <div class="body-wrap">
   
+    <article id="post-mysql索引" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      
+<a href="/2019/09/16/mysql索引/" class="article-date">
+      <time datetime="2019-09-16T05:33:28.000Z" itemprop="datePublished">2019-09-16</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+       
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/16/mysql索引/">mysql索引</a>
+    </h1>
+  
+
+          <!--
+            
+                 <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">2.5k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">9分</span>
+      </span>
+    </span>
+</div>
+
+            
+           -->
+       </header>
+        
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><p>索引是一种协助我们快速查找的一种数据结构，在mysql的Inndb引擎中，底层使用的是B+Tree</p>
+<h3 id="索引的创建"><a href="#索引的创建" class="headerlink" title="索引的创建"></a>索引的创建</h3><h4 id="创建表时创建索引"><a href="#创建表时创建索引" class="headerlink" title="创建表时创建索引"></a>创建表时创建索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">create table t1_i1(</span><br><span class="line">	id int primary key auto_increment,# 主键索引</span><br><span class="line">	name varchar(20) unique,# 唯一索引</span><br><span class="line">	age int ,</span><br><span class="line">	gender varchar(2) check(gender in (&apos;F&apos;,&apos;M&apos;)),</span><br><span class="line">	email varchar(20),</span><br><span class="line">	extr text,</span><br><span class="line">	index age_i (age) # 普通索引</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看表中的索引信息"><a href="#查看表中的索引信息" class="headerlink" title="查看表中的索引信息"></a>查看表中的索引信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show index from t1_i1;</span><br></pre></td></tr></table></figure>
+
+<h4 id="删除表中的索引"><a href="#删除表中的索引" class="headerlink" title="删除表中的索引"></a>删除表中的索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">drop index age_i on t1_i1;</span><br><span class="line">drop index name on t1_i1;</span><br></pre></td></tr></table></figure>
+
+<h4 id="在已经创建好的表中添加索引"><a href="#在已经创建好的表中添加索引" class="headerlink" title="在已经创建好的表中添加索引"></a>在已经创建好的表中添加索引</h4><h4 id="添加唯一索引"><a href="#添加唯一索引" class="headerlink" title="添加唯一索引"></a>添加唯一索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create unique index name_index on t1_i1(name);</span><br></pre></td></tr></table></figure>
+
+<h4 id="添加组合索引"><a href="#添加组合索引" class="headerlink" title="添加组合索引"></a>添加组合索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create index age_email_index on t1_i1(age,email);</span><br></pre></td></tr></table></figure>
+
+<h4 id="添加普通索引"><a href="#添加普通索引" class="headerlink" title="添加普通索引"></a>添加普通索引</h4><p>创建索引时如果是BLOB 和 TEXT 类型，必须指定length。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create index extr_index on t1_i1(extr(20));</span><br></pre></td></tr></table></figure>
+
+<h3 id="索引的使用"><a href="#索引的使用" class="headerlink" title="索引的使用"></a>索引的使用</h3><h4 id="向表中插入100000条数据"><a href="#向表中插入100000条数据" class="headerlink" title="向表中插入100000条数据"></a>向表中插入100000条数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">create procedure insert100(in num int)</span><br><span class="line">begin</span><br><span class="line">	declare i int default 1;</span><br><span class="line">	while i&lt;num do</span><br><span class="line">	insert into t1_i1 values(i,&apos;name&apos;,i%18,&apos;F&apos;,&apos;i@qq.com&apos;,&apos;extra&apos;);</span><br><span class="line">	set i = i+1;</span><br><span class="line">	end while;</span><br><span class="line">end$</span><br></pre></td></tr></table></figure>
+
+<h4 id="正确使用索引"><a href="#正确使用索引" class="headerlink" title="正确使用索引"></a>正确使用索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">索引失效：</span><br><span class="line">     1.全值匹配我最爱</span><br><span class="line">     2.最佳左前缀法则，如果索引了多列，要遵循最左前缀法则，指的是查询从索引最左前列开始，并且不能跳过索引中的列</span><br><span class="line">     3.不在索引列上做任何操作（计算，函数，自动或手动类型转换），会导致索引失效</span><br><span class="line">     4.不能使用索引范围条件中右边的列</span><br><span class="line">     5.尽量使用覆盖索引</span><br><span class="line">     6.在使用不等于(!=或者&lt;&gt;)的时候，会导致索引失效</span><br><span class="line">     7.is null is not null 会导致索引失效</span><br><span class="line">     8.like一通配符开头（‘%..&apos;），会导致索引失效  （解决办法：使用覆盖索引）</span><br><span class="line">     9.字符串不加单引号，会导致索引失效 </span><br><span class="line">     10.少用or，or会致索引失效</span><br></pre></td></tr></table></figure>
+
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/musql/%E7%B4%A2%E5%BC%950.png" alt="索引示例"></p>
+<h3 id="explain-sql查询执行计划"><a href="#explain-sql查询执行计划" class="headerlink" title="explain+sql查询执行计划"></a>explain+sql查询执行计划</h3><p>通过查询执行计划能干嘛？</p>
+<p>​          1.可以知道表的读取顺序</p>
+<p>​          2.数据读取操作的操作类型</p>
+<p>​          3.哪些索引可以被使用</p>
+<p>​          4.哪些索引被实际使用</p>
+<p>​          5.表之间的引用关系</p>
+<p>​          6.每张表有多少行被优化器查询</p>
+<h4 id="执行计划中包含的信息"><a href="#执行计划中包含的信息" class="headerlink" title="执行计划中包含的信息"></a>执行计划中包含的信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">id |:select的查询序列号，包含一组数字，表示select执行的顺序或者表的操作顺序，id的值越大，优先级越高   </span><br><span class="line">select_type |:</span><br><span class="line">	simple：表示简单的select，不包含子查询或union</span><br><span class="line">	primary：查询中若包含任何子查询，则会被标记为primary</span><br><span class="line">	SUBQUERY:子查询</span><br><span class="line">	DERIVED:在from列表中包含的子查询被标记为DERIVED</span><br><span class="line">	union:若第二个select出现在union后则被标记为union</span><br><span class="line">		  若union包含在from的子查询中，则被标记为DERIVER</span><br><span class="line">	UNION RESULT：union合并后的表</span><br><span class="line">table |:这行数据是哪张表的</span><br><span class="line">partitions | :</span><br><span class="line">type |:ALL INDEX RANGE ref eq_ref const system NULL</span><br><span class="line">	   从最好到最差的顺序依次是 system&gt;const&gt;eq_ref &gt;ref&gt;range&gt;index&gt;all</span><br><span class="line">		system:表中只有一行数据</span><br><span class="line">		const：表示通过一次索引就找到了，const用于比较primary key 或者unique索引，因为只匹				 配一行数据所以很快</span><br><span class="line">		eq_ref：唯一性索引扫描，对于每一个索引键，表中只有一条数据与之匹配</span><br><span class="line">		ref：非唯一性索引扫描，返回匹配某个单独值得所有行</span><br><span class="line">		range：值检索给定范围的行</span><br><span class="line">		index:FULL INDEX scan 全索引扫描 ，只遍历索引树，通常比all快</span><br><span class="line">		 all：FULL Table Scan 全表扫描</span><br><span class="line">possible_keys | :</span><br><span class="line">		显示可能应用在这张表的索引，一个或多个。查询涉及到的字段上若存在索引，则该索引被列出 ，		但不一定被使用</span><br><span class="line">key  | :</span><br><span class="line">		实际使用的索引，如果为null，则没有使用索引</span><br><span class="line">		查询中若使用了复盖索引（查询列要被所建的索引覆盖），则该索引仅出现在key中</span><br><span class="line">key_len | :</span><br><span class="line">		key-len：显示的的字段为索引字段的 最大可能长度，并非实际长度</span><br><span class="line">ref  | :</span><br><span class="line">		索引的哪一列被使用，具体使用了什么值</span><br><span class="line">rows  | :</span><br><span class="line">		rows:根据表统计信息及索引引用情况，大概估算出所需的记录所要读取的行数</span><br><span class="line">filtered | :		</span><br><span class="line">Extra  :包含不适合在其他列出现但十分重要的信息</span><br><span class="line">		1.using filesort：说明mysql会对数据使用一个外部排序，而不是按照表内的的索引顺序进行读取，mysql无法利用索引完成的排序操作叫做文件排序</span><br><span class="line">		2.using temporary:使用了临时表保存中间结果，mysql在对查询结果排序时采用了临时表，常见于order by和分组查询group by</span><br><span class="line">		3.using index：表示响应的select操作使用了复盖索引，避免访问了表的数据行，效果不错</span><br><span class="line">           如果同时出现了using where表明索引被用来执行索引键值的查找</span><br><span class="line">           s如果没有同时出现了using where表明索引被用来读取数据，而非执行查找动作</span><br><span class="line">		 4.using join buffer：使用了连接缓存</span><br><span class="line">		 5.using where</span><br></pre></td></tr></table></figure>
+
+<h4 id="排序优化"><a href="#排序优化" class="headerlink" title="排序优化"></a>排序优化</h4><p> order by：尽量使用Index的方式排序，避免使用FileSort</p>
+<pre><code>order by满足两种情况会使用index方式排序：</code></pre><p>​                                  1、order by使用索引最左前列</p>
+<p>​                                  2、使用where子句与order by字句条件组合成索引最左前列</p>
+<p>如果排序字句不在索引上，filesort有两种算法</p>
+<p>​                    双路排序：从磁盘读取所要查询的列，在buffer中排序，再从磁盘中读取数据（两次IO）</p>
+<p>​                    单路排序：从磁盘读取所要查询的列，在buffer中排序（一次IO），一次将数据读入到buffer，需要更多的空间</p>
+<h3 id="聚集索引，非聚集索引，二级索引"><a href="#聚集索引，非聚集索引，二级索引" class="headerlink" title="聚集索引，非聚集索引，二级索引"></a>聚集索引，非聚集索引，二级索引</h3><h4 id="聚集索引"><a href="#聚集索引" class="headerlink" title="聚集索引"></a>聚集索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create cluster index index_name on table(col1,col2)</span><br></pre></td></tr></table></figure>
+
+<p>聚集索引按表中的索引顺序来存储，也就是谁说，索引项的顺序与表中的顺序是一致的，对于聚集索引，叶子节点存储的数据是真实的数据行，不再有额外的数据页，在一张表中只能存在一个聚集索引。Innodb默认使用的是聚集索引</p>
+<h4 id="非聚集索引"><a href="#非聚集索引" class="headerlink" title="非聚集索引"></a>非聚集索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create nocluster index index_name on table(col1,col2)</span><br></pre></td></tr></table></figure>
+
+<p>非聚集索引索引的顺序与表中的数据顺序无关，叶子节点存储的是指向数据行的指针</p>
+<h4 id="二级索引"><a href="#二级索引" class="headerlink" title="二级索引"></a>二级索引</h4><p>存储的是记录的主键值，而不是数据的地址值</p>
+<p>在Innodb中，主键是聚集索引，唯一索引，普通索引等都是二级索引</p>
+<p>MyISAM使用的是非聚集索引</p>
+<p>在使用二级索引查找数据时，首先根据二级索引找到主键值，在根据主键值再到聚集索引中查找数据</p>
+<h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h4><p>下面我们通过一个具体的示例进行演示聚集索引和二级索引</p>
+<h4 id="pl-ranking（编程语言排行榜表）"><a href="#pl-ranking（编程语言排行榜表）" class="headerlink" title="pl_ranking（编程语言排行榜表）"></a>pl_ranking（编程语言排行榜表）</h4><blockquote>
+<p>该表包含3个字段，如下：<br><strong>id:</strong>主键<br><strong>plname：</strong>编程语言名称<br><strong>ranking：</strong>排名</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>plname</th>
+<th>ranking</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>15</td>
+<td>C</td>
+<td>2</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Java</td>
+<td>1</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Php</td>
+<td>6</td>
+</tr>
+<tr>
+<td>23</td>
+<td>C#</td>
+<td>5</td>
+</tr>
+<tr>
+<td>26</td>
+<td>C++</td>
+<td>3</td>
+</tr>
+<tr>
+<td>29</td>
+<td>Ada</td>
+<td>17</td>
+</tr>
+<tr>
+<td>50</td>
+<td>Go</td>
+<td>12</td>
+</tr>
+<tr>
+<td>52</td>
+<td>Lisp</td>
+<td>15</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>id:</strong> 设置主键<br><strong>plname:</strong> 普通索引</p>
+</blockquote>
+<h4 id="聚簇索引-主键索引"><a href="#聚簇索引-主键索引" class="headerlink" title="聚簇索引(主键索引)"></a>聚簇索引(主键索引)</h4><p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/musql/%E7%B4%A2%E5%BC%951.jpg" alt="img"></p>
+<p>####　聚集索引</p>
+<p>从图中我们可以看到，索引数据和存储数据都是在一颗树上，存在一起的。通过定位索引就直接可以查找到数据。</p>
+<p>这棵树是根据主键进行创建的。<br>如果查找id=16的编程语言，<br><strong>select id, plname, ranking from pl_ranking where id=16;</strong><br>则只需要读取3个磁盘块，就可以获取到数据。</p>
+<h4 id="二级索引（辅助索引）"><a href="#二级索引（辅助索引）" class="headerlink" title="二级索引（辅助索引）"></a>二级索引（辅助索引）</h4><p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/musql/%E7%B4%A2%E5%BC%952.jpg" alt="img"></p>
+<p>image.png</p>
+<p>从上图中我们发现，该B*tree根据plname列进行构建的，只存储索引数据，plname 和 id 的映射。</p>
+<p>比如查找 编程语言为“Java”的数据。<br><strong>select id, plname, ranking from pl_ranking where plname=’Java’;</strong><br>首先通过二级索引树中找到 Java 对应的主键id 为 “16”。<br>然后在去主键索引中查找id为“16” 的数据</p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ol>
+<li>相比于叶子节点中存储行指针，二级索引存储主键值会占用更多的空间，那为什么要这样设计呢？</li>
+</ol>
+<p>　InnoDB在移动行时，无需维护二级索引，因为叶子节点中存储的是主键值，而不是指针。</p>
+<ol start="2">
+<li><p>那么InnoDB有了聚簇索引，为什么还要有二级索引呢？</p>
+<p>聚簇索引的叶子节点存储了一行完整的数据，而二级索引只存储了主键值，相比于聚簇索引，占用的空间要少。当我们需要为表建立多个索引时，如果都是聚簇索引，那将占用大量内存空间，所以InnoDB中主键所建立的是聚簇索引，而唯一索引、普通索引、前缀索引等都是二级索引</p>
+</li>
+<li><p>为什么一般情况下，我们建表的时候都会使用一个自增的id来作为我们的主键？</p>
+<p>​    InnoDB中表中的数据是直接存储在主键聚簇索引的叶子节点中的，每插入一条记录，其实都是增加一个叶子节点，如果主键是顺序的，只需要把新增的一条记录存储在上一条记录的后面，当页达到最大填充因子的时候，下一跳记录就会写入新的页中，这种情况下，主键页就会近似于被顺序的记录填满。</p>
+<p>　　若表的主键不是顺序的id，而是无规律数据，比如字符串，InnoDB无法加单的把一行记录插入到索引的最后，而是需要找一个合适的位置（已有数据的中间位置），甚至产生大量的页分裂并且移动大量数据，在寻找合适位置进行插入时，目标页可能不在内存中，这就导致了大量的随机IO操作，影响插入效率。除此之外，大量的页分裂会导致大量的内存碎片。</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/mysql/">mysql</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-线程池" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -520,7 +735,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">4分</span>
+        <span class="post-count">5分</span>
       </span>
     </span>
 </div>
@@ -554,10 +769,11 @@ var _hmt = _hmt || [];
 <h3 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h3><p>支持共享读，不支持共享读写，和写。也就是说支持同时读，但是不支持同时写。这种锁可以提高读的并发性</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">public class WriteAndReadLock &#123;</span><br><span class="line">		</span><br><span class="line">	ReentrantReadWriteLock rwl = new ReentrantReadWriteLock();</span><br><span class="line">	</span><br><span class="line">	// 写操作</span><br><span class="line">	public void write() &#123;</span><br><span class="line">		rwl.writeLock().lock();</span><br><span class="line">		System.out.println(Thread.currentThread().getName()+&quot;正在写&quot;);</span><br><span class="line">		try &#123;</span><br><span class="line">			TimeUnit.SECONDS.sleep(1);</span><br><span class="line">		&#125; catch (InterruptedException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		rwl.writeLock().unlock();</span><br><span class="line">		System.out.println(Thread.currentThread().getName()+&quot;写已经完成&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	// 读操作</span><br><span class="line">	public void read() &#123;</span><br><span class="line">		rwl.readLock().lock();</span><br><span class="line">		System.out.println(Thread.currentThread().getName()+&quot;正在读&quot;);</span><br><span class="line">		try &#123;</span><br><span class="line">			TimeUnit.SECONDS.sleep(1);</span><br><span class="line">		&#125; catch (InterruptedException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(Thread.currentThread().getName()+&quot;读已经完成&quot;);</span><br><span class="line">		rwl.readLock().unlock();</span><br><span class="line">	&#125;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		WriteAndReadLock wad = new WriteAndReadLock();</span><br><span class="line">		for (int i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">			new Thread(()-&gt;&#123;</span><br><span class="line">				wad.write();</span><br><span class="line">			&#125;).start();</span><br><span class="line">		&#125;</span><br><span class="line">		for (int i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">			new Thread(()-&gt;&#123;</span><br><span class="line">				wad.read();</span><br><span class="line">			&#125;).start();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>结果：  每个线程写操作不能被其它操作所打断</p>
+<p>结果：</p>
 <p>​    Thread-0正在写<br>    Thread-0写已经完成<br>    Thread-1正在写<br>    Thread-1写已经完成<br>    Thread-2正在写<br>    Thread-2写已经完成<br>    Thread-3正在读<br>    Thread-4正在读<br>    Thread-5正在读<br>    Thread-3读已经完成<br>    Thread-4读已经完成<br>    Thread-5读已经完成</p>
+<p>结论：  每个线程写操作不能被其它操作所打断，不支持共享写。读操作支持共享读</p>
 <h3 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h3><p>自旋锁在没有获取到锁的情况下不会马上将线程阻塞，而是不断尝试获取锁</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class RoteBySelf &#123;</span><br><span class="line"></span><br><span class="line">	private AtomicReference&lt;Thread&gt; ar = new AtomicReference&lt;Thread&gt;();</span><br><span class="line">	</span><br><span class="line">	// 手写一个自旋锁</span><br><span class="line">	public void lock() &#123;</span><br><span class="line">		Thread thread = Thread.currentThread();</span><br><span class="line">		System.out.println(thread.getName()+&quot;\t　尝试获取锁&quot;);</span><br><span class="line">		</span><br><span class="line">		while(!ar.compareAndSet(null,thread)) &#123;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(thread.getName()+&quot;\t　获取锁成功&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void unlock() &#123;</span><br><span class="line">		Thread thread = Thread.currentThread();</span><br><span class="line">		ar.compareAndSet(thread, null);</span><br><span class="line">		System.out.println(thread.getName()+&quot;\t　释放锁成功&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class RoteBySelf &#123;</span><br><span class="line"></span><br><span class="line">	private AtomicReference&lt;Thread&gt; ar = new AtomicReference&lt;Thread&gt;();</span><br><span class="line">	</span><br><span class="line">	// 手写一个自旋锁</span><br><span class="line">	public void lock() &#123;</span><br><span class="line">		Thread thread = Thread.currentThread();</span><br><span class="line">		System.out.println(thread.getName()+&quot;\t　尝试获取锁&quot;);</span><br><span class="line">		// 如果是第一次则获取锁成功，跳出while循环</span><br><span class="line">		while(!ar.compareAndSet(null,thread)) &#123;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(thread.getName()+&quot;\t　获取锁成功&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void unlock() &#123;</span><br><span class="line">		Thread thread = Thread.currentThread();</span><br><span class="line">		ar.compareAndSet(thread, null);</span><br><span class="line">		System.out.println(thread.getName()+&quot;\t　释放锁成功&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p>死锁是多个线程争抢共享资源导致互相等待的一种状态，如果没有外力驱使，那么该状态会一直存在。</p>
 <p>产生死锁的条件：</p>
@@ -1154,100 +1370,6 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a href="/2019/08/05/spark基本架构与运行原理/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hadoop优化配置" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      
-<a href="/2019/08/04/hadoop优化配置/" class="article-date">
-      <time datetime="2019-08-04T07:08:41.000Z" itemprop="datePublished">2019-08-04</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-       
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/04/hadoop优化配置/">hadoop优化配置</a>
-    </h1>
-  
-
-          <!--
-            
-                 <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">864字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">4分</span>
-      </span>
-    </span>
-</div>
-
-            
-           -->
-       </header>
-        
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="1-历史服务器的配置"><a href="#1-历史服务器的配置" class="headerlink" title="1. 历史服务器的配置"></a>1. 历史服务器的配置</h3><p>为了查看程序的历史运行情况，需要配置一下历史服务器。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/08/04/hadoop优化配置/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

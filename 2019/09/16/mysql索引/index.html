@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="HanderH">
+
+
+
+<meta name="description" content="索引索引是一种协助我们快速查找的一种数据结构，在mysql的Inndb引擎中，底层使用的是B+Tree 索引的创建创建表时创建索引123456789create table t1_i1(	id int primary key auto_increment,# 主键索引	name varchar(20) unique,# 唯一索引	age int ,	gender varchar(2) check(">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql索引">
+<meta property="og:url" content="http://www.handerh.top/2019/09/16/mysql索引/index.html">
+<meta property="og:site_name" content="hsj的博客">
+<meta property="og:description" content="索引索引是一种协助我们快速查找的一种数据结构，在mysql的Inndb引擎中，底层使用的是B+Tree 索引的创建创建表时创建索引123456789create table t1_i1(	id int primary key auto_increment,# 主键索引	name varchar(20) unique,# 唯一索引	age int ,	gender varchar(2) check(">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/musql/%E7%B4%A2%E5%BC%950.png">
+<meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/musql/%E7%B4%A2%E5%BC%951.jpg">
+<meta property="og:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/musql/%E7%B4%A2%E5%BC%952.jpg">
+<meta property="og:updated_time" content="2019-09-16T05:56:53.613Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql索引">
+<meta name="twitter:description" content="索引索引是一种协助我们快速查找的一种数据结构，在mysql的Inndb引擎中，底层使用的是B+Tree 索引的创建创建表时创建索引123456789create table t1_i1(	id int primary key auto_increment,# 主键索引	name varchar(20) unique,# 唯一索引	age int ,	gender varchar(2) check(">
+<meta name="twitter:image" content="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/musql/%E7%B4%A2%E5%BC%950.png">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="hsj的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>mysql索引 | hsj的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+  
+<script type="text/javascript">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?4f798eed1a766f92447c385d4a7be8eb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/handerh.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">HanderH</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">life and work</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:husj0423@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/HanderH/" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa QQ" href="https://user.qzone.qq.com/1290449261" title="QQ"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flume/">Flume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hbase/">hbase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hive/">hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java并发编程/">java并发编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java设计模式/">java设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java高并发编程/">java高并发编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/">kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scala/">scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/">spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu-linux/">ubuntu linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目总结/">项目总结</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">大数据的时代</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">HanderH</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/handerh.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">HanderH</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">life and work</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:husj0423@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/HanderH/" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa QQ" target="_blank" href="https://user.qzone.qq.com/1290449261" title="QQ"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-mysql索引" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2019/09/16/mysql索引/" class="article-date">
+      <time datetime="2019-09-16T05:33:28.000Z" itemprop="datePublished">2019-09-16</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+       
+        
+  
+    <h1 class="article-title" itemprop="name">
+      mysql索引
+    </h1>
+  
+
+          <!--
+            
+                 <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">2.5k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">9分</span>
+      </span>
+    </span>
+</div>
+
+            
+           -->
+       </header>
+        
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/mysql/">mysql</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><p>索引是一种协助我们快速查找的一种数据结构，在mysql的Inndb引擎中，底层使用的是B+Tree</p>
+<h3 id="索引的创建"><a href="#索引的创建" class="headerlink" title="索引的创建"></a>索引的创建</h3><h4 id="创建表时创建索引"><a href="#创建表时创建索引" class="headerlink" title="创建表时创建索引"></a>创建表时创建索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">create table t1_i1(</span><br><span class="line">	id int primary key auto_increment,# 主键索引</span><br><span class="line">	name varchar(20) unique,# 唯一索引</span><br><span class="line">	age int ,</span><br><span class="line">	gender varchar(2) check(gender in (&apos;F&apos;,&apos;M&apos;)),</span><br><span class="line">	email varchar(20),</span><br><span class="line">	extr text,</span><br><span class="line">	index age_i (age) # 普通索引</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看表中的索引信息"><a href="#查看表中的索引信息" class="headerlink" title="查看表中的索引信息"></a>查看表中的索引信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show index from t1_i1;</span><br></pre></td></tr></table></figure>
+
+<h4 id="删除表中的索引"><a href="#删除表中的索引" class="headerlink" title="删除表中的索引"></a>删除表中的索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">drop index age_i on t1_i1;</span><br><span class="line">drop index name on t1_i1;</span><br></pre></td></tr></table></figure>
+
+<h4 id="在已经创建好的表中添加索引"><a href="#在已经创建好的表中添加索引" class="headerlink" title="在已经创建好的表中添加索引"></a>在已经创建好的表中添加索引</h4><h4 id="添加唯一索引"><a href="#添加唯一索引" class="headerlink" title="添加唯一索引"></a>添加唯一索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create unique index name_index on t1_i1(name);</span><br></pre></td></tr></table></figure>
+
+<h4 id="添加组合索引"><a href="#添加组合索引" class="headerlink" title="添加组合索引"></a>添加组合索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create index age_email_index on t1_i1(age,email);</span><br></pre></td></tr></table></figure>
+
+<h4 id="添加普通索引"><a href="#添加普通索引" class="headerlink" title="添加普通索引"></a>添加普通索引</h4><p>创建索引时如果是BLOB 和 TEXT 类型，必须指定length。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create index extr_index on t1_i1(extr(20));</span><br></pre></td></tr></table></figure>
+
+<h3 id="索引的使用"><a href="#索引的使用" class="headerlink" title="索引的使用"></a>索引的使用</h3><h4 id="向表中插入100000条数据"><a href="#向表中插入100000条数据" class="headerlink" title="向表中插入100000条数据"></a>向表中插入100000条数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">create procedure insert100(in num int)</span><br><span class="line">begin</span><br><span class="line">	declare i int default 1;</span><br><span class="line">	while i&lt;num do</span><br><span class="line">	insert into t1_i1 values(i,&apos;name&apos;,i%18,&apos;F&apos;,&apos;i@qq.com&apos;,&apos;extra&apos;);</span><br><span class="line">	set i = i+1;</span><br><span class="line">	end while;</span><br><span class="line">end$</span><br></pre></td></tr></table></figure>
+
+<h4 id="正确使用索引"><a href="#正确使用索引" class="headerlink" title="正确使用索引"></a>正确使用索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">索引失效：</span><br><span class="line">     1.全值匹配我最爱</span><br><span class="line">     2.最佳左前缀法则，如果索引了多列，要遵循最左前缀法则，指的是查询从索引最左前列开始，并且不能跳过索引中的列</span><br><span class="line">     3.不在索引列上做任何操作（计算，函数，自动或手动类型转换），会导致索引失效</span><br><span class="line">     4.不能使用索引范围条件中右边的列</span><br><span class="line">     5.尽量使用覆盖索引</span><br><span class="line">     6.在使用不等于(!=或者&lt;&gt;)的时候，会导致索引失效</span><br><span class="line">     7.is null is not null 会导致索引失效</span><br><span class="line">     8.like一通配符开头（‘%..&apos;），会导致索引失效  （解决办法：使用覆盖索引）</span><br><span class="line">     9.字符串不加单引号，会导致索引失效 </span><br><span class="line">     10.少用or，or会致索引失效</span><br></pre></td></tr></table></figure>
+
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/musql/%E7%B4%A2%E5%BC%950.png" alt="索引示例"></p>
+<h3 id="explain-sql查询执行计划"><a href="#explain-sql查询执行计划" class="headerlink" title="explain+sql查询执行计划"></a>explain+sql查询执行计划</h3><p>通过查询执行计划能干嘛？</p>
+<p>​          1.可以知道表的读取顺序</p>
+<p>​          2.数据读取操作的操作类型</p>
+<p>​          3.哪些索引可以被使用</p>
+<p>​          4.哪些索引被实际使用</p>
+<p>​          5.表之间的引用关系</p>
+<p>​          6.每张表有多少行被优化器查询</p>
+<h4 id="执行计划中包含的信息"><a href="#执行计划中包含的信息" class="headerlink" title="执行计划中包含的信息"></a>执行计划中包含的信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">id |:select的查询序列号，包含一组数字，表示select执行的顺序或者表的操作顺序，id的值越大，优先级越高   </span><br><span class="line">select_type |:</span><br><span class="line">	simple：表示简单的select，不包含子查询或union</span><br><span class="line">	primary：查询中若包含任何子查询，则会被标记为primary</span><br><span class="line">	SUBQUERY:子查询</span><br><span class="line">	DERIVED:在from列表中包含的子查询被标记为DERIVED</span><br><span class="line">	union:若第二个select出现在union后则被标记为union</span><br><span class="line">		  若union包含在from的子查询中，则被标记为DERIVER</span><br><span class="line">	UNION RESULT：union合并后的表</span><br><span class="line">table |:这行数据是哪张表的</span><br><span class="line">partitions | :</span><br><span class="line">type |:ALL INDEX RANGE ref eq_ref const system NULL</span><br><span class="line">	   从最好到最差的顺序依次是 system&gt;const&gt;eq_ref &gt;ref&gt;range&gt;index&gt;all</span><br><span class="line">		system:表中只有一行数据</span><br><span class="line">		const：表示通过一次索引就找到了，const用于比较primary key 或者unique索引，因为只匹				 配一行数据所以很快</span><br><span class="line">		eq_ref：唯一性索引扫描，对于每一个索引键，表中只有一条数据与之匹配</span><br><span class="line">		ref：非唯一性索引扫描，返回匹配某个单独值得所有行</span><br><span class="line">		range：值检索给定范围的行</span><br><span class="line">		index:FULL INDEX scan 全索引扫描 ，只遍历索引树，通常比all快</span><br><span class="line">		 all：FULL Table Scan 全表扫描</span><br><span class="line">possible_keys | :</span><br><span class="line">		显示可能应用在这张表的索引，一个或多个。查询涉及到的字段上若存在索引，则该索引被列出 ，		但不一定被使用</span><br><span class="line">key  | :</span><br><span class="line">		实际使用的索引，如果为null，则没有使用索引</span><br><span class="line">		查询中若使用了复盖索引（查询列要被所建的索引覆盖），则该索引仅出现在key中</span><br><span class="line">key_len | :</span><br><span class="line">		key-len：显示的的字段为索引字段的 最大可能长度，并非实际长度</span><br><span class="line">ref  | :</span><br><span class="line">		索引的哪一列被使用，具体使用了什么值</span><br><span class="line">rows  | :</span><br><span class="line">		rows:根据表统计信息及索引引用情况，大概估算出所需的记录所要读取的行数</span><br><span class="line">filtered | :		</span><br><span class="line">Extra  :包含不适合在其他列出现但十分重要的信息</span><br><span class="line">		1.using filesort：说明mysql会对数据使用一个外部排序，而不是按照表内的的索引顺序进行读取，mysql无法利用索引完成的排序操作叫做文件排序</span><br><span class="line">		2.using temporary:使用了临时表保存中间结果，mysql在对查询结果排序时采用了临时表，常见于order by和分组查询group by</span><br><span class="line">		3.using index：表示响应的select操作使用了复盖索引，避免访问了表的数据行，效果不错</span><br><span class="line">           如果同时出现了using where表明索引被用来执行索引键值的查找</span><br><span class="line">           s如果没有同时出现了using where表明索引被用来读取数据，而非执行查找动作</span><br><span class="line">		 4.using join buffer：使用了连接缓存</span><br><span class="line">		 5.using where</span><br></pre></td></tr></table></figure>
+
+<h4 id="排序优化"><a href="#排序优化" class="headerlink" title="排序优化"></a>排序优化</h4><p> order by：尽量使用Index的方式排序，避免使用FileSort</p>
+<pre><code>order by满足两种情况会使用index方式排序：</code></pre><p>​                                  1、order by使用索引最左前列</p>
+<p>​                                  2、使用where子句与order by字句条件组合成索引最左前列</p>
+<p>如果排序字句不在索引上，filesort有两种算法</p>
+<p>​                    双路排序：从磁盘读取所要查询的列，在buffer中排序，再从磁盘中读取数据（两次IO）</p>
+<p>​                    单路排序：从磁盘读取所要查询的列，在buffer中排序（一次IO），一次将数据读入到buffer，需要更多的空间</p>
+<h3 id="聚集索引，非聚集索引，二级索引"><a href="#聚集索引，非聚集索引，二级索引" class="headerlink" title="聚集索引，非聚集索引，二级索引"></a>聚集索引，非聚集索引，二级索引</h3><h4 id="聚集索引"><a href="#聚集索引" class="headerlink" title="聚集索引"></a>聚集索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create cluster index index_name on table(col1,col2)</span><br></pre></td></tr></table></figure>
+
+<p>聚集索引按表中的索引顺序来存储，也就是谁说，索引项的顺序与表中的顺序是一致的，对于聚集索引，叶子节点存储的数据是真实的数据行，不再有额外的数据页，在一张表中只能存在一个聚集索引。Innodb默认使用的是聚集索引</p>
+<h4 id="非聚集索引"><a href="#非聚集索引" class="headerlink" title="非聚集索引"></a>非聚集索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create nocluster index index_name on table(col1,col2)</span><br></pre></td></tr></table></figure>
+
+<p>非聚集索引索引的顺序与表中的数据顺序无关，叶子节点存储的是指向数据行的指针</p>
+<h4 id="二级索引"><a href="#二级索引" class="headerlink" title="二级索引"></a>二级索引</h4><p>存储的是记录的主键值，而不是数据的地址值</p>
+<p>在Innodb中，主键是聚集索引，唯一索引，普通索引等都是二级索引</p>
+<p>MyISAM使用的是非聚集索引</p>
+<p>在使用二级索引查找数据时，首先根据二级索引找到主键值，在根据主键值再到聚集索引中查找数据</p>
+<h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h4><p>下面我们通过一个具体的示例进行演示聚集索引和二级索引</p>
+<h4 id="pl-ranking（编程语言排行榜表）"><a href="#pl-ranking（编程语言排行榜表）" class="headerlink" title="pl_ranking（编程语言排行榜表）"></a>pl_ranking（编程语言排行榜表）</h4><blockquote>
+<p>该表包含3个字段，如下：<br><strong>id:</strong>主键<br><strong>plname：</strong>编程语言名称<br><strong>ranking：</strong>排名</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>plname</th>
+<th>ranking</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>15</td>
+<td>C</td>
+<td>2</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Java</td>
+<td>1</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Php</td>
+<td>6</td>
+</tr>
+<tr>
+<td>23</td>
+<td>C#</td>
+<td>5</td>
+</tr>
+<tr>
+<td>26</td>
+<td>C++</td>
+<td>3</td>
+</tr>
+<tr>
+<td>29</td>
+<td>Ada</td>
+<td>17</td>
+</tr>
+<tr>
+<td>50</td>
+<td>Go</td>
+<td>12</td>
+</tr>
+<tr>
+<td>52</td>
+<td>Lisp</td>
+<td>15</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>id:</strong> 设置主键<br><strong>plname:</strong> 普通索引</p>
+</blockquote>
+<h4 id="聚簇索引-主键索引"><a href="#聚簇索引-主键索引" class="headerlink" title="聚簇索引(主键索引)"></a>聚簇索引(主键索引)</h4><p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/musql/%E7%B4%A2%E5%BC%951.jpg" alt="img"></p>
+<p>####　聚集索引</p>
+<p>从图中我们可以看到，索引数据和存储数据都是在一颗树上，存在一起的。通过定位索引就直接可以查找到数据。</p>
+<p>这棵树是根据主键进行创建的。<br>如果查找id=16的编程语言，<br><strong>select id, plname, ranking from pl_ranking where id=16;</strong><br>则只需要读取3个磁盘块，就可以获取到数据。</p>
+<h4 id="二级索引（辅助索引）"><a href="#二级索引（辅助索引）" class="headerlink" title="二级索引（辅助索引）"></a>二级索引（辅助索引）</h4><p><img src="https://handerh-1259550163.cos.ap-shanghai.myqcloud.com/java/musql/%E7%B4%A2%E5%BC%952.jpg" alt="img"></p>
+<p>image.png</p>
+<p>从上图中我们发现，该B*tree根据plname列进行构建的，只存储索引数据，plname 和 id 的映射。</p>
+<p>比如查找 编程语言为“Java”的数据。<br><strong>select id, plname, ranking from pl_ranking where plname=’Java’;</strong><br>首先通过二级索引树中找到 Java 对应的主键id 为 “16”。<br>然后在去主键索引中查找id为“16” 的数据</p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ol>
+<li>相比于叶子节点中存储行指针，二级索引存储主键值会占用更多的空间，那为什么要这样设计呢？</li>
+</ol>
+<p>　InnoDB在移动行时，无需维护二级索引，因为叶子节点中存储的是主键值，而不是指针。</p>
+<ol start="2">
+<li><p>那么InnoDB有了聚簇索引，为什么还要有二级索引呢？</p>
+<p>聚簇索引的叶子节点存储了一行完整的数据，而二级索引只存储了主键值，相比于聚簇索引，占用的空间要少。当我们需要为表建立多个索引时，如果都是聚簇索引，那将占用大量内存空间，所以InnoDB中主键所建立的是聚簇索引，而唯一索引、普通索引、前缀索引等都是二级索引</p>
+</li>
+<li><p>为什么一般情况下，我们建表的时候都会使用一个自增的id来作为我们的主键？</p>
+<p>​    InnoDB中表中的数据是直接存储在主键聚簇索引的叶子节点中的，每插入一条记录，其实都是增加一个叶子节点，如果主键是顺序的，只需要把新增的一条记录存储在上一条记录的后面，当页达到最大填充因子的时候，下一跳记录就会写入新的页中，这种情况下，主键页就会近似于被顺序的记录填满。</p>
+<p>　　若表的主键不是顺序的id，而是无规律数据，比如字符串，InnoDB无法加单的把一行记录插入到索引的最后，而是需要找一个合适的位置（已有数据的中间位置），甚至产生大量的页分裂并且移动大量数据，在寻找合适位置进行插入时，目标页可能不在内存中，这就导致了大量的随机IO操作，影响插入效率。除此之外，大量的页分裂会导致大量的内存碎片。</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/09/16/mysql索引/">mysql索引</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">HanderH</a></p>
+        <p><span>发布时间:</span>2019-09-16, 13:33:28</p>
+        <p><span>最后更新:</span>2019-09-16, 13:56:53</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/09/16/mysql索引/" title="mysql索引">http://www.handerh.top/2019/09/16/mysql索引/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.handerh.top/2019/09/16/mysql索引/　　作者: HanderH" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/09/09/线程池/">
+                    线程池
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#索引"><span class="toc-number">1.</span> <span class="toc-text">索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#索引的创建"><span class="toc-number">2.</span> <span class="toc-text">索引的创建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建表时创建索引"><span class="toc-number">2.1.</span> <span class="toc-text">创建表时创建索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看表中的索引信息"><span class="toc-number">2.2.</span> <span class="toc-text">查看表中的索引信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除表中的索引"><span class="toc-number">2.3.</span> <span class="toc-text">删除表中的索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在已经创建好的表中添加索引"><span class="toc-number">2.4.</span> <span class="toc-text">在已经创建好的表中添加索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#添加唯一索引"><span class="toc-number">2.5.</span> <span class="toc-text">添加唯一索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#添加组合索引"><span class="toc-number">2.6.</span> <span class="toc-text">添加组合索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#添加普通索引"><span class="toc-number">2.7.</span> <span class="toc-text">添加普通索引</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#索引的使用"><span class="toc-number">3.</span> <span class="toc-text">索引的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#向表中插入100000条数据"><span class="toc-number">3.1.</span> <span class="toc-text">向表中插入100000条数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#正确使用索引"><span class="toc-number">3.2.</span> <span class="toc-text">正确使用索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-number">3.3.</span> <span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#explain-sql查询执行计划"><span class="toc-number">4.</span> <span class="toc-text">explain+sql查询执行计划</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#执行计划中包含的信息"><span class="toc-number">4.1.</span> <span class="toc-text">执行计划中包含的信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#排序优化"><span class="toc-number">4.2.</span> <span class="toc-text">排序优化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#聚集索引，非聚集索引，二级索引"><span class="toc-number">5.</span> <span class="toc-text">聚集索引，非聚集索引，二级索引</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#聚集索引"><span class="toc-number">5.1.</span> <span class="toc-text">聚集索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#非聚集索引"><span class="toc-number">5.2.</span> <span class="toc-text">非聚集索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二级索引"><span class="toc-number">5.3.</span> <span class="toc-text">二级索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例-1"><span class="toc-number">5.4.</span> <span class="toc-text">示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pl-ranking（编程语言排行榜表）"><span class="toc-number">5.5.</span> <span class="toc-text">pl_ranking（编程语言排行榜表）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#聚簇索引-主键索引"><span class="toc-number">5.6.</span> <span class="toc-text">聚簇索引(主键索引)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二级索引（辅助索引）"><span class="toc-number">5.7.</span> <span class="toc-text">二级索引（辅助索引）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题"><span class="toc-number">6.</span> <span class="toc-text">问题</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-6 i,
+        .toc-level-6 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"mysql索引　| hsj的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <section class="livere" id="comments">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NDk3My8yMTQ5Mw==">
+    <script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+    </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/09/09/线程池/" title="下一篇: 线程池">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/09/16/mysql索引/">mysql索引</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/09/线程池/">线程池</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/08/CountoDownLatch-CyclicBarrier-Semaphore/">CountDownLatch CyclicBarrier Semaphore</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/04/java中的锁/">java中的锁</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/03/集合多线程下的安全性/">集合多线程下的安全性</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/02/CAS/">CAS</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/13/kafka学习笔记/">kafka学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/09/spark-sql/">spark sql</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/07/spark之RDD操作/">spark之RDD操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/05/spark基本架构与运行原理/">spark基本架构与运行原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/04/hadoop优化配置/">hadoop优化配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/02/异常笔记/">异常笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/mysql基础/">mysql</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/28/redis/">redis</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/24/通信分析项目总结/">通信分析项目总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/22/scala/">scala</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/21/virtualbox虚拟机ubuntu无法上网/">virtualbox虚拟机ubuntu无法上网</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/13/hadoop/">hadoop</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/交换排序/">交换排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/hive/">hive</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/插入排序/">插入排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/09/java类加载器/">java类加载器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/GC-垃圾回收机制/">GC-垃圾回收机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/工厂模式/">工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/代理模式/">代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/03/java类与类之间的关系/">java类与类之间的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/hbase基本操作/">hbase的基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/02/简单了解一下zookeeper/">简单了解一下zookeeper</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/深入理解volatile/">深入理解volatile</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/01/谈谈synchronized/">谈谈synchronized</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/30/java-IO/">java IO</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/java的exception/">Exception</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/equals/">equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/clone-浅拷贝与深拷贝/">clone() 浅拷贝与深拷贝</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/27/Flume/">Flume</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/26/java设计模式-单例模式/">java设计模式(单例模式)</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2019 HanderH
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("02/14/2018 12:49:00");//此处修改你的建站时间或者网站上线时间 
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+setInterval("createtime()",250);
+</script>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
